@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "3.11.0"
 
-set :application, "freemarket_sample_58a"
+set :application, "mercari_sample"
 
 set :repo_url, "git@github.com:FunnyHopping/mercari_sample.git"
 
