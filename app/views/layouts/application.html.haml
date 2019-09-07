@@ -9,4 +9,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    = link_to "ログアウト", destroy_user_session_path, method: :delete
+    = link_to 'ログイン', new_user_session_path
+    = link_to '新規登録', step1_users_path
     = yield

@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   def index
-    card = Card.where(user_id: current_user.id).first
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    @default_card_information = customer.cards.retrieve(card.card_id)
+    if user_signed_in?
+      card = Card.where(user_id: current_user.id).first
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+    end
   end
 
   def new
@@ -59,6 +61,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.new(
       name:  session[:name],
       email: session[:email],
@@ -91,6 +94,7 @@ class UsersController < ApplicationController
           metadata: {user_id: @user.id})
           @card = Card.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
           if @card.save
+            sign_in @user
             redirect_to root_path
           else
             render step4_users_path

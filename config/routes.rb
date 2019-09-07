@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'items/new'
-  get 'items/create'
-  get 'items/edit'
-  get 'items/update'
-  get 'items/destroy'
-  root 'users#index'
 
+  devise_scope :user do
+    get 'login' => 'devise/sessions#new', as: :new_user_session
+    post 'login' => 'devise/sessions#create', as: :user_session
+    delete 'logout' => 'devise/sessions#destroy', as: :destroy_user_session
+  end
+  root 'users#index'
   resources :users do
     collection do
       get 'step1'
@@ -15,4 +15,5 @@ Rails.application.routes.draw do
       get 'step5'
     end
   end
+  
 end
