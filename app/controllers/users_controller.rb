@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def index
+    card = Card.where(user_id: current_user.id).first
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    @default_card_information = customer.cards.retrieve(card.card_id)
   end
 
   def new
@@ -50,8 +54,8 @@ class UsersController < ApplicationController
   end
 
   def step5
-    binding.pry
     @user = User.new()
+    session[:payjp_token] = params["payjp-token"]
   end
 
   def create
@@ -75,10 +79,23 @@ class UsersController < ApplicationController
         city: session[:city],
         street_num: session[:street_num],
         building: session[:building],
-        user_id: session[:user_id]
+        user_id: session[:user_id] 
       )
       if @address.save
-        redirect_to root_path
+        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+        if session[:payjp_token].blank?
+          redirect_to action: "step4"
+        else
+          customer = Payjp::Customer.create(
+          card: session[:payjp_token],
+          metadata: {user_id: @user.id})
+          @card = Card.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
+          if @card.save
+            redirect_to root_path
+          else
+            render step4_users_path
+          end
+        end
       else
         render step3_users_path
       end

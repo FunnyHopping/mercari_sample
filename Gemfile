@@ -68,3 +68,4 @@ gem "haml-rails"
 gem 'bcrypt'
 gem 'active_hash'
 gem 'payjp'
+gem 'jquery-rails'

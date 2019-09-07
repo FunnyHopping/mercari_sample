@@ -1,5 +1,5 @@
 = 'カード飛ばし'
-= form_with model:@card, url: step5_users_path,local: true,method: :get do |f|
+= form_with model:@card, url: step5_users_path,local: true,method: :get,id: "card_form",name: "card_form" do |f|
   %label カード番号
   = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
   %br
