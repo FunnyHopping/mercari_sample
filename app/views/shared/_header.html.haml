@@ -1,0 +1,49 @@
+  .header-contents
+
+    .header-contents__top
+      .header-contents__top__logo
+        %a.mercarilogo
+          %image
+        //検索フォーム（リンク先未入力）
+      = form_with url: , method: :get, local:true do |f|
+        = f.text_field :name, class: "header-contents__top__logo"
+        = f.submit "search"
+          = fa_icon "search", class: "icon"
+
+    .header-contents__buttom
+      .header-contents__buttom__left
+          //カテゴリー選択（リンク先未入力）
+        .header-contents__buttom__left__category
+          = link_to 
+         　 //svgタグで画像の描画
+            %svg.categorymark{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 20 16", :width => "20"}
+            カテゴリーから探す
+          //カテゴリー一覧のドロップダウンメニュー
+          .header-contents__buttom__left__category__list
+            %ul
+              %li
+          //ブランド選択（リンク先未入力）
+        .header-contents__buttom__left__brand
+          = link_to 
+            %svg.brandmark%svg.sc-csuQGl.sc-caSCKo.kspmux{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 23 16", :width => "23"}
+            ブランドから探す
+            //ブランド一覧のドロップダウンメニュー
+          .header-contents__buttom__left__brand__list
+            %ul
+              %li
+
+      %ul.header-contetns__buttom__right
+        %li.header-contetns__buttom__right__info
+          = link_to 
+         　 //svgタグで画像の描画
+            %svg.infomark{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 14 16", :width => "14"}
+            お知らせ
+        %li.header-contetns__buttom__right__todo
+          = link_to 
+            %svg.todomark{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 21 16", :width => "21"}
+            やることリスト
+        %li.header-contetns__buttom__right__mypage
+          = link_to 
+            = image_tag "mypage-icon.png"
+            マイページ
+            
