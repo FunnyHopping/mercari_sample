@@ -66,26 +66,24 @@ class UsersController < ApplicationController
       phone_num: session[:phone_num]
     )
     @user.birth_day = session[:birth_day]
-    binding.pry
-    @user.save!
-    # if @user.save
-    #   session[:user_id] = @user.id
-    #   @address = Adress.new(
-    #     post_num: session[:post_num],
-    #     area: session[:area],
-    #     city: session[:city],
-    #     street_num: session[:street_num],
-    #     building: session[:building],
-    #     user_id: session[:user_id] 
-    #   )
-    #   if @address.save
-    #     redirect_to root_path
-    #   else
-    #     render step3_users_path
-    #   end
-    # else
-    #   render step1_users_path
-    # end
+    if @user.save
+      session[:user_id] = @user.id
+      @address = Address.new(
+        post_num: session[:post_num],
+        area: session[:area],
+        city: session[:city],
+        street_num: session[:street_num],
+        building: session[:building],
+        user_id: session[:user_id] 
+      )
+      if @address.save
+        redirect_to root_path
+      else
+        render step3_users_path
+      end
+    else
+      render step1_users_path
+    end
   end
 
   private
