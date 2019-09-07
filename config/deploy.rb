@@ -30,6 +30,9 @@ namespace :deploy do
   end
 end
 
+# bundler
+set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
