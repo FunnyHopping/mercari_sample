@@ -37,19 +37,20 @@ class UsersController < ApplicationController
 
   def step3
     session[:phone_num] = user_params[:phone_num]
-    @user = User.new
+    @address = Address.new()
   end
 
   def step4
     session[:post_num] = address_params[:post_num]
-    session[:area] = address_params[:area]
+    session[:prefecture_id] = address_params[:prefecture_id]
     session[:city] = address_params[:city]
     session[:street_num] = address_params[:street_num]
     session[:building] = address_params[:building]
-    @user = User.new
+    @card = Card.new
   end
 
   def step5
+    binding.pry
     @user = User.new()
   end
 
@@ -70,11 +71,11 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       @address = Address.new(
         post_num: session[:post_num],
-        area: session[:area],
+        prefecture_id: session[:prefecture_id],
         city: session[:city],
         street_num: session[:street_num],
         building: session[:building],
-        user_id: session[:user_id] 
+        user_id: session[:user_id]
       )
       if @address.save
         redirect_to root_path
@@ -92,6 +93,6 @@ class UsersController < ApplicationController
   end
 
   def address_params
-    params.require(:user).permit(:post_num,:area,:city,:street_num,:building)
+    params.require(:address).permit(:post_num,:prefecture_id,:city,:street_num,:building)
   end
 end

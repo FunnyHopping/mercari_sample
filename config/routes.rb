@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'items/new'
+  get 'items/create'
+  get 'items/edit'
+  get 'items/update'
+  get 'items/destroy'
   root 'users#index'
 
   resources :users do

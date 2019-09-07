@@ -1,6 +1,6 @@
-= form_with model:@user, url: step4_users_path,local: true,method: :get do |f|
+= form_with model:@address, url: step4_users_path,local: true,method: :get do |f|
   = f.text_field :post_num,placeholder: "郵便番号"
-  = f.text_field :area,placeholder: "地域"
+  = f.collection_select :prefecture_id, Prefecture.all, :id, :name
   = f.text_field :city,placeholder: "市町村"
   = f.text_field :street_num,placeholder: "番地"
   = f.text_field :building,placeholder: "建物名"
