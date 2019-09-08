@@ -1,49 +1,37 @@
-  .header-contents
-
-    .header-contents__top
-      .header-contents__top__logo
-        %a.mercarilogo
-          %image
-        //検索フォーム（リンク先未入力）
-      = form_with url: , method: :get, local:true do |f|
-        = f.text_field :name, class: "header-contents__top__logo"
-        = f.submit "search"
-          = fa_icon "search", class: "icon"
+  .header__contents
+   .header__contents__search
+      = link_to image_tag("logo.svg"), root_path, class: "header__contents__search__logo"
+      = form_with url: , method: :get, class: "header__contents__search__form" do |f|
+        = f.text_field :keyword, "", class: "header__contents__search__form__input", placeholder:"何をお探しですか？"
+        = f.submit "submit"　class: "header__container__search__form__button" do
+          = fa_icon "search"
 
     .header-contents__buttom
       .header-contents__buttom__left
-          //カテゴリー選択（リンク先未入力）
         .header-contents__buttom__left__category
-          = link_to 
-         　 //svgタグで画像の描画
-            %svg.categorymark{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 20 16", :width => "20"}
-            カテゴリーから探す
+          = link_to "カテゴリーから探す"
           //カテゴリー一覧のドロップダウンメニュー
-          .header-contents__buttom__left__category__list
-            %ul
-              %li
-          //ブランド選択（リンク先未入力）
+          -# .header-contents__buttom__left__category__list
+          -#   %ul
+          -#     %li
         .header-contents__buttom__left__brand
-          = link_to 
-            %svg.brandmark%svg.sc-csuQGl.sc-caSCKo.kspmux{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 23 16", :width => "23"}
-            ブランドから探す
+          = link_to "ブランドから探す"
             //ブランド一覧のドロップダウンメニュー
-          .header-contents__buttom__left__brand__list
-            %ul
-              %li
+          -# .header-contents__buttom__left__brand__list
+          -#   %ul
+          -#     %li
 
       %ul.header-contetns__buttom__right
+        //- if user_signed_in?
         %li.header-contetns__buttom__right__info
-          = link_to 
-         　 //svgタグで画像の描画
-            %svg.infomark{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 14 16", :width => "14"}
-            お知らせ
+          = link_to "お知らせ"
         %li.header-contetns__buttom__right__todo
-          = link_to 
-            %svg.todomark{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 21 16", :width => "21"}
-            やることリスト
+          = link_to "やることリスト"
         %li.header-contetns__buttom__right__mypage
-          = link_to 
-            = image_tag "mypage-icon.png"
-            マイページ
-            
+          = link_to image_tag "mypage-icon.png" "マイページ"
+
+        //- else
+      　.header-contents__buttom__right__signup
+          = link_to "新規会員"
+        .header-contents__buttom__right__signin
+          = link_to "ログイン"  
