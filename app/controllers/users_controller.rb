@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    sign_out @user
   end
 
   def update
@@ -27,17 +28,22 @@ class UsersController < ApplicationController
     @user = User.new()
   end
 
+  def step1_sns
+    @user = User.new()
+  end
+
   def step2
+    if session[:uid] == nil
+      session[:password] = user_params[:password]
+      session[:password_confirmation] = user_params[:password_confirmation]
+    end
     session[:name] = user_params[:name]
     session[:email] = user_params[:email]
-    session[:password] = user_params[:password]
-    session[:password_confirmation] = user_params[:password_confirmation]
-    
     session[:family_name] = user_params[:family_name]
     session[:first_name] = user_params[:first_name]
     session[:first_name_kana] = user_params[:first_name_kana]
     session[:family_name_kana] = user_params[:family_name_kana]
-    session[:birth_day] = params[:user]["birth_day(1i)"]  + params[:user]["birth_day(2i)"] + params[:user]["birth_day(3i)"]
+    session[:birth_day] = params[:user]["birth_day(1i)"] + params[:user]["birth_day(2i)"] + params[:user]["birth_day(3i)"]
     @user = User.new
   end
 
@@ -70,10 +76,13 @@ class UsersController < ApplicationController
       first_name: session[:first_name],
       first_name_kana: session[:first_name_kana],
       family_name_kana: session[:family_name_kana],
-      phone_num: session[:phone_num]
+      phone_num: session[:phone_num],
+      uid: session[:uid],
+      provider: session[:provider]
     )
     @user.birth_day = session[:birth_day]
     if @user.save
+      
       session[:user_id] = @user.id
       @address = Address.new(
         post_num: session[:post_num],
@@ -81,7 +90,7 @@ class UsersController < ApplicationController
         city: session[:city],
         street_num: session[:street_num],
         building: session[:building],
-        user_id: session[:user_id] 
+        user_id: session[:user_id]
       )
       if @address.save
         Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
@@ -103,16 +112,21 @@ class UsersController < ApplicationController
         render step3_users_path
       end
     else
+      
       render step1_users_path
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation,:family_name,:first_name,:first_name_kana,:family_name_kana,:phone_num)
+    params.require(:user).permit(:name, 
+      :email, :password, :password_confirmation,
+      :family_name,:first_name,:first_name_kana,
+      :family_name_kana,:phone_num,:uid,:provider)
   end
 
   def address_params
-    params.require(:address).permit(:post_num,:prefecture_id,:city,:street_num,:building)
+    params.require(:address).permit(:post_num,:prefecture_id,:city,
+      :street_num,:building)
   end
 end
