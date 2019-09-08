@@ -68,3 +68,7 @@ gem "haml-rails"
 gem 'active_hash'
 gem 'payjp'
 gem 'jquery-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
