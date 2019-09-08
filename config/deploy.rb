@@ -56,7 +56,10 @@ set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, { 
+  BASIC_AUTH_USER: ENV['BASIC_AUTH_USER'],
+  BASIC_AUTH_PASSWORD: ENV['BASIC_AUTH_PASSWORD']
+  }
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
