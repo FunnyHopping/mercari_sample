@@ -41,6 +41,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
   gem 'dotenv-rails'
+  # autodeploy gem
+  gem 'capistrano', '3.11.0'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -60,11 +66,15 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+group :production do
+  gem 'unicorn', '5.4.1'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'haml-rails'
+gem "font-awesome-rails"
 gem 'devise'
-gem "haml-rails"
 gem 'active_hash'
 gem 'payjp'
 gem 'jquery-rails'

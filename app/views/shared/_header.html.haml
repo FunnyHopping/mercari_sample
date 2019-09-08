@@ -1,0 +1,33 @@
+.header__contents
+  .header__contents__top
+    .header__contents__logo
+      = link_to image_tag("logo.svg"), root_path, class: "search__logo"
+    .header__contents__search
+
+  .header-contents__bottom
+    .header-contents__bottom__left
+      .header-contents__bottom__left__category
+        = link_to "カテゴリーから探す"
+        //カテゴリー一覧のドロップダウンメニュー
+        -# .header-contents__buttom__left__category__list
+        -#   %ul
+        -#     %li
+      .header-contents__bottom__left__brand
+        = link_to "ブランドから探す"
+        //ブランドー一覧のドロップダウンメニュー
+        -# .header-contents__buttom__left__brand__list
+        -#   %ul
+        -#     %li
+      %ul.header-contetns__bottom__right
+        %li.header-contetns__bottom__right__info
+          = link_to "お知らせ"
+        %li.header-contetns__bottom__right__todo
+          = link_to "やることリスト"
+        %li.header-contetns__bottom__right__mypage
+          = link_to "マイページ"
+
+      %ul.header-contetns__bottom__right__out
+        %li.header-contetns__bottom__right__info
+          = link_to "新規会員"
+        %li.header-contetns__bottom__right__todo
+          = link_to "ログイン"

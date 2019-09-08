@@ -1,0 +1,76 @@
+%ul.footer__nav
+  %li.footer__nav__item
+    %h2 メルカリについて
+    %ul
+      %li
+        = link_to "会社概要（運営会社）"
+      %li
+        = link_to "採用情報"
+      %li
+        = link_to "プレスリリース"
+      %li
+        = link_to "公式ブログ"
+      %li
+        = link_to "メルカリロゴ利用ガイドライン"
+      = link_to "https://twitter.com/mercari_jp", class: "footer__nav_btn footer__nav--twitter" do
+        = fa_icon 'twitter', class: "footer__nav_btn--icon"
+      = link_to "https://www.facebook.com/mercarijp", class: "footer__nav_btn footer__nav--twitter" do
+        = fa_icon 'facebook', class: "footer__nav_btn--icon"
+  %li.footer__nav__item
+    %h2 ヘルプ&ガイド
+    %ul
+      %li
+        = link_to "メルカリガイド"
+      %li
+        = link_to "メルカリロゴ利用ガイドライン"
+      %li
+        = link_to "お知らせ"
+      %li
+        = link_to "らくらくメルカリ便とは" 
+      %li
+        = link_to "ゆうゆうメルカリ便とは"
+      %li
+        = link_to "大型らくらくメルカリ便とは" 
+      %li
+        = link_to "車体取引ガイド"
+      %li
+        = link_to "返品・返金ポリシー"
+      %li
+        = link_to "メルカリあんしん・あんぜん宣言！"
+      %li
+        = link_to "偽ブランド撲滅への取り組み"               
+      %li
+        = link_to "メルカリボックス"
+  %li.footer__nav__item
+    %h2 プライバシーと利用規約
+    %ul
+      %li
+        = link_to "プライバシーポリシー"
+      %li
+        = link_to "メルカリ利用規約"
+      %li
+        = link_to "あんしんスマホサポート制度に関する利用特約"
+      %li
+        = link_to "コンプライアンスポリシー"  
+    %ul
+      %li
+        = link_to "個人データの安全管理に係る基本方針"
+      %li
+        = link_to "特定商取引に関する表記"
+      %li
+        = link_to "資金決済法に基づく表示"
+      %li
+        = link_to "法令遵守と犯罪抑止のために"  
+  %li.footer__nav__item
+    %h2 国
+    %ul
+      %li
+        = link_to "United States"
+      %li
+        = link_to "United Kingdom"
+      %li
+        = link_to "日本"
+.footer__logo
+  = image_tag "logo-white.svg"
+.footer__copyright
+  %p © 2019 Mercari
