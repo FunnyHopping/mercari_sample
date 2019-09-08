@@ -1,12 +1,11 @@
 .container
   .header
-   = render 'shared/header'
+    = render 'shared/header'
   
   .main
     .main-contets
       .main-contets__slider
-        = link_to 
-          = image_tag
+        = image_tag "top-banner.jpg"
 
       .main-contets__popular
         %h2 
@@ -43,16 +42,16 @@
           .sell-icon__name
             出品
           .sell-icon__mark
-          = fa_icon　"camera 3x"
+            = fa_icon "camera 3x"
 
   .aside
-    = image_tag "mercari-icon.png"
     .aside__text__top
       スマホでかんたんフリマアプリ
     .aside__text__buttom
       今すぐ無料ダウンロード！
-    = image_tag "mercari-icon.png"
+    = image_tag "mercari_icon.png"
     = image_tag "mercariappimage.png"
+    = image_tag "download_app_bg.jpg"
 
   .footer
     = render 'shared/footer'

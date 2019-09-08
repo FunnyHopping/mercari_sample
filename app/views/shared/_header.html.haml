@@ -1,37 +1,33 @@
-  .header__contents
-   .header__contents__search
-      = link_to image_tag("logo.svg"), root_path, class: "header__contents__search__logo"
-      = form_with url: , method: :get, class: "header__contents__search__form" do |f|
-        = f.text_field :keyword, "", class: "header__contents__search__form__input", placeholder:"何をお探しですか？"
-        = f.submit "submit"　class: "header__container__search__form__button" do
-          = fa_icon "search"
+.header__contents
+  .header__contents__top
+    .header__contents__logo
+      = link_to image_tag("logo.svg"), root_path, class: "search__logo"
+    .header__contents__search
 
-    .header-contents__buttom
-      .header-contents__buttom__left
-        .header-contents__buttom__left__category
-          = link_to "カテゴリーから探す"
-          //カテゴリー一覧のドロップダウンメニュー
-          -# .header-contents__buttom__left__category__list
-          -#   %ul
-          -#     %li
-        .header-contents__buttom__left__brand
-          = link_to "ブランドから探す"
-            //ブランド一覧のドロップダウンメニュー
-          -# .header-contents__buttom__left__brand__list
-          -#   %ul
-          -#     %li
-
-      %ul.header-contetns__buttom__right
-        //- if user_signed_in?
-        %li.header-contetns__buttom__right__info
+  .header-contents__bottom
+    .header-contents__bottom__left
+      .header-contents__bottom__left__category
+        = link_to "カテゴリーから探す"
+        //カテゴリー一覧のドロップダウンメニュー
+        -# .header-contents__buttom__left__category__list
+        -#   %ul
+        -#     %li
+      .header-contents__bottom__left__brand
+        = link_to "ブランドから探す"
+        //ブランドー一覧のドロップダウンメニュー
+        -# .header-contents__buttom__left__brand__list
+        -#   %ul
+        -#     %li
+      %ul.header-contetns__bottom__right
+        %li.header-contetns__bottom__right__info
           = link_to "お知らせ"
-        %li.header-contetns__buttom__right__todo
+        %li.header-contetns__bottom__right__todo
           = link_to "やることリスト"
-        %li.header-contetns__buttom__right__mypage
-          = link_to image_tag "mypage-icon.png" "マイページ"
+        %li.header-contetns__bottom__right__mypage
+          = link_to "マイページ"
 
-        //- else
-      　.header-contents__buttom__right__signup
+      %ul.header-contetns__bottom__right__out
+        %li.header-contetns__bottom__right__info
           = link_to "新規会員"
-        .header-contents__buttom__right__signin
-          = link_to "ログイン"  
+        %li.header-contetns__bottom__right__todo
+          = link_to "ログイン"
