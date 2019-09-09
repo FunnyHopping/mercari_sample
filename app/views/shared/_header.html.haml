@@ -1,33 +1,65 @@
 .header__contents
   .header__contents__top
-    .header__contents__logo
-      = link_to image_tag("logo.svg"), root_path, class: "search__logo"
-    .header__contents__search
+    .header__contents__top__logo
+      = link_to image_tag("logo.svg"), root_path, class: "mercari-logo"
+    = form_with url: "",class: "header__contents__top__search", method: :get, local: true do |f| 
+      = f.text_field :search, class: "search-form", placeholder: "何かお探しですか？"
+      %label.label
+        = f.submit class: "submit"
+        %i.search-icon
 
-  .header-contents__bottom
-    .header-contents__bottom__left
-      .header-contents__bottom__left__category
-        = link_to "カテゴリーから探す"
+  .header__contents__bottom
+    .header__contents__bottom__left
+      .header__contents__bottom__left__category
+        = link_to "", class: "search-link" do
+          %i.category-icon
+          カテゴリーから探す
         //カテゴリー一覧のドロップダウンメニュー
-        -# .header-contents__buttom__left__category__list
+        -# .category-dropdown
         -#   %ul
         -#     %li
-      .header-contents__bottom__left__brand
-        = link_to "ブランドから探す"
+      .header__contents__bottom__left__brand
+        = link_to "", class: "search-link"  do
+          %i.brand-icon
+          ブランドから探す
         //ブランドー一覧のドロップダウンメニュー
-        -# .header-contents__buttom__left__brand__list
+        -# .brand-dropdown
         -#   %ul
         -#     %li
-      %ul.header-contetns__bottom__right
-        %li.header-contetns__bottom__right__info
-          = link_to "お知らせ"
-        %li.header-contetns__bottom__right__todo
-          = link_to "やることリスト"
-        %li.header-contetns__bottom__right__mypage
-          = link_to "マイページ"
 
-      %ul.header-contetns__bottom__right__out
-        %li.header-contetns__bottom__right__info
-          = link_to "新規会員"
-        %li.header-contetns__bottom__right__todo
-          = link_to "ログイン"
+      //ユーザーログイン
+    %ul.header__contents__bottom__right
+      %li.header__contents__bottom__right__list
+        = link_to "", class: "user-info" do
+          %i.info-icon
+          お知らせ
+        -#     //通知アイコン
+        -#     %span.badge
+        -#   //お知らせのドロップダウンメニュー
+        -#   -# .info__dropdown
+        -#   -#   %ul
+        -#   -#     %li
+      %li.header__contents__bottom__right__list
+        = link_to "", class: "user-info" do
+          %i.todo-icon
+          やることリスト
+        -#   //やることリストのドロップダウンメニュー
+        -#   -# .todo__dropdown
+        -#   -#   %ul
+        -#   -#     %li
+      %li.header__contents__bottom__right__list
+        = link_to "", class: "user-info" do
+          = image_tag "mypage-icon.png", class: "mypage-icon"
+          マイページ
+        -#   //マイページのドロップダウンメニュー
+        -#   -# .mypage__dropdown
+        -#   -#   %ul
+        -#   -#     %li
+
+    -# .header__contents__bottom__right2
+    -#   .header__contents__bottom__right2__signup
+    -#     = link_to "", class: "signup" do
+    -#       新規会員登録
+    -#   .header__contents__bottom__right2__login
+    -#     = link_to "", class: "login" do
+    -#       ログイン 
