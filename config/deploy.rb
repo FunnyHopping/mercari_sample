@@ -66,7 +66,7 @@ set :default_env, {
   MASTER_KEY: ENV['MASTER_KEY']
   }
 
-set :linked_files, 'master.key'
+set :linked_files, 'config/master.key'
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
