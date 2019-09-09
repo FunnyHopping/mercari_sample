@@ -62,10 +62,10 @@ set :default_env, {
   DATABASE_USER_NAME: ENV['DATABASE_USER_NAME'],
   DATABASE_USER_PASS: ENV['DATABASE_PASSWORD'],
   BASIC_AUTH_USER: ENV['BASIC_AUTH_USER'],
-  BASIC_AUTH_PASSWORD: ENV['BASIC_AUTH_PASSWORD'],
+  BASIC_AUTH_PASSWORD: ENV['BASIC_AUTH_PASSWORD']
   }
 
-  set :linked_files, %w{ config/secrets.yml }
+  set :linked_files, %w{ config/master.key }
 
   after 'deploy:publishing', 'deploy:restart'
   namespace :deploy do
