@@ -63,10 +63,8 @@ set :default_env, {
   DATABASE_USER_PASS: ENV['DATABASE_PASSWORD'],
   BASIC_AUTH_USER: ENV['BASIC_AUTH_USER'],
   BASIC_AUTH_PASSWORD: ENV['BASIC_AUTH_PASSWORD'],
-  MASTER_KEY: ENV['MASTER_KEY']
+  RAILS_MASTER_KEY: ENV['RAILS_MASTER_KEY']
   }
-
-set :linked_files, 'config/master.key'
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
