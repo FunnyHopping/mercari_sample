@@ -1,0 +1,65 @@
+.step3-container{
+  @include signup-head();
+  &__main{
+    display: block;
+    &__container{
+      background: #fff;
+      width: 700px;
+      margin: 0 auto;
+      & h2{
+        font-size: 22px;
+        padding: 32px;
+        line-height: 1.5;
+        text-align: center;
+      }
+      &__form{
+        padding: 40px 40px 64px;
+        border-top: 1px solid #f5f5f5;
+        &__content{
+          max-width: 343px;
+          margin: 0 auto;
+          &__group{
+            font-size: inherit;
+            line-height: inherit;
+            margin: 24px 0 0;
+            & label{
+              font-weight: 600;
+              display: inline-block;
+              touch-action: manipulation;
+            }
+            & .span{
+              background: #ea352d;
+              margin: 0 0 0 8px;
+              padding: 2px 4px;
+              border-radius: 2px;
+              color: #fff;
+              font-size: 12px;
+              vertical-align: top;
+            }
+            & input{
+              @include input_default();
+            }
+            & #user_family_name{
+              @include half();
+            }
+            & #user_first_name{
+              @include half();
+            }
+
+            & #user_first_name_kana{
+              @include half();
+            }
+            & #user_family_name_kana{
+              @include half();
+            }
+          }
+          &__submit{
+            & .btn-default{
+              @include btn_default();
+            }
+          }
+        } 
+      }
+    }
+  }
+}
