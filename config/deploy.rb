@@ -57,6 +57,8 @@ set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
 
 # Default value for default_env is {}
 set :default_env, { 
+  DATABASE_USER_NAME: ENV['DATABASE_USER_NAME'],
+  DATABASE_USER_PASS: ENV['DATABASE_PASSWORD'],
   BASIC_AUTH_USER: ENV['BASIC_AUTH_USER'],
   BASIC_AUTH_PASSWORD: ENV['BASIC_AUTH_PASSWORD']
   }
