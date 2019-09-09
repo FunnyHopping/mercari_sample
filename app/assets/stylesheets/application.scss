@@ -1,4 +1,12 @@
-@import "config/reset";
 @import "header";
 @import "footer";
 
+ @import "font-awesome";
+ @import "font-awesome-sprockets";
+ @import "reset";
+ @import "mixin/mixin";
+ @import "step0";
+ @import "step1_sns";
+ @import "step2";
+ @import "step3";
+ @import "session_new";
