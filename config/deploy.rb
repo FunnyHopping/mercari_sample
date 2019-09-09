@@ -57,6 +57,8 @@ set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
 
 # Default value for default_env is {}
 set :default_env, { 
+  AWS_ACCESS_KEY_ID: ENV['AWS_ACCESS_KEY_ID'],
+  AWS_SECRET_ACCESS_KEY: ENV['AWS_SECRET_ACCESS_KEY'],
   DATABASE_USER_NAME: ENV['DATABASE_USER_NAME'],
   DATABASE_USER_PASS: ENV['DATABASE_PASSWORD'],
   BASIC_AUTH_USER: ENV['BASIC_AUTH_USER'],
