@@ -63,8 +63,28 @@ set :default_env, {
   DATABASE_USER_PASS: ENV['DATABASE_PASSWORD'],
   BASIC_AUTH_USER: ENV['BASIC_AUTH_USER'],
   BASIC_AUTH_PASSWORD: ENV['BASIC_AUTH_PASSWORD'],
-  RAILS_MASTER_KEY: ENV['RAILS_MASTER_KEY']
   }
+
+  set :linked_files, %w{ config/secrets.yml }
+
+  after 'deploy:publishing', 'deploy:restart'
+  namespace :deploy do
+    task :restart do
+      invoke 'unicorn:restart'
+    end
+  
+    desc 'upload master.key'
+    task :upload do
+      on roles(:app) do |host|
+        if test "[ ! -d #{shared_path}/config ]"
+          execute "mkdir -p #{shared_path}/config"
+        end
+        upload!('config/master.key', "#{shared_path}/config/master.key")
+      end
+    end
+    before :starting, 'deploy:upload'
+    after :finishing, 'deploy:cleanup'
+  end
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
