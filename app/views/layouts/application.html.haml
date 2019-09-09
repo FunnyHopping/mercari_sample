@@ -20,4 +20,6 @@
     = link_to '新規登録', step0_signups_path
     = link_to 'Google',  user_google_oauth2_omniauth_authorize_path
     = link_to 'FaceBook', user_facebook_omniauth_authorize_path
+    = link_to 'new_card', new_card_path
+    = link_to 'edit_card', edit_card_path(current_user.id)
     = yield

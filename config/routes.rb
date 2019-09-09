@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'cards/new'
+  get 'cards/destroy'
+  get 'cards/create'
   root 'users#index'
 
   devise_scope :user do
@@ -28,6 +31,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :item_purchases
   resources :payments
+  resources :cards
 end
