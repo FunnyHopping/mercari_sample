@@ -1,0 +1,339 @@
+@mixin tab-pane() {
+  display: block;
+  & li {
+    position: relative;
+    border-bottom: 1px solid #eee;
+    .mypage-item-link {
+      display: block;
+      min-height: 80px;
+      padding: 16px;
+      color: #333;
+      & figure {
+        position: relative;
+        overflow: hidden;
+        float: left;
+        width: 48px;
+        height: 48px;
+        & img {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 1;
+          width: 100%;
+        }
+      }
+      .mypage-item {
+        margin: 0 40px 0 68px;
+        &__text {
+          line-height: 1.5;
+        }
+        & time {
+          display: inline-block;
+          color: #888;
+          & .icon-time {
+            margin: 0 8px 0 0;
+          }
+          span {
+            vertical-align: middle;
+          }
+        }
+      }
+      .icon-arrow-right {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+      }
+    }
+  }
+  & li:last-child {
+    border: 0;
+  }
+  .mypage-item-list__go {
+    padding: 16px;
+    & a {
+      display: block;
+      height: 56px;
+      margin: 0 auto;
+      background: #eee;
+      color: #333;
+      line-height: 56px;
+      text-align: center;
+    }
+  }
+}
+
+* {
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+*, ::before, ::after {
+  border-style: solid;
+  border-width: 0;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+::before, ::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+:root {
+  background-color: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #000;
+  cursor: default;
+  font: 66.66667% sans-serif;
+  cursor: auto;
+}
+
+html {
+  display: block;
+  color: -internal-root-color;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  background: #f5f5f5;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1;
+}
+
+div {
+  display: block;
+}
+
+a {
+  color: #0099e8;
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+main {
+  display: block;
+}
+
+.icon-time {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.mypage-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0;
+  & a { 
+    position: relative;
+    display: block;
+    color: #333;
+    font-size: 16px;
+    line-height: 72px;
+  }
+  & li {
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+  }
+  & li.active {
+    background: #fff;
+    & a {
+      border-top: 2px solid #ea352d;
+    }
+  }
+}
+
+.index-container {
+  margin: 40px auto 0;
+  width: 1020px;
+  margin: 24px auto 0;
+  padding: 0 0 40px;
+  .index-content {
+    width: 700px;
+    float: right;
+    .mypage-box {
+      height: 200px;
+      position: relative;
+      padding: 20px;
+      background: url(user-bg.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      text-align: center;
+      & a {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        color: #333;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        & figure {
+          overflow: hidden;
+          width: 60px;
+          height: 60px;
+          margin: 0 auto;
+          border-radius: 50%;
+        }
+        & h2 {
+          margin: 8px 0 0;
+          font-size: 14px;
+        }
+        .mypage-box__user-status {
+          margin: 8px 0 0;
+          font-size: 0;
+          & div {
+            display: inline-block;
+            font-size: 14px;
+            & span {
+              margin: 0 0 0 8px;
+              font-size: 16px;
+            }
+          & + div {
+            margin: 0 0 0 16px;
+          }
+          }
+        }
+      }
+    }
+    .mypage-tab-notice-todo {
+      margin: 0;
+      background: #fff;
+    }
+    .tab-content{
+      & .mypage-item-list.tab-pane.active {
+        @include tab-pane()
+      }
+      .mypage-item-list.tab-pane {
+        @include tab-pane()
+      }
+    }
+  }
+  .mypage-buy-box {
+    margin: 40px 0 0;
+    background: #fff;
+    &__title {
+      padding: 0 16px;
+      background: #fafafa;
+      font-size: 16px;
+      line-height: 72px;
+    }
+    .tab-content {
+      & .mypage-item-list.tab-pane.active {
+        @include tab-pane()
+      }
+    }
+  }
+}
+
+.side-index {
+  float: left;
+  width: 280px;
+  margin: 0 40px 0 0;
+}
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background: #333;
+  opacity: 1;
+  z-index: 3000;
+  .modal-inner.modal-banner {
+    text-align: center;
+    max-width: none;
+    width: 600px;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    margin: 8px auto;
+    background: #fff;
+    .modal-banner-eye-catch {
+      height: 310px;
+      overflow: hidden;
+      position: relative;
+      background: url(modal_banner.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      & img:first-child {
+        width: auto;
+        height: 100%;
+      }
+      & img:last-child {
+        top: 16px;
+        left: 16px;
+        width: 110px;
+        height: 29px;
+        position: absolute;
+      }
+    }
+    .modal-banner-body {
+      padding: 16px 2.5%;
+      h2 {
+        font-size: 34px;
+        line-height: 1;
+        color: #ea352d;
+        font-weight: 600;
+      }
+      p {
+        font-size: 18px;
+        margin: 16px 0 0;
+      }
+      .modal-banner-app {
+        margin: 16px 0 0;
+        a:first-child {
+          margin: 0;
+          img {
+            width: 168px;
+            height: 50px;
+          }
+        }
+        a {
+          margin: 0 0 0 8px;
+          img {
+            width: 168px;
+            height: 50px;
+          }
+        }
+      }
+    }
+    .icon-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.64);
+      text-align: center;
+      line-height: 44px;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
