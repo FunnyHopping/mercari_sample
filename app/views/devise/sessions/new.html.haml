@@ -1,17 +1,27 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.devise-login-container
+  %header.devise-login-container__header
+    %h1
+      = link_to root_path do
+        = image_tag("logo.svg")
+  %main.devise-login-container__main
+    .devise-login-container__main__container
+      .devise-login-container__main__container__new
+        %p= "アカウントお持ちでない方はこちら"
+        = link_to "新規会員登録" ,step0_signups_path
+      .devise-login-container__main__container__sns
+        .devise-login-container__main__container__sns__facebook
+          = link_to user_facebook_omniauth_authorize_path do
+            = fa_icon "facebook-square"
+            = "Facebookでログイン"
+        .devise-login-container__main__container__sns__google
+          = link_to user_google_oauth2_omniauth_authorize_path do
+            = fa_icon "google" 
+            = "Googleでログイン"
+      = form_for(resource, as: resource_name, url: session_path(resource_name),class:"devise-login-container__main__container__form") do |f|
+        .devise-login-container__main__container__form__content
+          .devise-login-container__main__container__form__content__group
+            = f.email_field :email, autofocus: true, autocomplete: "email",class: "input-default",placeholder: "メールアドレス"
+          .devise-login-container__main__container__form__content__group
+            = f.password_field :password, autocomplete: "current-password",class: "input-default",placeholder: "パスワード"
+          .devise-login-container__main__container__form__content__submit
+            = f.submit "ログイン",class:"btn-default btn-red"

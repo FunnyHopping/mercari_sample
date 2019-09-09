@@ -22,16 +22,6 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    collection do
-      get 'step1_sns'
-      get 'step1'
-      get 'step1'
-      get 'step2'
-      get 'step3'
-      get 'step4'
-      get 'step5'
-      get 'step6'
-    end
   end
 
   resources :book_shops, only: [:index, :create ,:destroy]
