@@ -139,9 +139,9 @@ GEM
       nokogiri (>= 1.5.11, < 2.0.0)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
-    formatador (0.2.5)
     font-awesome-sass (5.9.0)
       sassc (>= 1.11)
+    formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.1.2)
@@ -371,6 +371,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   fog-aws
+  font-awesome-rails
   font-awesome-sass (>= 5.4.1)
   haml-rails
   jbuilder (~> 2.5)
