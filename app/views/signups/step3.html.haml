@@ -1,0 +1,49 @@
+.step3-container
+  %header.step3-container__header
+    %h1
+      = link_to root_path do
+        = image_tag("logo.svg")
+    %nav.step3-container__header__nav
+      %ol.step3-container__header__nav__ol
+        %li.active
+          = "会員情報"
+          .progress-status.middle
+        %li.active
+          = "電話番号認証"
+          .progress-status.middle
+        %li.active
+          = "お届け先入力"
+          .progress-status.middle
+        %li.deactive
+          = "支払い方法"
+          .progress-status.middle
+        %li.deactive
+          = "完了"
+          .progress-status
+  %main.step3-container__main
+    %section.step3-container__main__container
+      %h2= "お届け先入力"
+      = form_with model:@address, url: step4_signups_path,local: true,method: :get ,class:"step3-container__main__container__form" do |f|
+        .step3-container__main__container__form__content
+          .step3-container__main__container__form__content__group
+            = f.label :post_num, "郵便番号"
+            %span.span="必須"
+            = f.text_field :post_num,placeholder: "郵便番号"
+          .step3-container__main__container__form__content__group
+            = f.label :prefecture_id, "地域"
+            %span.span="必須"
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+          .step3-container__main__container__form__content__group
+            = f.label :city, "市町村"
+            %span.span="必須"
+            = f.text_field :city,placeholder: "市町村"
+          .step3-container__main__container__form__content__group
+            = f.label :street_num, "番地"
+            %span.span="必須"
+            = f.text_field :street_num,placeholder: "番地"
+          .step3-container__main__container__form__content__group
+            = f.label :building, "建物名"
+            %span.span="任意"
+            = f.text_field :building,placeholder: "建物名"
+          .step3-container__main__container__form__content__submit
+            = f.submit "次へ進む",class:"btn-default btn-red"
