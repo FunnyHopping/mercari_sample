@@ -30,5 +30,3 @@ config/database.yml
 .env
 
 .DS_Store
-
-config/database.yml
