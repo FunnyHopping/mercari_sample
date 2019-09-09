@@ -1,0 +1,87 @@
+.devise-login-container{
+  @include signup-head();
+  &__main{
+    display: block;
+    &__container{
+      background: #fff;
+      width: 456px;
+      margin: 0 auto;
+      &__new{
+        padding: 40px 64px;
+        text-align: center;
+        & p{
+          font-size: 14px;
+        }
+        & a{
+          display: block;
+          margin: 8px 0 0;
+          border: 1px solid #0099e8;
+          background: #0099e8;
+          color: #fff;
+          line-height: 40px;
+          text-decoration: none;
+          touch-action: manipulation;
+        }
+      }
+      &__sns{
+        padding: 32px 64px;
+        border-top: 1px solid #eee;
+        &__facebook{
+          background: #385185;
+          color: #fff;
+          position: relative;
+          display: block;
+          width: 100%;
+          line-height: 48px;
+          font-size: 14px;
+          border: 1px solid transparent;
+          cursor: pointer;
+          text-align: center;
+          outline: 0;
+          touch-action: manipulation;
+          min-height: 1.5em;
+          overflow: visible;
+          & a{
+            color: #fff;
+            text-decoration: none;
+          }
+        }
+        &__google{
+          margin: 16px 0 0;
+          background: #fff;
+          border: #979797 solid 1px;
+          position: relative;
+          display: block;
+          width: 100%;
+          line-height: 48px;
+          font-size: 14px;
+          cursor: pointer;
+          text-align: center;
+          outline: 0;
+          touch-action: manipulation;
+          min-height: 1.5em;
+          overflow: visible;
+          & a{
+            color: #000000;
+            text-decoration: none;
+          } 
+        }
+      }
+      &__form{
+        &__content{
+          padding: 24px 64px 32px;
+          &__group{
+            & input{
+              @include input_default()
+            }
+          }
+          &__submit{
+            & .btn-default{
+              @include btn_default();
+            }
+          }
+        }
+      }
+    }
+  }
+}

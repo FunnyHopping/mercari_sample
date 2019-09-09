@@ -1,0 +1,51 @@
+.signup-header{
+  height: 128px;
+  text-align: center;
+  & h1{
+    font-size: 22px;
+    padding: 32px;  
+    display: inline-block;
+    margin: 11px 0 12px;
+    & a{
+      width: 185px;
+      height: 49px;
+      line-height: 49px;
+      & img{
+        width: 185px;
+        height: 49px;
+      }
+    }
+  }
+}
+
+.signup{
+  display: block;
+  &__container{
+    background: #fff;
+    width: 700px;
+    margin: 0 auto;
+    & h2{
+      font-size: 22px;
+      padding: 32px;  
+      line-height: 1.5;
+      text-align: center;
+    }
+    &__form{
+      padding: 24px,16px,40px;
+      border-top:1px solid #f5f5f5;
+      &__content{
+        padding: 40px 40px 64px;
+        &__email{
+          @include signup-btn(transparent,#ea352d,#ffffff);
+        }
+        &__facebook{
+          @include signup-btn(transparent,#385185,#ffffff);
+        }
+        &__google{
+          @include signup-btn(#000000,#fff,#020000);
+        }
+      }
+    }
+  }
+}
+
