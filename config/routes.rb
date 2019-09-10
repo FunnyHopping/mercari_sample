@@ -28,13 +28,12 @@ Rails.application.routes.draw do
   resources :users do
   end
 
-  # get 'logout_page' => 'users#logout'
-
   resources :book_shops, only: [:index, :create ,:destroy]
-
+  
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :payments
   resources :cards
   resources :profiles, only: [:edit,:update]
 end
+
