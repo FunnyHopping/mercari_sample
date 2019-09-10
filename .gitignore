@@ -25,9 +25,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/shared/config/master.key
+# config/database.yml
 
 .env
 
 .DS_Store
-
-config/database.yml
