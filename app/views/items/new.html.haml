@@ -1,5 +1,3 @@
-%h1 Items#new
-%p Find me in app/views/items/new.html.haml
 .single-box
   .single-box__header
     %h1.single-box__header__logo
@@ -24,7 +22,7 @@
                   -#     = link_to
                   -#     = link_to
               .single-main__box__sell__inner__form__upload-box__drop-0
-                = form_for @item do |f|
+                = form_with model: @item, local: true  do |f|
                   %div
                   = f.label :image, class: 'input-box__image' do
                     = f.file_field :image, class: 'input-box__image__file'
@@ -37,8 +35,43 @@
               -# .single-main__box__sell__inner__form__upload-box__drop-4
               -# .single-main__box__sell__inner__form__upload-box__drop-5
             .single-main__box__sell__inner__form__index-box
-              .single-main__box__sell__inner__form__index-box__
+              .form-group
+                %label
+                  商品名
+                  %span.form-require
+                    必須
+                %div
+                  = form_with model: @item, local: true do |f|
+                    = f.text_field :name, placeholder: "商品名(必須 40文字まで)"
+              .form-group
+                %label
+                  商品の説明
+                  %span.form-require
+                    必須
+                %div
+                  = form_with model: @item, local: true do |f|
+                    = f.text_area :introduct, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+            .single-main__box__sell__inner__form__index-box
+              %h3.item-sub-head
+              .item-form-box
+                .form-group
+                  %label
+                  カテゴリー
+                  %span.form-require
+                    必須
+                %div
+                  .select-wrap
+                    %i.icon-arrow-bottom
+                      -# = form_with model: @item, local: true do |f|
+                      -#   = f.text_field :category_id
+                .form-group
+                  %label
+                    サイズ
+                    %span.form-require
+                      必須
+                  %div
+                    = form_with model: @item, local: true do |f|
+                      = f.select :size, options_for_select(Item.sizes.keys)
 
-
-
-                      
+                    
+                  

@@ -1,0 +1,57 @@
+.container
+  .header
+    = render 'shared/header'
+  
+  .main
+    .main-contets
+      .main-contets__slider
+        = image_tag "top-banner.jpg"
+
+      .main-contets__popular
+        %h2 
+          人気のカテゴリー
+        .main-contets__popular__tags
+          //タグを押すと非同期で移動
+          %ul
+            %li.radies-tag
+              レディース
+            %li.mens-tag
+              メンズ
+            %li.electro-tag
+              家電・スマホ・カメラ
+            %li.hobby-tag
+              おもちゃ・ホビー・グッズ
+
+      .main-contents__new
+        .main-contents__new__title
+          %h3
+            新着アイテム
+          %a 
+            もっと見る
+        .main-contents__new__items
+          .main-contents__new__item
+            -# = link_to item1
+          .main-contents__new__item
+            -# = link_to item2
+          .main-contents__new__item
+            -# = link_to item3
+      
+      .sell-icon
+        -# = link_to 出品ページ
+        .sell-icon__in
+          .sell-icon__name
+            出品
+          .sell-icon__mark
+            %i.camera
+
+  .aside
+    .aside__text__top
+      スマホでかんたんフリマアプリ
+    .aside__text__buttom
+      今すぐ無料ダウンロード！
+    = image_tag "mercari_icon.png"
+    = image_tag "mercariappimage.png"
+    = image_tag "download_app_bg.jpg"
+
+  .footer
+    = render 'shared/footer'

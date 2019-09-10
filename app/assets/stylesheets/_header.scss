@@ -1,0 +1,186 @@
+@mixin headerConfig {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+@mixin searchIndex {
+  cursor: pointer;
+  height: 44px;
+  position: relative;
+  z-index: 3;
+  padding: 0 10px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+form {
+  display: block;
+}
+
+
+.header {
+  background-color: rgb(255,255,255);
+  position: relative;
+  &__contents {
+    width: 1020px;
+    margin: 0 auto;
+    padding-top: 8px;
+
+    &__top {
+      @include headerConfig;
+      &__logo {
+        -webkit-box-align: center;
+        align-items: center;
+        display: flex;
+        height: 40px;
+        margin-right: 45px;
+      }
+    &__search {
+      position: relative;
+      width: 100%;
+    }
+  }
+
+
+    &__bottom {
+      @include headerConfig;
+      margin-top: 8px;
+      &__left {
+        display: flex;
+        margin-left: -3px;
+        &__category {
+          @include searchIndex;
+        }
+        &__brand {
+          @include searchIndex;
+        }
+      }
+      &__right {
+        display: flex;
+        position: relative;
+        &__list {
+          height: 44px;
+          padding: 0 7px;
+          &:first-child {
+            padding-left: 0px;
+          }
+          &:nth-child(3){
+            padding-right: 0px;
+          }
+        }
+      }
+      &__right2 {
+        display: flex;
+        &__signup {
+          text-align: center;
+        }
+        &__login {
+          text-align: center;
+          margin-left: 11px;
+        }
+      }
+    }
+  }
+}
+
+//サーチフォーム
+
+.search-form {
+  background-color: rgb(245, 245, 245);
+  font-size: 16px;
+  height: 40px;
+  line-height: 1.4em;
+  position: relative;
+  width: 100%;
+  -webkit-appearance: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(204, 204, 204);
+  border-image: initial;
+  border-radius: 4px;
+  outline: none;
+  padding: 0px 50px 0px 10px;
+  transition: all 0.3s ease-out 0s;
+}
+
+.search-icon {
+  position:absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+}
+
+.submit {
+  display: none;
+}
+
+
+//以下 image_tag と link_to のクラス名
+.mercari-logo {
+  height: 36px;
+  width: 134px;
+}
+
+.search-link {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 36px;
+  white-space: nowrap;
+}
+
+.user-info {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  height: 32px;
+  transform: scale(1);
+  transition: all 0.3s ease-out 0s;
+}
+
+.mypage-icon {
+  margin-right: 10px;
+  width: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.signup-btn {
+  background-color: rgb(234, 53, 45);
+  color: rgb(255, 255, 255);
+  display: block;
+  font-size: 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(234, 53, 45);
+  border-image: initial;
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+
+.login {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 149, 238);
+  display: block;
+  font-size: 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(0, 149, 238);
+  border-image: initial;
+  border-radius: 4px;
+  padding: 8px 10px;
+  transition: all 0.3s ease-out 0s;
+}
