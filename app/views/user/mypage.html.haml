@@ -5,7 +5,7 @@
         %figure
           = image_tag "user_no-image.png", alt:"", size: "60x60"
         %h2.bold
-          name
+          nameをひっぱる
         .mypage-box__user-status
           %div
             評価 
@@ -54,10 +54,10 @@
                 =image_tag "mercari_mark.png"
               .mypage-item
                 .mypage-item__text
-                  《CM放送中》参加したら10円分ポイント必ずもらえる！秋フェス開催中♪
+                  【実は高く売れる！】遊び終わったゲームもバーコードで10秒出品♪
                 %time
                   %i.icon-time
-                  %span 1 日前
+                  %span 3 時間前
               %i.icon-arrow-right
           %li
             = link_to root_path, class: "mypage-item-link" do
@@ -65,10 +65,10 @@
                 =image_tag "mercari_mark.png"
               .mypage-item
                 .mypage-item__text
-                  事務局から個別メッセージ「ログイン通知」
+                  【実は高く売れる！】遊び終わったゲームもバーコードで10秒出品♪
                 %time
                   %i.icon-time
-                  %span 2 日前
+                  %span 3 時間前
               %i.icon-arrow-right
           %li
             = link_to root_path, class: "mypage-item-link" do
@@ -76,10 +76,10 @@
                 =image_tag "mercari_mark.png"
               .mypage-item
                 .mypage-item__text
-                  事務局から個別メッセージ「ログイン通知」
+                  【実は高く売れる！】遊び終わったゲームもバーコードで10秒出品♪
                 %time
                   %i.icon-time
-                  %span 3 日前
+                  %span 3 時間前
               %i.icon-arrow-right
           %li.mypage-item-list__go
             = link_to root_path do
@@ -102,127 +102,126 @@
           -# ここまで部分テンプレート
 
           -# ここから部分テンプレート
-  %section.mypage-buy-box
-    %h2.mypage-buy-box__title 購入した商品
-    %ul.mypage-tabs
-      %li.active
-        %h3
-          = link_to root_path, {data: {toggle: "tab"}} do
-            取引中
-      %li
-        %h3
-          = link_to root_path, {data: {toggle: "tab"}} do
-            過去の取引
-    .tab-content
-      %ul#mypage-tab-buy-now.mypage-item-list.tab-pane.active
-        %li.mypage-item-not-found.bold 取引中の商品がありません
-      %ul#mypage-tab-buy-old.mypage-item-list.tab-pane
-        %li.mypage-item-not-found.bold 過去に取引した商品がありません
+    %section.mypage-buy-box
+      %h2.mypage-buy-box__title 購入した商品
+      %ul.mypage-tabs
+        %li.active
+          %h3
+            = link_to root_path, {data: {toggle: "tab"}} do
+              取引中
+        %li
+          %h3
+            = link_to root_path, {data: {toggle: "tab"}} do
+              過去の取引
+      .tab-content
+        %ul#mypage-tab-buy-now.mypage-item-list.tab-pane.active
+          %li.mypage-item-not-found.bold 取引中の商品がありません
+        %ul#mypage-tab-buy-old.mypage-item-list.tab-pane
+          %li.mypage-item-not-found.bold 過去に取引した商品がありません
         -# ここまで部分テンプレート
-
--# サイドバー　部分テンプレート化
-.side-index
-  %nav.mypage-nav
-    %ul.mypage-nav__list
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          マイページ
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          お知らせ
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          やることリスト
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          いいね！一覧
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          出品する
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          出品した商品 - 出品中
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          出品した商品 - 取引中
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          出品した商品 - 売却済み
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          購入した商品 - 取引中
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          購入した商品 - 過去の取引
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          ニュース一覧
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          評価一覧
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          ガイド
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          お問い合わせ
-          %i.icon-arrow-right
-    %h3.mypage-nav__head メルペイ
-    %ul.mypage-nav__list
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          売上・振込申請
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          ポイント
-          %i.icon-arrow-right
-    %h3.mypage-nav-head 設定
-    %ul.mypage-nav__list
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          プロフィール
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          発送元・お届け先住所変更
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          支払い方法
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          メール/パスワード
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          本人情報
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          電話番号の確認
-          %i.icon-arrow-right
-      %li
-        = link_to root_path, class: "mypage-nav__list__item" do
-          ログアウト
-          %i.icon-arrow-right
+  .side-index
+    %nav.mypage-nav
+      %ul.mypage-nav__list
+        %li
+          = link_to root_path, class: "mypage-nav__list__item active" do
+            マイページ
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            お知らせ
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            やることリスト
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            いいね！一覧
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            出品する
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            出品した商品 - 出品中
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            出品した商品 - 取引中
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            出品した商品 - 売却済み
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            購入した商品 - 取引中
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            購入した商品 - 過去の取引
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            ニュース一覧
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            評価一覧
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            ガイド
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            お問い合わせ
+            %i.icon-arrow-right
+      %h3.mypage-nav__head メルペイ
+      %ul.mypage-nav__list
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            売上・振込申請
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            ポイント
+            %i.icon-arrow-right
+      %h3.mypage-nav__head 設定
+      %ul.mypage-nav__list
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            プロフィール
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            発送元・お届け先住所変更
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            支払い方法
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            メール/パスワード
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            本人情報
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            電話番号の確認
+            %i.icon-arrow-right
+        %li
+          = link_to root_path, class: "mypage-nav__list__item" do
+            ログアウト
+            %i.icon-arrow-right
 
     /モーダルウィンドウ
-%aside.modal{data: {close: "modal", modal: "banner"}}
+.modal
+  %aside.modal-box{data: {close: "modal", modal: "banner"}}
   .modal-inner.modal-banner
     .modal-banner-eye-catch
       = image_tag "smart_phone.png"
