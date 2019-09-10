@@ -30,5 +30,6 @@ Rails.application.routes.draw do
 
   resources :item_purchases
   resources :payments
+  resources :items
 end
 

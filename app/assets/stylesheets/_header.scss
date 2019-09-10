@@ -33,6 +33,8 @@ form {
 .header {
   background-color: rgb(255,255,255);
   position: relative;
+  // zantei
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
   &__contents {
     width: 1020px;
     margin: 0 auto;
