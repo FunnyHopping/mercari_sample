@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  get 'cards/new'
+  get 'cards/destroy'
+  get 'cards/create'
   root 'users#index'
 
   devise_scope :user do
+    get 'logout_page' => 'devise/sessions#edit'
     get 'login' => 'devise/sessions#new'
     post 'login' => 'devise/sessions#create'
     delete 'logout' => 'devise/sessions#destroy'
@@ -24,11 +28,14 @@ Rails.application.routes.draw do
   resources :users do
   end
 
+  # get 'logout_page' => 'users#logout'
+
   resources :book_shops, only: [:index, :create ,:destroy]
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :item_purchases
   resources :payments
+  resources :cards
+  resources :profiles, only: [:edit,:update]
 end
 
