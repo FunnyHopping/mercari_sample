@@ -12,25 +12,6 @@
       line-height: 1.4;
     }
     &__form{
-      &__succes{
-        &__body{
-          background: #dff0d8;
-          color: #468847;
-          top: 100px;
-          position: absolute;
-          left: 0;
-          right: 0;
-          z-index: 3000;
-          padding: 24px 56px;
-          text-align: center;
-          line-height: 1.5;
-          animation: fade-out ease-out 4.5s;
-          animation-fill-mode: forwards;
-          opacity: 1;
-          transition: all ease-out .3s;
-          cursor: pointer;
-        }
-      }
       &__icon{
         padding: 72px 16px 24px;
         background: asset-url("user-bg.jpg");
@@ -99,5 +80,25 @@
         }
       }
     }
+  }
+}
+
+.profile-edit-container__content__form__succes{
+  &__body{
+    background: #dff0d8;
+    color: #468847;
+    top: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 3000;
+    padding: 24px 56px;
+    text-align: center;
+    line-height: 1.5;
+    animation: fade-out ease-out 4.5s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+    transition: all ease-out .3s;
+    cursor: pointer;
   }
 }
