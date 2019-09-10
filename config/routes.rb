@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   resources :payments
   resources :cards
   resources :profiles, only: [:edit,:update]
+  resources :items
 end

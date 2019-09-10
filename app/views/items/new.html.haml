@@ -1,2 +1,44 @@
 %h1 Items#new
 %p Find me in app/views/items/new.html.haml
+.single-box
+  .single-box__header
+    %h1.single-box__header__logo
+      = link_to root_path do
+        = image_tag "logo.svg", alt: "mercari"
+  %main.single-main
+    %section.single-main__box
+      #sell-box.single-main__box__sell
+        .single-main__box__sell__inner
+          %h2.single-main__box__sell__inner__head
+          %form.single-main__box__sell__inner__form
+            .single-main__box__sell__inner__form__upload-box
+              %h3.single-main__box__sell__inner__form__upload-box__head
+                %span.single-main__box__sell__inner__form__upload-box__head__require
+              %p 最大10枚までアップロードできます
+              .single-main__box__sell__inner__form__upload-box__items
+                %ul.single-main__box__sell__inner__form__upload-box__items__list
+                  -# %li.single-main__box__sell__inner__form__upload-box__items__list__item
+                  -#   %figure..single-main__box__sell__inner__form__upload-box__items__list__item__figure
+                  -#     = image_tag
+                  -#   .edit-delete
+                  -#     = link_to
+                  -#     = link_to
+              .single-main__box__sell__inner__form__upload-box__drop-0
+                = form_for @item do |f|
+                  %div
+                  = f.label :image, class: 'input-box__image' do
+                    = f.file_field :image, class: 'input-box__image__file'
+                    %pre.drop-text 
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+              -# .single-main__box__sell__inner__form__upload-box__drop-1
+              -# .single-main__box__sell__inner__form__upload-box__drop-2
+              -# .single-main__box__sell__inner__form__upload-box__drop-3
+              -# .single-main__box__sell__inner__form__upload-box__drop-4
+              -# .single-main__box__sell__inner__form__upload-box__drop-5
+            .single-main__box__sell__inner__form__index-box
+              .single-main__box__sell__inner__form__index-box__
+
+
+
+                      
