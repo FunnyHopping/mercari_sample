@@ -40,6 +40,7 @@ class SignupsController < ApplicationController
   end
 
   def step5
+    binding.pry
     @user = User.new()
     session[:payjp_token] = params["payjp-token"]
 
@@ -80,15 +81,15 @@ class SignupsController < ApplicationController
           if @card.save
             sign_in @user
           else
-            render step4_users_path
+            render step4_signups_path
           end
         end
       else
-        render step3_users_path
+        render step3_signups_path
       end
     else
       
-      render step1_users_path
+      render step1_signups_path
     end
   end
 

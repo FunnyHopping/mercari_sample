@@ -11,11 +11,11 @@
       .devise-login-container__main__container__sns
         .devise-login-container__main__container__sns__facebook
           = link_to user_facebook_omniauth_authorize_path do
-            = fa_icon "facebook-square"
+            = icon("fab","facebook-square")
             = "Facebookでログイン"
         .devise-login-container__main__container__sns__google
           = link_to user_google_oauth2_omniauth_authorize_path do
-            = fa_icon "google" 
+            = icon("fab","google")
             = "Googleでログイン"
       = form_for(resource, as: resource_name, url: session_path(resource_name),class:"devise-login-container__main__container__form") do |f|
         .devise-login-container__main__container__form__content

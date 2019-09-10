@@ -20,7 +20,7 @@
           right: 0;
           bottom: 0;
           left: 0;
-          z-index: 1;
+          // z-index: 1;
           width: 100%;
         }
       }
@@ -66,6 +66,28 @@
   }
 }
 
+@mixin clearfix() {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin not-found(){
+  .mypage-item-not-found.bold {
+    border: 0;
+    padding: 160px 0 60px;
+    background: url(logo-gray-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center 40px;
+    background-size: 78px 85px;
+    text-align: center;
+    font-size: 16px;
+    color: #ccc;
+  }
+}
+
 * {
   background-repeat: no-repeat;
   margin: 0;
@@ -87,7 +109,8 @@
 }
 
 :root {
-  background-color: #fff;
+
+  background-color: #f5f5f5;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #000;
@@ -96,18 +119,13 @@
   cursor: auto;
 }
 
-html {
-  display: block;
-  color: -internal-root-color;
-}
-
 body {
-  position: relative;
-  min-height: 100%;
-  background: #f5f5f5;
+  // position: relative;
+  // min-height: 100%;
+  // background: #f5f5f5;
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
-  font-size: 14px;
-  color: #333;
+  // font-size: 14px;
+  // color: #333;
   line-height: 1;
 }
 
@@ -168,18 +186,19 @@ main {
   }
 }
 
+
+
 .index-container {
   margin: 40px auto 0;
   width: 1020px;
-  margin: 24px auto 0;
   padding: 0 0 40px;
+  @include clearfix();  
   .index-content {
-    width: 700px;
     float: right;
+    width: 700px;
     .mypage-box {
       height: 200px;
       position: relative;
-      padding: 20px;
       background: url(user-bg.jpg);
       background-repeat: no-repeat;
       background-size: cover;
@@ -230,7 +249,8 @@ main {
         @include tab-pane()
       }
       .mypage-item-list.tab-pane {
-        @include tab-pane()
+        @include tab-pane();
+        display: none;
       }
     }
   }
@@ -242,10 +262,28 @@ main {
       background: #fafafa;
       font-size: 16px;
       line-height: 72px;
+      font-weight: bold;
     }
     .tab-content {
       & .mypage-item-list.tab-pane.active {
-        @include tab-pane()
+        @include tab-pane();
+        @include not-found();
+        // .mypage-item-not-found.bold {
+        //   border: 0;
+        //   padding: 160px 0 60px;
+        //   background: url(logo-gray-icon.svg);
+        //   background-repeat: no-repeat;
+        //   background-position: center 40px;
+        //   background-size: 78px 85px;
+        //   text-align: center;
+        //   font-size: 16px;
+        //   color: #ccc;
+        // }
+      }
+      & .mypage-item-list.tab-pane {
+        @include tab-pane();
+        @include not-found();
+        // display: none;
       }
     }
   }
@@ -255,27 +293,76 @@ main {
   float: left;
   width: 280px;
   margin: 0 40px 0 0;
+  .mypage-nav {
+    display: block;
+    &__list {
+      & li:first-child {
+        border: 0;
+      }
+      & li {
+        border-top: 1px solid #eee;
+        .mypage-nav__list__item.active {
+          background: #eee;
+          font-weight: 600;
+          .icon-arrow-right.active {
+            color: #333;
+          }
+        }
+        .mypage-nav__list__item {
+          position: relative;
+          display: block;
+          min-height: 48px;
+          padding: 16px;
+          background: #fff;
+          font-size: 14px;
+          color: #333;
+          .icon-arrow-right {
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            color: #ccc;
+            -webkit-transform: translate(0, -50%);
+          }
+        }
+      }
+    }
+    &__head {
+      font-size: 16px;
+      margin: 40px 0 0;
+    }
+  }
 }
 
 .modal {
   height: 100vh;
-  width: 100vw;
-  background: #333;
-  opacity: 1;
-  z-index: 3000;
+  width: 100%;
+  z-index: 100;
+  display: none;
+  .modal-box {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #333;
+    opacity: 0.8;
+  }
+
   .modal-inner.modal-banner {
     text-align: center;
     max-width: none;
     width: 600px;
     margin: 20px auto;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
     overflow: hidden;
-    margin: 8px auto;
     background: #fff;
+    z-index: 1000;
     .modal-banner-eye-catch {
       height: 310px;
       overflow: hidden;
-      position: relative;
+      // position: relative;
       background: url(modal_banner.jpg);
       background-repeat: no-repeat;
       background-size: cover;
@@ -323,6 +410,7 @@ main {
       }
     }
     .icon-close {
+      font-size: 20px;
       position: absolute;
       top: 8px;
       right: 8px;

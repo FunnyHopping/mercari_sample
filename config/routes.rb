@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'pages#index'
 
   devise_scope :user do
+    get 'logout_page' => 'devise/sessions#edit'
     get 'login' => 'devise/sessions#new'
     post 'login' => 'devise/sessions#create'
     delete 'logout' => 'devise/sessions#destroy'
@@ -28,8 +29,10 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :item_purchases
   resources :payments
   resources :items
+  resources :cards
+  resources :profiles, only: [:edit,:update]
+  resources :pages, only: [:show,:index]
 end
 
