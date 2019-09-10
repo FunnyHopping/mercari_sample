@@ -41,11 +41,20 @@ ActiveRecord::Schema.define(version: 2019_09_08_063345) do
     t.integer "condition", default: 0, null: false
     t.boolean "postage", default: false
     t.integer "prefecture_id", null: false
-    t.integer "shipping_date", null: false
-    t.integer "saler_id"
-    t.integer "buyer_id"
+    t.integer "shipping_date", default: 0, null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -72,4 +81,6 @@ ActiveRecord::Schema.define(version: 2019_09_08_063345) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "items", "users"
+  add_foreign_key "sns_credentials", "users"
 end
