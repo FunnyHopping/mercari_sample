@@ -9,8 +9,9 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :condition,          null: false,default: 0
       t.boolean :postage,            default: false
       t.integer :prefecture_id,      null: false
-      t.integer :shipping_date,      null: false,default: 0
-      t.references :user,            foreign_key: true
+      t.integer :shipping_date,      null: false,efault: 0
+      t.integer :saler_id
+      t.integer :buyer_id
       t.timestamps
     end
   end

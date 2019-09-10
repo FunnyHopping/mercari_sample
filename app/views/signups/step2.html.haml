@@ -1,0 +1,34 @@
+.step2-container
+  %header.step2-container__header
+    %h1
+      = link_to root_path do
+        = image_tag("logo.svg")
+    %nav.step2-container__header__nav
+      %ol.step2-container__header__nav__ol
+        %li.active
+          = "会員情報"
+          .progress-status.middle
+        %li.active
+          = "電話番号認証"
+          .progress-status.middle
+        %li.deactive
+          = "お届け先入力"
+          .progress-status.middle
+        %li.deactive
+          = "支払い方法"
+          .progress-status.middle
+        %li.deactive
+          = "完了"
+          .progress-status
+  %main.step2-container__main
+    %section.step2-container__main__container
+      %h2= "電話番号の確認"
+      = form_with model:@user, url: step3_signups_path,local: true,method: :get,class: "step2-container__main__container__form" do |f|
+        .step2-container__main__container__form__content
+          .step2-container__main__container__form__content__group
+            = f.label :phone_num, "携帯電話の番号"
+            = f.text_field :phone_num,placeholder: "携帯電話の番号",clss: "input-default"
+            %p= "本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。"
+          .step2-container__main__container__form__content__submit
+            = f.submit "SMSを送信する",class:"btn-default btn-red"
+            %p= "※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。"

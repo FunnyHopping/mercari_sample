@@ -21,7 +21,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     session[:uid] = @auth.uid
     session[:provider] = @auth.provider
 
-    redirect_to step1_sns_users_path
+    redirect_to step1_sns_signups_path
   end
 
   def failure

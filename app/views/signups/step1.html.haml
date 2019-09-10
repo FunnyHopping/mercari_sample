@@ -1,0 +1,79 @@
+.step1-container
+  %header.step1-container__header
+    %h1
+      = link_to root_path do
+        = image_tag("logo.svg")
+    %nav.step1-container__header__nav
+      %ol.step1-container__header__nav__ol
+        %li.active
+          = "会員情報"
+          .progress-status.middle
+        %li.deactive
+          = "電話番号認証"
+          .progress-status.middle
+        %li.deactive
+          = "お届け先入力"
+          .progress-status.middle
+        %li.deactive
+          = "支払い方法"
+          .progress-status.middle
+        %li.deactive
+          = "完了"
+          .progress-status
+  %main.step1-container__main
+    %section.step1-container__main__container
+      %h2= "会員情報入力"
+      = form_with model:@user, url: step2_signups_path,local: true,method: :get,class: "step1-container__main__container__form" do |f|
+        .step1-container__main__container__form__content
+          = "パス"
+          = f.password_field :password
+          = "パスもう一度"
+          = f.password_field :password_confirmation
+          .step1-container__main__container__form__content__group
+            = f.label :name, "ニックネーム"
+            %span.span="必須"
+            = f.text_field :name,placeholder: "ニックネーム",clss: "input-default"
+          .step1-container__main__container__form__content__group
+            = f.label :email, "メールアドレス"
+            %span.span="必須"
+            = f.email_field :email,placeholder: "メール",clss: "input-default"
+          
+          .step1-container__main__container__form__content__group
+            %h3="本人確認"
+            %p
+          .step1-container__main__container__form__content__group
+            %div
+              = f.label :family_name, "お名前(全角)"
+              %span.span="必須"
+            = f.text_field :family_name,placeholder: "苗字",clss: "half"
+            = f.text_field :first_name,placeholder: "名前",clss: "half"
+          .step1-container__main__container__form__content__group
+            %div
+              = f.label :family_name, "お名前カナ(全角)"
+              %span="必須"
+            = f.text_field :first_name_kana,placeholder: "苗字カナ",clss: "half"
+            = f.text_field :family_name_kana,placeholder: "名前カナ",clss: "half"
+          .step1-container__main__container__form__content__group
+            = f.label :birth_day,"生年月日"
+            %span.span="必須"
+            %br
+            .step1-container__main__container__form__content__group__select
+              .step1-container__main__container__form__content__group__select__wrap
+                %i.icon-arrow-bottom
+                %select.select-default.year{name: "year"}
+              %span
+                ="年"
+              .step1-container__main__container__form__content__group__select__wrap
+                %i.icon-arrow-bottom
+                %select.select-default.month{name: "month"}
+              %span
+                ="月"
+              .step1-container__main__container__form__content__group__select__wrap
+                %i.icon-arrow-bottom
+                %select.select-default.day{name: "day"}
+              %span
+                ="日"
+          .step1-container__main__container__form__content__submit
+            = f.submit "次へ進む",class:"btn-default btn-red"
+
+  %footer.step1-container__footer

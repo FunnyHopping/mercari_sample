@@ -1,0 +1,33 @@
+.icon-time::before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f017';
+  font-weight: 400;
+  color: gray;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-arrow-right::before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f054';
+  font-weight: 900;
+  color: black;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-close::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00d";
+  font-weight: 900;
+  color: #fff;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
