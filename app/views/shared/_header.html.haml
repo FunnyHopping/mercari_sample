@@ -15,46 +15,45 @@
           %i.category-icon
           カテゴリーから探す
         //カテゴリー一覧のドロップダウンメニュー
-        -# .category-dropdown
-        -#   %ul
-        -#     %li
+        .category-dropdown
+          %ul
+            %li
       .header__contents__bottom__left__brand
         = link_to "", class: "search-link"  do
           %i.brand-icon
           ブランドから探す
         //ブランドー一覧のドロップダウンメニュー
-        -# .brand-dropdown
-        -#   %ul
-        -#     %li
+        .brand-dropdown
+          %ul
+            %li
 
       //ユーザーログイン
-    -# %ul.header__contents__bottom__right
-    -#   %li.header__contents__bottom__right__list
-    -#     = link_to "", class: "user-info" do
-    -#       %i.info-icon
-    -#       お知らせ
-    -#     -#     //通知アイコン
-    -#     -#     %span.badge
-    -#     -#   //お知らせのドロップダウンメニュー
-    -#     -#   -# .info__dropdown
-    -#     -#   -#   %ul
-    -#     -#   -#     %li
-    -#   %li.header__contents__bottom__right__list
-    -#     = link_to "", class: "user-info" do
-    -#       %i.todo-icon
-    -#       やることリスト
-    -#     -#   //やることリストのドロップダウンメニュー
-    -#     -#   -# .todo__dropdown
-    -#     -#   -#   %ul
-    -#     -#   -#     %li
-    -#   %li.header__contents__bottom__right__list
-    -#     = link_to "", class: "user-info" do
-    -#       = image_tag "mypage-icon.png", class: "mypage-icon"
-    -#       マイページ
-    -#     -#   //マイページのドロップダウンメニュー
-    -#     -#   -# .mypage__dropdown
-    -#     -#   -#   %ul
-    -#     -#   -#     %li
+    %ul.header__contents__bottom__right
+      %li.header__contents__bottom__right__list
+        = link_to "", class: "user-info" do
+          %i.info-icon
+          お知らせ
+          %span.badge
+          //お知らせのドロップダウンメニュー
+          .info__dropdown
+            %ul
+              %li
+      %li.header__contents__bottom__right__list
+        = link_to "", class: "user-info" do
+          %i.todo-icon
+          やることリスト
+          //やることリストのドロップダウンメニュー
+          .todo__dropdown
+            %ul
+              %li
+      %li.header__contents__bottom__right__list
+        = link_to "", class: "user-info" do
+          = image_tag "mypage-icon.png", class: "mypage-icon"
+          マイページ
+          //マイページのドロップダウンメニュー
+          .mypage__dropdown
+            %ul
+              %li
 
     .header__contents__bottom__right2
       .header__contents__bottom__right2__signup

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'freemarket#index'
 
   devise_scope :user do
     get 'login' => 'devise/sessions#new'
