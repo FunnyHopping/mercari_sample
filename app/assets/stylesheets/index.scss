@@ -263,8 +263,51 @@ h2 {
 //出品アイコン
 .sell-icon {
   position: fixed;
-  right: -14px;
-  bottom: -14px;
   text-align: center;
   z-index: 2;
+
+  bottom: 32px;
+  font-size: 22px;
+  height: 160px;
+  right: 32px;
+  width: 160px;
+  &__link{
+    display: block;
+  }
+  &__in {
+    padding-top: 15px;
+    text-align: center;
+    height: 80px;
+    width: 80px;
+    background-color: rgb(234, 53, 45);
+    border-radius: 50%;
+  }
+  &__name {
+    color: rgb(255, 255, 255);
+  }
+}
+
+aside {
+  color: rgb(255, 255, 255);
+  background: url(download_app_bg.jpg) center center / cover;
+  background-position: center center;
+  margin-top: auto;
+}
+.aside__text {
+  background: url(download_app_bg.jpg) center center / cover;
+  background-position: center center;
+  &__top {
+    display: inline-flex;
+    flex-direction: column;
+    text-align: left;
+  }
+}
+.mercari-icon {
+  height: 50px;
+  margin-right: 20px;
+  width: 50px;
+}
+
+img {
+  vertical-align: middle;
 }

@@ -57,21 +57,21 @@
                     カラーラ
       
       .sell-icon
-        = link_to "", class: "sell-link" do
+        = link_to "", class: "sell-icon_link" do
           .sell-icon__in
             .sell-icon__name
               出品
-            .sell-icon__mark
-              %i.camera
+            %i.camera
 
-  .aside
+  %aside
+    .aside__text
+      = image_tag "mercari_icon.png", class: "mercari-icon"
     .aside__text__top
       スマホでかんたんフリマアプリ
     .aside__text__buttom
       今すぐ無料ダウンロード！
-    = image_tag "mercari_icon.png"
+    
     = image_tag "mercariappimage.png"
-    = image_tag "download_app_bg.jpg"
 
   .footer
     = render 'shared/footer'
