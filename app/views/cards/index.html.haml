@@ -1,0 +1,19 @@
+= render 'shared/header_mypage'
+
+%main.index-container
+  = render 'shared/mypage_side'
+  .card-index-container
+    .card-index-container__content
+      %section.card-index-container__content__container
+        %h2= "支払い方法"
+        .card-index-container__content__container__content
+          %section.card-index-container__content__container__content__section
+            .card-index-container__content__container__content__section__content
+              %h3="クレジットカード一覧"
+          %section.card-index-container__content__container__content__section-second
+            .card-index-container__content__container__content__section-second__btn
+              = link_to new_card_path do
+                = icon("fas","credit-card")
+                = "クレジットカードを追加する"
+          .card-index-container__content__container__content__intro
+            = link_to "支払い方法について", root_path

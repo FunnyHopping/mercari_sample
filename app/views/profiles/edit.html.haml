@@ -1,0 +1,20 @@
+= render 'shared/header_mypage'
+- if flash[:notice]
+  .profile-edit-container__content__form__succes
+    .profile-edit-container__content__form__succes__body#succes
+      = flash[:notice]
+
+%main.index-container
+  = render 'shared/mypage_side'
+
+  .profile-edit-container
+    %section.profile-edit-container__content
+      %h2= "プロフィール"
+      = form_with model: @user, url: profile_path, local: true,method: :PUT ,class:"profile-edit-container__content__form" do |f|
+        .profile-edit-container__content__form__icon
+          %figure
+            = image_tag("//static.mercdn.net/images/member_photo_noimage_thumb.png", size: "60x60")
+          = f.text_field :name
+        .profile-edit-container__content__form__content
+          = f.text_area :profile
+          = f.submit "変更する",class: "profile-edit-container__content__form__content__submit"

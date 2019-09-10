@@ -1,0 +1,30 @@
+.step1-container
+  %header.step1-container__header
+    %h1
+      = link_to root_path do
+        = image_tag("logo.svg")
+    %nav.step1-container__header__nav
+      %ol.step1-container__header__nav__ol
+        %li.active
+          = "会員情報"
+          .progress-status.middle
+        %li.active
+          = "電話番号認証"
+          .progress-status.middle
+        %li.active
+          = "お届け先入力"
+          .progress-status.middle
+        %li.active
+          = "支払い方法"
+          .progress-status.middle
+        %li.active
+          = "完了"
+          .progress-status
+  %main.step1-container__main
+    %section.step1-container__main__container
+      %h2= "完了"
+      = form_with model:@user, url:step6_signups_path,method: :get,class: "step1-container__main__container__form",local: true do |f|
+        .step1-container__main__container__form__content
+          %p= "ありがとうございます。会員登録が完了しました。"
+          .step1-container__main__container__form__content__submit
+            = f.submit "メルカリを始める",class:"btn-default btn-red"

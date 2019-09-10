@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  root 'freemarket#index'
+  root 'pages#index'
 
   devise_scope :user do
+    get 'logout_page' => 'devise/sessions#edit'
     get 'login' => 'devise/sessions#new'
     post 'login' => 'devise/sessions#create'
     delete 'logout' => 'devise/sessions#destroy'
   end
 
-  resources :users do
+  resource :signups do
     collection do
+      get 'step0'
       get 'step1_sns'
       get 'step1'
       get 'step1'
@@ -16,12 +18,20 @@ Rails.application.routes.draw do
       get 'step3'
       get 'step4'
       get 'step5'
+      get 'step6'
     end
+  end
+
+  resources :users do
   end
 
   resources :book_shops, only: [:index, :create ,:destroy]
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  resources :payments
+  resources :cards
+  resources :profiles, only: [:edit,:update]
+  resources :pages, only: [:show,:index]
 end
 

@@ -1,0 +1,198 @@
+@mixin signup-btn($border,$back-color,$color) {
+  max-width: 343px;
+  margin: 0 auto;
+  border-radius: 4px;
+  position: relative;
+  background: #eee;
+  display: block;
+  width:100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid $border;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  background-color: $back-color;
+  margin: 0 auto 16px auto;
+  & a{
+    text-decoration: none;
+    color: $color;
+  }
+}
+
+// html{
+//   background: #f5f5f5;
+// }
+
+@mixin progress-status-after($coloer:#ccc){
+  left: 50%;
+  position: absolute;
+  bottom: 5px;
+  z-index: -1;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: $coloer;
+  border-style: solid;
+  border-width: 0;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+}
+
+@mixin progress-status-before($coloer:#ccc){
+  right: 50%;
+  position: absolute;
+  bottom: 5px;
+  z-index: -1;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: $coloer;
+  border-style: solid;
+  border-width: 0;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+}
+
+@mixin progress-status($coloer:#888) {
+  font-weight: 600;
+  color: $coloer;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  min-width: 40px;
+  text-align: -webkit-match-parent;
+  font-size: 12px;
+  margin: 0 40px 0 0;
+  & div{
+    background: $coloer;
+    width: 12px;
+    height: 12px;
+    margin: 8px auto 0;
+    border-radius: 50%;
+  }
+}
+
+@mixin signup-head() {
+  padding: 0 0 250px;
+&__header{
+  height: 128px;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: center;
+  display: block;
+  border-style: solid;
+  border-width: 0;
+  box-sizing: inherit;
+  & h1{
+    display: inline-block;
+    margin: 40px 0 0;
+    & a{
+      display: inline-block;
+      width: 185px;
+      height: 49px;
+      margin: 0 8px 0 0;
+      line-height: 49px;
+      color: #0099e8;
+      text-decoration: none;
+      touch-action: manipulation;
+      & img{
+        width: 185px;
+        height: 49px;
+        vertical-align: middle;
+      }
+    }
+  }
+  &__nav{
+    padding: 40px 0 0 44px;
+    border-top: 1px solid #eee;
+    display: inline-block;
+    vertical-align: top;
+    border-top: 1px solid #eee;
+    font-size: 0;
+    text-align: center;
+    &__ol{
+      margin: 0;
+      list-style: none;
+      & .deactive{
+        @include progress-status();
+        & div::before{
+          @include progress-status-before()
+        }
+        & .middle::after{
+          @include progress-status-after();
+        }
+      }
+      & .active{
+        @include progress-status(#ea352d);
+        & div::after{
+          @include progress-status-after();
+        }
+      }
+    }
+  }
+} 
+}
+
+@mixin half(){
+  margin-right: 12px;
+  width: calc(40% - 6px);
+  margin: 8px 0 0;
+}
+
+@mixin input_default() {
+  width: 89%;
+  margin: 8px 0 0;
+  height: 24px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+  min-height: 1.5em;
+  outline: 0;
+  font-family: inherit;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+@mixin btn_default(){
+  margin-top: 32px;
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+  min-height: 1.5em;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+}
+
+@mixin select_default(){
+  width: calc(53% - 38px);
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+}
