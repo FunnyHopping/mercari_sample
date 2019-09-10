@@ -2,6 +2,9 @@ class CardsController < ApplicationController
   def new
   end
 
+  def index
+  end
+  
   def edit
     card = Card.where(user_id: params[:id]).first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
