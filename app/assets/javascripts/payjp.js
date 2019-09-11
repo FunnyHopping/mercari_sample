@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load',function(){
-      Payjp.setPublicKey("pk_test_0f050e32f851c46cffd9404f"); //ここに公開鍵を直書き
+      Payjp.setPublicKey("pk_test_f469c68dd79c1e893366a3f6"); //ここに公開鍵を直書き
       var btn = document.getElementById("token_submit"); //IDがtoken_submitの場合に取得されます
       btn.addEventListener("click", e => { //ボタンが押されたときに作動します
         e.preventDefault(); //ボタンを一旦無効化します

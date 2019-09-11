@@ -1,0 +1,50 @@
+.header
+  = render "shared/header"
+%section{class: "item-info-container"}
+  %h1{class: "item-info-container__name"}
+    "SAMPLE_ITEM_NAME"
+  %p{class: "item-info-container__seller-info"}
+    『"SAMPLE_ITEM_NAME"』は"times"回の取引実績を持つ
+    %a{href: ""}SAMPLE_SELLER_NAME(to_page)
+    さんから出品されました。
+    %a{href: ""}最下カテゴリ/最上位
+    の商品で、"Address.city"から"？？"日で発送されます。
+  .item-main-content
+    .item-main-content__flex-wrapper
+      .item-main-content__photo
+      %table{class: "item-detail-table"}
+        %tbody
+          %tr
+            %th 出品者
+            %td sample
+          %tr
+            %th カテゴリー
+            %td sample
+          %tr
+            %th ブランド
+            %td sample
+          %tr
+            %th 商品のサイズ
+            %td sample
+          %tr
+            %th 商品の状態
+            %td sample
+          %tr
+            %th 配送料の負担
+            %td sample
+          %tr
+            %th 配送の方法
+            %td sample
+          %tr
+            %th 配送元地域
+            %td sample
+          %tr
+            %th 発送日の目安
+            %td sample
+    .item-main-content__price
+      %span{class: "item-main-content__price__item-price"}
+        ¥1,000,000,000
+      %span{class: "item-main-content__price__tax"}
+        (税込)
+      %span{class: "item-main-content__price__shipping-fee"}
+        送料込み
