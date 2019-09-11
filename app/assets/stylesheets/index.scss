@@ -18,6 +18,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   font: inherit;
 }
 
+
 body {
   position: relative;
   min-height: 100%;
@@ -264,7 +265,6 @@ h2 {
   position: fixed;
   text-align: center;
   z-index: 2;
-
   bottom: 32px;
   font-size: 22px;
   height: 160px;
@@ -274,39 +274,71 @@ h2 {
     display: block;
   }
   &__in {
-    padding-top: 15px;
+    width: 160px;
+    height: 160px;
+    padding-top: 32px;
     text-align: center;
-    height: 80px;
-    width: 80px;
     background-color: rgb(234, 53, 45);
     border-radius: 50%;
   }
   &__name {
+    font-size: 22px;
     color: rgb(255, 255, 255);
   }
 }
 
-aside {
+.aside {
   color: rgb(255, 255, 255);
   background: url(download_app_bg.jpg) center center / cover;
   background-position: center center;
   margin-top: auto;
-}
-.aside__text {
-  background: url(download_app_bg.jpg) center center / cover;
-  background-position: center center;
-  &__top {
-    display: inline-flex;
-    flex-direction: column;
-    text-align: left;
+  &__contents {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgb(255, 255, 255);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    &__text {
+      display: inline-flex;
+      flex-direction: column;
+      text-align: left;
+      margin-right: 30px;
+      &__top {
+        color: rgb(255, 255, 255);
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+      &__buttom {
+        color: rgb(255, 255, 255);
+        font-size: 35px;
+        margin-bottom: 20px;
+      }
+    }
   }
 }
-.mercari-icon {
-  height: 50px;
-  margin-right: 20px;
-  width: 50px;
-}
 
+.mercari-icon {
+  height: 68px;
+  margin-right: 20px;
+  width: 68px;
+}
+.app-store {
+  height: 40px;
+  margin-right: 8px;
+  width: 144px;
+}
+.google-play {
+  height: 40px;
+  width: 144px;
+}
+.smaho-image {
+  height: 260px;
+  width: 300px;
+}
 img {
   vertical-align: middle;
 }

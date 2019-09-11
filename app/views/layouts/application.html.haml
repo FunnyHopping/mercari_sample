@@ -9,23 +9,4 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    -# - if user_signed_in?
-    -#   = "ログイン中"
-    -#   = link_to "ログアウト", logout_path, method: :delete
-    -# -else
-    -#   = "ログアウト中"
-    -#   = link_to 'ログイン', login_path
-    -#   = link_to "ログアウト", logout_page_path
-    -# -else
-    -#   = "ログアウト中"
-    -#   = link_to 'googleアカウントでログイン',  user_google_oauth2_omniauth_authorize_path
-    -#   = link_to 'facebookアカウントでログイン', user_facebook_omniauth_authorize_path
-    -# = link_to '新規登録', step0_signups_path
-    -# = link_to 'Google',  user_google_oauth2_omniauth_authorize_path
-    -# = link_to 'FaceBook', user_facebook_omniauth_authorize_path
-    -# = link_to 'new_card', new_card_path
-    -# = link_to 'index_card', cards_path
-    -# = link_to "logout_page", logout_page_path
-    -# = link_to "edit_profile", edit_profile_path(1)
-    -# = link_to 'ログイン', login_path
     = yield

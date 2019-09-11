@@ -5,55 +5,59 @@
     = render 'shared/header'
   
   .main
-    .main-contets
-      .main-contets__slider
-        = image_tag "top-banner.jpg"
+    .main__contents
 
-      .main-contets__popular
-        %h2 
+      .slider
+        = link_to ""
+        .slider__image
+
+      .popular
+        %h2.popular__title
           人気のカテゴリー
-        .main-contets__popular__tags
+        .popular__list
           //タグを押すと非同期で移動
-          %ul
-            %li.radies-tag
-              レディース
-            %li.mens-tag
-              メンズ
-            %li.electro-tag
-              家電・スマホ・カメラ
-            %li.hobby-tag
-              おもちゃ・ホビー・グッズ
+          %ul.popular__list__tag
+            %li.popular__list__tag__name
+              %a.tag-scroll
+                レディース
+            %li.popular__list__tag__name
+              %a.tag-scroll
+                メンズ
+            %li.popular__list__tag__name
+              %a.tag-scroll
+                家電・スマホ・カメラ
+            %li.popular__list__tag__name
+              %a.tag-scroll
+                おもちゃ・ホビー・グッズ
 
-      .main-contents__new
-        .main-contents__new__title
-          %h3
+      .markets
+        .markets__new
+          %h3.markets__new__title
             新着アイテム
-          %a 
+          = link_to "", class: "more-link" do
             もっと見る
-        .main-contents__new__items
-          .main-contents__new__item
-            -# = link_to item1
-          .main-contents__new__item
-            -# = link_to item2
-          .main-contents__new__item
-            -# = link_to item3
-      
-      .sell-icon
-        -# = link_to 出品ページ
-        .sell-icon__in
-          .sell-icon__name
-            出品
-          .sell-icon__mark
-            %i.camera
+        .markets__index
+          .markets__index__item
+            = link_to "", class: "goods-link" do
+              %figure.style-card
+                .style-card__thumbnail
+                  %span
+                    ￥5,000
+                  = image_tag 'syouhin.jpg', class: "goods-image"
+                %figcaption
+                  %span 
+                    キャノン ミラーレス一眼カメラ EOS M100 標準レンズキット
 
-  .aside
-    .aside__text__top
-      スマホでかんたんフリマアプリ
-    .aside__text__buttom
-      今すぐ無料ダウンロード！
-    = image_tag "mercari_icon.png"
-    = image_tag "mercariappimage.png"
-    = image_tag "download_app_bg.jpg"
+            = link_to "", class: "goods-link" do
+              %figure.style-card
+                .style-card__thumbnail
+                  %span
+                    ￥8,000
+                  = image_tag 'syouhin2.jpg', class: "goods-image"
+                %figcaption
+                  %span 
+                    カラーラ
 
-  .footer
-    = render 'shared/footer'
+      = render 'shared/sell-icon'
+
+  = render 'shared/footer'
