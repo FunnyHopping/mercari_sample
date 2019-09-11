@@ -47,7 +47,7 @@ development:
 #
 production:
   <<: *default
-  database: freemarket_sample_58a_production
+  database: mercari_sample_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
