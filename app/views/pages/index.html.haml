@@ -57,30 +57,7 @@
                 %figcaption
                   %span 
                     カラーラ
-      
-      .sell-icon
-        = link_to "", class: "sell-icon_link" do
-          .sell-icon__in
-            .sell-icon__name
-              出品
-            %i.camera
+										
+      = render 'shared/sell-icon'
 
-  .aside
-    .aside__contents
-      .aside__contents__text
-        .aside__contents__text__top
-          スマホでかんたんフリマアプリ
-        .aside__contents__text__buttom
-          今すぐ無料ダウンロード！
-        .aside__text__image
-          = image_tag "mercari_icon.png", class: "mercari-icon"
-          %a
-            = image_tag "app-store.svg", class: "app-store"
-          %a
-            = image_tag "google-play.svg", class: "google-play"
-      %figure
-        = image_tag "mercariappimage.png", class: "smaho-image"
-
-
-  .footer
-    = render 'shared/footer'
+  = render 'shared/footer'
