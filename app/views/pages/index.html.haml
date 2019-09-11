@@ -60,4 +60,16 @@
 
       = render 'shared/sell-icon'
 
-  = render 'shared/footer'
+  .footer
+    = render 'shared/footer'
+
+
+
+- @parents.each do |parent|
+  %h1= parent.name
+  %h1= parent.id
+  - parent.children.each do |child|
+    %h2= child.name
+    %h2= child.id
+    - child.children.each do |baby|
+      = baby.name
