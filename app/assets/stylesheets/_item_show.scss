@@ -58,5 +58,21 @@
       }
     }
   
+    &__price {
+      margin: 24px 0 0;
+      text-align: center;
+      &__item-price{
+        margin: 0 16px 0 0;
+        font-size: 50px;
+        font-weight: 600;
+      }
+      &__tax {
+        font-size: 10px;
+      }
+      &__shipping-fee {
+        display: inline-block;
+        font-size: 16px;
+      }
+    }
   }
 }
