@@ -1,7 +1,11 @@
-.devise-session-edit-container
-  .devise-session-edit-container__content
-    .devise-session-edit-container__content__form
-      .devise-session-edit-container__content__form__content
-        .devise-session-edit-container__content__form__content__btn
-          = link_to "ログアウト", logout_path, method: :delete
+= render 'shared/header_mypage'
+
+%main.index-container
+  = render 'shared/mypage_side'
+  .devise-session-edit-container
+    .devise-session-edit-container__content
+      .devise-session-edit-container__content__form
+        .devise-session-edit-container__content__form__content
+          .devise-session-edit-container__content__form__content__btn
+            = link_to "ログアウト", logout_path, method: :delete
 

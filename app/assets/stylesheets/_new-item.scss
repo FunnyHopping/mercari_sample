@@ -1,20 +1,400 @@
-.input-box__image__file {
-  display: none;
+@mixin item-have() {
+  ul {
+    display: block;
+    width: 100%;
+    .upload-sell-item {
+      width: 116px;
+      margin: 0 0 10px 10px;
+      position: relative;
+      display: inline-block;
+      border: 1px solid #eee;
+      vertical-align: top;
+      .upload-sell-figure {
+        height: 116px;
+        width: 100%;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        background: #f5f5f5;
+        img {
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+      .upload-sell-btn {
+        font-size: 14px;
+        .upload-sell-edit {
+          display: inline-block;
+          width: 50%;
+          background: #f5f5f5;
+          line-height: 44px;
+          text-align: center;
+        }
+        .upload-sell-delete {
+          display: inline-block;
+          width: 50%;
+          background: #f5f5f5;
+          line-height: 44px;
+          text-align: center;
+        }
+      }
+    }
+    .upload-sell-item:first-child {
+      margin-left: 0;
+      width: 116px;
+      position: relative;
+      display: inline-block;
+      border: 1px solid #eee;
+      vertical-align: top;
+      .upload-sell-figure {
+        height: 116px;
+        width: 100%;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        background: #f5f5f5;
+        img {
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+      .upload-sell-btn {
+        font-size: 14px;
+        .upload-sell-edit {
+          display: inline-block;
+          width: 50%;
+          background: #f5f5f5;
+          line-height: 44px;
+          text-align: center;
+        }
+        .upload-sell-delete {
+          display: inline-block;
+          width: 50%;
+          background: #f5f5f5;
+          line-height: 44px;
+          text-align: center;
+        }
+      }
+    }
+  }
 }
+
+@mixin clearfix() {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
 .icon-arrow-bottom {
   font-size: 100px;
 }
 
+h2 {
+  display: block;
+  font-weight: bold;
+}
+
+.form-require {
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  background: #ea352d;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.input-default {
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.textarea-default {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 104px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.btn-default {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
 .single-box {
-  padding: 220px;
   &__header {
     height: 128px;
-    
+    text-align: center;
     &__logo {
       margin: 40px 0 0;
+      display: inline-block;
       & a {
         width: 185px;
         height: 49px;
+        line-height: 49px;
+        display: inline-block;
+        margin: 0 8px 0 0;
+        img {
+          width: 185px;
+          height: 49px;
+        }
+      }
+    }
+  }
+  .single-main__box__sell {
+    display: block;
+    &__inner {
+      width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      &__head {
+      padding: 32px 16px;
+      font-size: 22px;
+      line-height: 1.5;
+      text-align: center;
+      }
+      &__form {
+        border-top: 1px solid #eee;
+        &__upload {
+          width: 620px;
+          padding: 40px;
+          &__head {
+            font-size: 16px;
+            & .form-require {
+              background: #ea352d;
+            }
+          }
+          & p {
+            margin: 8px 0 0;
+            line-height: 1.5;
+          }
+          &__items {
+            width: 620px;
+            margin: 16px auto 0;
+            @include clearfix();
+            &__box {
+              display: inline;
+              &__have-0 {
+                float: left;
+                ul {
+                  display: block;
+                  width: 100%;
+                }
+              }
+              &__have-1 {
+                float: left;
+                -webkit-box-flex: 1;
+                flex: 1;
+                @include item-have();
+              }
+              &__have-2 {
+                float: left;
+                -webkit-box-flex: 2;
+                flex: 2;
+                @include item-have();
+              }
+              &__have-3 {
+                float: left;
+                -webkit-box-flex: 3;
+                flex: 3;
+                @include item-have();
+              }
+              &__have-4 {
+                float: left;
+                -webkit-box-flex: 1;
+                flex: 1;
+                @include item-have();
+              }
+            }
+          }
+          &__drop-0 {
+            width: 100%;
+            margin-left: 0;
+            float: right;
+            padding: 40px;
+            position: relative;
+            min-height: 162px;
+            background: #f5f5f5;
+            border: 1px dashed #ccc;
+            font-size: 0;
+            text-align: center;
+            cursor: pointer;
+            .upload-sell-drop-file {
+              display: none;
+            }
+            .drop-text {
+              position: absolute;
+              top: 50%;
+              left: 16px;
+              right: 16px;
+              transform: translate(0, -50%);
+              text-align: center;
+              font-size: 14px;
+              line-height: 1.5;
+            }
+          }
+        }
+        &__index-box {
+          padding: 40px;
+          border-top: 1px solid #eee;
+          @include clearfix();
+          .form-group {
+            margin: 40px 0 0;
+            label {
+              font-weight: 600;
+              display: inline-block;
+            }
+            .input-default {
+              width: 100%;
+              margin: 8px 0 0;
+            }
+            .textarea-default {
+              margin: 8px 0 0;
+            }
+          }
+          .form-group:first-child {
+            margin: 0;
+          }
+          .item-sub-head {
+            float: left;
+            color: #888;
+            font-size: 14px;
+          }
+          .item-form-box {
+            float: right;
+            width: 400px;
+            margin: 0;
+            .form-group {
+              margin: 40px 0 0;
+              label {
+                font-weight: 600;
+                display: inline-block;
+              }
+                .select-wrap {
+                  margin: 8px 0 0;
+                  position: relative;
+                  background: #fff;
+                  .icon-arrow-bottom {
+                    position: absolute;
+                    right: 16px;
+                    top: 50%;
+                    color: #888;
+                    font-size: 16px;
+                    -webkit-transform: translate(0, -50%);
+                    transform: translate(0, -50%);
+                  }
+                  .select-default {
+                    width: 100%;
+                    position: relative;
+                    height: 48px;
+                    padding: 0 16px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    background: 0;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    -webkit-appearance: none;
+                    cursor: pointer;
+                  }
+                }
+            }
+            .form-group:first-child {
+              margin: 0;
+            }
+          }
+          .form-question {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #0099e8;
+            color: #fff;
+            line-height: 14px;
+            font-size: 12px;
+            text-align: center;
+          }
+          .item-form-box {
+            float: right;
+            width: 400px;
+            margin: 0;
+            .sell-price {
+              li {
+                padding: 24px 0;
+                border-top: 1px solid #ccc;
+                .clearfix {
+                  @include clearfix();
+                  .left-text {
+                    width: 50%;
+                    line-height: 48px;
+                    float: left;
+                  }
+                  .yen-mark {
+                    width: 50%;
+                    text-align: right;
+                    float: right;
+                    .input-price {
+                      display: inline-block;
+                      width: 80%;
+                      margin: 0 0 0 5%;
+                      .input-default {
+                        width: 100%;
+                        margin: 0;
+                        text-align: right;
+                      }
+                    }
+                  }
+                }
+              }
+              li:first-child {
+                padding: 0 0 24px;
+                border: 0;
+              }
+              .clearfix {
+                @include clearfix();
+                .left-text {
+                  float: left;
+                }
+                .right-text {
+                  float: right;
+                }
+              }
+            }
+          }
+          .attention-text {
+            line-height: 1.5;
+          }
+          .btn-red {
+            margin: 40px 0 0;
+            background: #ea352d;
+            color: #fff;
+          }
+          .btn-gray {
+            width: 45%;
+            margin: 24px auto 0;
+            background: #aaa;
+            color: #fff;
+          }
+        }
       }
     }
   }

@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'cards/new'
-  get 'cards/destroy'
-  get 'cards/create'
-  root 'users#index'
+  root 'pages#index'
 
   devise_scope :user do
     get 'logout_page' => 'devise/sessions#edit'
@@ -36,5 +33,6 @@ Rails.application.routes.draw do
   resources :cards
   resources :profiles, only: [:edit,:update]
   resources :items
+  resources :pages, only: [:show,:index]
 end
 
