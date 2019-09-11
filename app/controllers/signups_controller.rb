@@ -57,7 +57,7 @@ class SignupsController < ApplicationController
       provider: session[:provider]
     )
     @user.birth_day = session[:birth_day]
-    if @user.save
+    if @user.save!
       
       session[:user_id] = @user.id
       @address = Address.new(
@@ -68,7 +68,7 @@ class SignupsController < ApplicationController
         building: session[:building],
         user_id: session[:user_id]
       )
-      if @address.save
+      if @address.save!
         Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
         if session[:payjp_token].blank?
           redirect_to action: "step4"
@@ -77,7 +77,7 @@ class SignupsController < ApplicationController
           card: session[:payjp_token],
           metadata: {user_id: @user.id})
           @card = Card.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
-          if @card.save
+          if @card.save!
             sign_in @user
           else
             render step4_signups_path

@@ -1,0 +1,174 @@
+.aside {
+  color: rgb(255, 255, 255);
+  background: url(download_app_bg.jpg) center center / cover;
+  background-position: center center;
+  margin-top: auto;
+  &__contents {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgb(255, 255, 255);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    &__text {
+      display: inline-flex;
+      flex-direction: column;
+      text-align: left;
+      margin-right: 30px;
+      &__top {
+        color: rgb(255, 255, 255);
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+      &__buttom {
+        color: rgb(255, 255, 255);
+        font-size: 35px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+.mercari-icon {
+  height: 68px;
+  margin-right: 20px;
+  width: 68px;
+}
+.app-store {
+  height: 40px;
+  margin-right: 8px;
+  width: 144px;
+}
+.google-play {
+  height: 40px;
+  width: 144px;
+}
+.smaho-image {
+  height: 260px;
+  width: 300px;
+}
+img {
+  vertical-align: middle;
+}
+
+.footer{
+  background-color: rgb(34, 34, 34);
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  padding: 0px 20px 10px;
+  &__top {
+    width: 1020px;
+    margin: 0px auto;
+    &__list {
+      display: inline-block;
+      margin-top: 18px;
+      vertical-align: top;
+      width: auto;
+      padding: 0px 40px 0px 0px;
+      &:first-child {
+        padding-left: 0px;
+      }
+      &__title {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.4em;
+        margin: 0;
+        padding: 0;
+      }
+      &__text {
+        line-height: 1.4em;
+        margin: 16px 0px 0px;
+      }
+    }
+    &__cluster{
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 18px;
+      padding-right: 40px;
+      width: 43%;
+      &__title {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.4em;
+        margin: 0;
+        padding: 0;
+      }
+      &__list {
+        display: inline-block;
+        padding-left: 10px;
+        vertical-align: top;
+        width: 50%;
+        &:first-of-type {
+          padding: 0px 10px 0px 0px;
+        }
+        &__text {
+          line-height: 1.4em;
+          margin: 16px 0px 0px;
+        }
+      }
+      &__list2{
+        float: right;
+        display: inline-block;
+        padding-left: 10px;
+        vertical-align: top;
+        width: 50%;
+        &__text {
+          line-height: 1.4em;
+          margin: 16px 0px 0px;
+        }
+      }
+    }
+    &__country {
+      margin-top: 18px;
+      width: auto;
+      padding: 0px 40px 0px 0px;
+      display: inline-block;
+      vertical-align: top;
+      &__title {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.4em;
+        margin: 0;
+        padding: 0;
+      }
+      &__text {
+        line-height: 1.4em;
+        margin: 16px 0px 0px;
+      }
+    }
+  }
+  &__buttom {
+    width: 1020px;
+    margin: 30px auto 20px;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    &__logo{
+      text-align: center;
+    }
+    &__copyright{
+      text-align: center;
+      padding-left: 15px;
+      width: 75%;
+    }
+  }
+}
+.footer-link {
+  color: rgb(255, 255, 255);
+  opacity: 0.7;
+}
+.footer__nav__btn {
+  display: inline-block;
+  margin-top: 30px;
+}
+.country-link {
+  display: block;
+  margin: 16px 0px 0px;
+}
+.logo-white{
+  height: 33px;
+  width: 124px;
+}

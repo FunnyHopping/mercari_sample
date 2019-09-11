@@ -88,3 +88,4 @@ gem "gretel"
 gem 'ancestry'
 gem 'activerecord-import'
 gem 'gon'
+gem 'owlcarousel-rails'
