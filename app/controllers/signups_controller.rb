@@ -40,7 +40,6 @@ class SignupsController < ApplicationController
   end
 
   def step5
-    binding.pry
     @user = User.new()
     session[:payjp_token] = params["payjp-token"]
 
