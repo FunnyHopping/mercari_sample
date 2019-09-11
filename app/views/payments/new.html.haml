@@ -40,9 +40,9 @@
           %p.payment-new-container__main__section__address__content__info
           = link_to "変更する", root_path
       %section.payment-new-container__main__section__card
-        .payment-new-container__main__section__content
+        .payment-new-container__main__section__card__content
           %h3= "支払い方法"
-          %p.payment-new-container__main__section__content__info
+          %p.payment-new-container__main__section__card__content__info
             = "**** **** **** " + @default_card_information.last4
             %br
             - exp_month = @default_card_information.exp_month.to_s

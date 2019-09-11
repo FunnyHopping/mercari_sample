@@ -151,7 +151,36 @@
         }
       }
       &__card{
-        
+        padding: 24px 12.5% 40px;
+        margin: 40px 0 0;
+        border-top: 1px solid #f5f5f5;
+        display: block;
+        &__content{
+          max-width: 320px;
+          margin: 0 auto;
+          display: block;
+          & h3{
+            margin: 0;
+            font-size: 14px;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+          }
+          &__info{
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          & a{
+            display: block;
+            text-align: right;
+            color: #0099e8;
+            text-decoration: none;
+          }
+        }
       }
     }
   }
