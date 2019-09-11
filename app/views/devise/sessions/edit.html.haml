@@ -1,4 +1,6 @@
 = render 'shared/header_mypage'
+- breadcrumb :logout, @logout
+= render "shared/breadcrumbs"
 
 %main.index-container
   = render 'shared/mypage_side'
@@ -8,4 +10,3 @@
         .devise-session-edit-container__content__form__content
           .devise-session-edit-container__content__form__content__btn
             = link_to "ログアウト", logout_path, method: :delete
-

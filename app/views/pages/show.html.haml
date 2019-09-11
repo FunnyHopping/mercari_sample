@@ -1,4 +1,6 @@
 = render 'shared/header_mypage'
+- breadcrumb :mypage
+= render "shared/breadcrumbs"
 
 %main.index-container
   .index-content
@@ -116,10 +118,26 @@
             = link_to root_path, {data: {toggle: "tab"}} do
               過去の取引
       .tab-content
-        %ul#mypage-tab-buy-now.mypage-item-list.tab-pane.active
-          %li.mypage-item-not-found.bold 取引中の商品がありません
-        %ul#mypage-tab-buy-old.mypage-item-list.tab-pane
-          %li.mypage-item-not-found.bold 過去に取引した商品がありません
+        -if @transaction_items != nil
+          %ul.tab-content__list
+            - @transaction_items.each do |item|
+              %li.tab-content__list__li
+                =link_to root_path do
+                  %figure
+                    = image_tag("mercari_mark.png")
+                  .tab-content__list__li__body
+                    .tab-content__list__li__body__title
+                      = "「#{item.name}」を購入しました。"
+                      %span
+                        ="発送までお待ちください"
+                    .tab-content__list__li__body__state
+                      ="発送待ち"
+                    %i.icon-arrow-right
+        -else
+          %ul#mypage-tab-buy-now.mypage-item-list.tab-pane.active
+            %li.mypage-item-not-found.bold 取引中の商品がありません
+          %ul#mypage-tab-buy-old.mypage-item-list.tab-pane
+            %li.mypage-item-not-found.bold 過去に取引した商品がありません
         -# ここまで部分テンプレート
   = render "shared/mypage_side"
 
