@@ -84,4 +84,5 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'carrierwave'
 gem 'fog-aws'
-gem "gretel"
+gem 'owlcarousel-rails'
+gem 'gretel'

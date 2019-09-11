@@ -1,7 +1,5 @@
 .container
-  -if user_signed_in?
-    = render 'shared/header_mypage'
-  -else
+  .header
     = render 'shared/header'
   
   .main
@@ -57,7 +55,23 @@
                 %figcaption
                   %span 
                     カラーラ
+      
+      .sell-icon
+        = link_to "", class: "sell-icon_link" do
+          .sell-icon__in
+            .sell-icon__name
+              出品
+            %i.camera
 
-      = render 'shared/sell-icon'
+  %aside
+    .aside__text
+      = image_tag "mercari_icon.png", class: "mercari-icon"
+    .aside__text__top
+      スマホでかんたんフリマアプリ
+    .aside__text__buttom
+      今すぐ無料ダウンロード！
+    
+    = image_tag "mercariappimage.png"
 
-  = render 'shared/footer'
+  .footer
+    = render 'shared/footer'

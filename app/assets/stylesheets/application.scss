@@ -4,7 +4,6 @@
 @import "header";
 @import "footer";
 @import "index";
-
 @import "reset";
 @import "mixin/mixin";
 @import "step0";
@@ -17,8 +16,12 @@
 @import "card_index";
 @import "devise_session_edit";
 @import "profile_edit";
-@import "awesome-icon";
+@import "_awesome-icon";
 @import "mypage";
-@import "breadcrumbs";
 
-@import "sell-icon"
+
+// for_slider
+@import "owl.carousel";
+@import "owl.theme.default";
+
+@import "sell-icon";
