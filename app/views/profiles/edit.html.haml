@@ -1,4 +1,6 @@
 = render 'shared/header_mypage'
+- breadcrumb :profile
+= render "shared/breadcrumbs"
 - if flash[:notice]
   .profile-edit-container__content__form__succes
     .profile-edit-container__content__form__succes__body#succes

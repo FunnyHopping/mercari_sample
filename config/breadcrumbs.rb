@@ -12,13 +12,18 @@ crumb :profile do
   parent :mypage
 end
 
-crumb :card do
+crumb :card do |card|
   link "支払い方法", cards_path
   parent :mypage
 end
 
-crumb :logout do
+crumb :logout do |logout|
   link "ログアウト", logout_path
+  parent :mypage
+end
+
+crumb :category do |category|
+  link "@#{category.name}", logout_path
   parent :mypage
 end
 

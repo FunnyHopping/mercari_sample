@@ -85,3 +85,7 @@ gem 'omniauth-google-oauth2'
 gem 'carrierwave'
 gem 'fog-aws'
 gem "gretel"
+gem 'ancestry'
+gem 'activerecord-import'
+gem 'gon'
+gem 'owlcarousel-rails'

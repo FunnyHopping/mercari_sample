@@ -1,0 +1,64 @@
+.payment-new-container
+  %header.signup-header
+    %h1
+      = link_to root_path do
+        = image_tag("logo.svg")
+  %main.payment-show-container__main
+    %section.payment-show-container__main__section
+      .payment-show-container__main__section__attention
+        %h3.payment-show-container__main__section__attention__h3
+          = icon("far","clock")
+          %span.payment-show-container__main__section__attention__h3__span
+            = "発送をお待ちください"
+        %p= "出品者からの発送通知をお待ちください"
+      %h2.payment-show-container__main__section__h2
+        ="購入が完了しました"
+      %secction.payment-show-container__main__section__image
+        .payment-show-container__main__section__image__item
+          %h3.payment-show-container__main__section__image__item__h3
+            = image_tag("mypage-icon.png")
+          %p.payment-show-container__main__section__image__item__p= @item.name
+      %secction.payment-show-container__main__section__price
+        .payment-show-container__main__section__price__item
+          %p.payment-show-container__main__section__price__item__text
+            = "¥#{@item.price}"
+            %span.payment-show-container__main__section__price__item__text__span
+              ="送料込み"
+      %secction.payment-show-container__main__section__address
+        .payment-show-container__main__section__address__item
+          %h3.payment-show-container__main__section__address__item__h3
+            = "配送先"
+          %address.payment-show-container__main__section__address__item__address
+            = @address.post_num
+            %br
+            = "#{@address.prefecture_id}  #{@address.city}"
+            %br
+            = current_user.name
+      %secction.payment-show-container__main__section__card
+        .payment-show-container__main__section__card__content
+          %h3.payment-show-container__main__section__card__content__h3
+            = "支払い方法"
+          %p.payment-show-container__main__section__card__content__info
+            = "**** **** **** " + @default_card_information.last4
+            %br
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
+      %secction.payment-show-container__main__section__flow
+        %h3.payment-show-container__main__section__flow__h3
+          ="発送通知後の流れ"
+        .payment-show-container__main__section__flow__content
+          .good= icon("far","meh")
+          .normal= icon("far","meh")
+          .bad= icon("far","meh")
+          %p.payment-show-container__main__section__flow__content__text
+            ="商品を受け取ったら"
+            %br
+            ="出品者の評価をしましょう。"
+            %br
+            ="購入代金が出品者に振り込まれます"
+            %br
+            ="評価後に取引は完了です。"
+            = link_to "マイページへ戻る", page_path(current_user)
+
+

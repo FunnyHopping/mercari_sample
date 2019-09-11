@@ -1,0 +1,187 @@
+.payment-new-container{
+  padding: 0 0 220px;
+  &__main{
+    display: block;
+    &__section{
+      width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      & h2{
+        padding: 16px;
+        font-size: 22px;
+        line-height: 1.5;
+        text-align: center;
+      }
+      &__item{
+        margin: 0;
+        text-align: center;
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        &__content{
+          display: flex;
+          flex-wrap: wrap;
+          max-width: 320px;
+          margin: 0 auto;
+          & h3{
+            font-size: 22px;
+            & img{
+              width: 64px;
+              opacity: 1;
+              transition: opacity .3s;
+              vertical-align: middle;
+            }
+          }
+          &__text{
+            width: calc(100% - 80px);
+            margin: 0 0 0 16px;
+            text-align: left;
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: 600;
+          }
+          &__body{
+            width: 100%;
+            display: block;
+            &__text{
+              text-align: center;
+              margin: 8px 0 0;
+              line-height: 1.5;
+              font-size: 22px;
+              font-weight: 600;
+              & span{
+                margin: 0 0 0 8px;
+                font-size: 14px;
+                font-weight: 400;
+                display: inline-block;
+              }
+            }
+            &__point{
+              background: #ccc;
+              margin: 16px 0 0;
+              list-style: none;
+              &__li{
+                &__text{
+                  cursor: default;
+                  padding: 16px;
+                  border: 1px solid #ccc;
+                  position: relative;
+                }
+              }
+            }
+            &__money{
+              display: table;
+              border-collapse: collapse;
+              width: 100%;
+              list-style: none;
+              &__li{
+                border: 0;
+                font-size: 18px;
+                display: table-row;
+                font-weight: 600;
+                &__text{
+                  text-align: left;
+                  display: table-cell;
+                  padding: 16px 0;
+                }
+                &__body{
+                  display: table-cell;
+                  padding: 16px 0;
+                  text-align: right;
+                  & span{
+                    font-size: 28px;
+                    text-align: right;
+                  }
+                }
+              }
+            }
+            &__btn{
+              margin: 8px 0 0;
+              background: #ea352d;
+              border: 1px solid #ea352d;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              cursor: pointer;
+              text-align: center;
+              font-weight: 600;
+              outline: 0;
+              & a{
+                color: #f5f5f5
+              }
+            }
+          }
+        }
+      }
+      &__address{
+        margin: 40px 0 0;
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        display: block;
+        &__content{
+          max-width: 320px;
+          margin: 0 auto;
+          & h3{
+            margin: 0;
+            font-size: 14px;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+          }
+          &__address{
+            display: block;
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          &__info{
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          & a{
+            display: block;
+            text-align: right;
+            color: #0099e8;
+            text-decoration: none;
+          }
+        }
+      }
+      &__card{
+        padding: 24px 12.5% 40px;
+        margin: 40px 0 0;
+        border-top: 1px solid #f5f5f5;
+        display: block;
+        &__content{
+          max-width: 320px;
+          margin: 0 auto;
+          display: block;
+          & h3{
+            margin: 0;
+            font-size: 14px;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+          }
+          &__info{
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          & a{
+            display: block;
+            text-align: right;
+            color: #0099e8;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
