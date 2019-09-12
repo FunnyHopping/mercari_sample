@@ -39,6 +39,7 @@
           .markets__index__item
           - @items.each do |item|
             = link_to items_path(item.id), class: "goods-link" do
+            = link_to new_payment_path, class: "goods-link" do
               %figure.style-card
                 .soldout
                 .style-card__thumbnail
@@ -51,16 +52,5 @@
 
       = render 'shared/sell-icon'
 
-  .footer
-    = render 'shared/footer'
+  = render 'shared/footer'
 
-
-
-- @parents.each do |parent|
-  %h1= parent.name
-  %h1= parent.id
-  - parent.children.each do |child|
-    %h2= child.name
-    %h2= child.id
-    - child.children.each do |baby|
-      = baby.name

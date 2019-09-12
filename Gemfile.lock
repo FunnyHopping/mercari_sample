@@ -57,6 +57,8 @@ GEM
     arel (9.0.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     builder (3.2.3)
@@ -106,6 +108,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    debug_inspector (0.0.3)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -248,6 +251,8 @@ GEM
     owlcarousel-rails (2.2.3.5)
     payjp (0.0.7)
       rest-client (~> 2.0)
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -284,6 +289,12 @@ GEM
       thor (>= 0.19.0, < 2.0)
     raindrops (0.19.0)
     rake (12.3.3)
+    ransack (2.3.0)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.3.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -372,6 +383,7 @@ DEPENDENCIES
   active_hash
   activerecord-import
   ancestry
+  binding_of_caller
   bootsnap (>= 1.1.0)
   byebug
   capistrano (= 3.11.0)
@@ -405,6 +417,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.3)
+  ransack
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

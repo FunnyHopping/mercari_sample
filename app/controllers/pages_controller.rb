@@ -12,5 +12,9 @@ class PagesController < ApplicationController
     
     @items = Item.order("created_at DESC").limit(10)
   end
+
+  def show
+    @transaction_items = current_user.sold_items.where(transact: false)
+  end
 end
 

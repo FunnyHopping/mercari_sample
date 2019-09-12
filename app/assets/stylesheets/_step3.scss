@@ -52,6 +52,30 @@
             & #user_family_name_kana{
               @include half();
             }
+            &__select{
+              position: relative;
+              & i{
+                right: 18px;
+                position: absolute;
+                top: 60%;
+                z-index: 2;
+                color: #888;
+                font-size: 16px;
+                -webkit-transform: translate(0, -50%);
+                transform: translate(0, -50%);
+                display: inline-block;
+                font-family: 'icon-font';
+                font-style: normal;
+                font-weight: 400;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+              }
+              & #address_prefecture_id{
+                @include input_default();
+              }
+            }
           }
           &__submit{
             & .btn-default{
