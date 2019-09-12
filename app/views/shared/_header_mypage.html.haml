@@ -3,6 +3,8 @@
     .header__contents__top
       .header__contents__top__logo
         = link_to image_tag("logo.svg"), root_path, class: "mercari-logo"
+      -if @search_items == nil
+        - @search_items = Item.order("created_at DESC").ransack(params[:q])
       = search_form_for @search_items,class: "header__contents__top__search" do |f| 
         = f.search_field :name_cont, url:root_path,class: "search-form", placeholder: "何かお探しですか？"
         %label.label

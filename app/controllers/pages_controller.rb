@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
   def index
-    @search_items = Item.order("created_at DESC").ransack(params[:q])
-
     @parents = Category.all.order("id ASC").limit(13)
     parent_category = []
     child_category  = []

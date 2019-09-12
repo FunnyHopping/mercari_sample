@@ -2,6 +2,12 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   protect_from_forgery with: :exception
 
+  def search_params 
+    @search_items = Item.order("created_at DESC").ransack(params[:q])
+  end
+
+  helper_method :search_params 
+
   private
 
   def production?
