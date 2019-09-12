@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(version: 2019_09_10_113949) do
     t.string "provider"
     t.string "uid"
     t.bigint "user_id"
+    t.integer "saler_id", null: false
+    t.integer "buyer_id"
+    t.boolean "transact", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sns_credentials_on_user_id"
