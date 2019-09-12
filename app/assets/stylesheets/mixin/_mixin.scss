@@ -25,7 +25,7 @@
 //   background: #f5f5f5;
 // }
 
-@mixin progress-status-after($coloer:#ccc){
+@mixin progress-status-after($coloer:#ccc,$width:100%){
   left: 50%;
   position: absolute;
   bottom: 5px;
@@ -76,6 +76,10 @@
     margin: 8px auto 0;
     border-radius: 50%;
   }
+}
+
+@mixin  progress-complete{
+  
 }
 
 @mixin signup-head() {
@@ -134,6 +138,16 @@
           @include progress-status-after();
         }
       }
+      & .complete::after{
+          @include progress-status-after(#ea352d,200%);
+          z-index: 10;
+      }
+      & .midle-comp{
+        @include progress-status(#ea352d);
+        & div::before{
+          @include progress-status-before(#ea352d)
+        }
+      }
     }
   }
 } 
@@ -141,14 +155,13 @@
 
 @mixin half(){
   margin-right: 12px;
-  width: calc(40% - 6px);
-  margin: 8px 0 0;
+  width: calc(50% - 2px);
+  margin: 8px 0 0 0;
 }
 
 @mixin input_default() {
-  width: 89%;
+  width: 100%;
   margin: 8px 0 0;
-  height: 24px;
   padding: 10px 16px 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -183,6 +196,52 @@
 
 @mixin select_default(){
   width: calc(53% - 38px);
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+}
+
+@mixin default-select(){
+  width: 100%;
+  padding: 0 10px;
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+  min-height: 1.5em;
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;      
+}
+
+@mixin select-wrap-half(){
+  display: inline-block;
+  width: calc(42% - 2px);
+  margin: 8px 0 0;
+  position: relative;
+  background: #fff;
+} 
+
+@mixin select-half(){
+  width: calc(100%);
   position: relative;
   z-index: 2;
   height: 48px;
