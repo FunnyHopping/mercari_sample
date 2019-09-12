@@ -44,7 +44,7 @@
                 .style-card__thumbnail
                   %span
                     = "￥#{item.price.to_s(:delimited, delimiter: ',')}"
-                  = image_tag "", class: "goods-image"
+                  -# = image_tag item.images.first, class: "goods-image"
                 %figcaption
                   %span 
                     = item.name
