@@ -40,56 +40,56 @@ class SignupsController < ApplicationController
   end
 
   def step5
-    # @user = User.new()
-    # session[:payjp_token] = params["payjp-token"]
+    @user = User.new()
+    session[:payjp_token] = params["payjp-token"]
 
-    # @user = User.new(
-    #   name:  session[:name],
-    #   email: session[:email],
-    #   password: session[:password],
-    #   password_confirmation: session[:password_confirmation],
-    #   family_name: session[:family_name],
-    #   first_name: session[:first_name],
-    #   first_name_kana: session[:first_name_kana],
-    #   family_name_kana: session[:family_name_kana],
-    #   phone_num: session[:phone_num],
-    #   uid: session[:uid],
-    #   provider: session[:provider]
-    # )
-    # @user.birth_day = session[:birth_day]
-    # if @user.save!
+    @user = User.new(
+      name:  session[:name],
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+      family_name: session[:family_name],
+      first_name: session[:first_name],
+      first_name_kana: session[:first_name_kana],
+      family_name_kana: session[:family_name_kana],
+      phone_num: session[:phone_num],
+      uid: session[:uid],
+      provider: session[:provider]
+    )
+    @user.birth_day = session[:birth_day]
+    if @user.save!
       
-    #   session[:user_id] = @user.id
-    #   @address = Address.new(
-    #     post_num: session[:post_num],
-    #     prefecture_id: session[:prefecture_id],
-    #     city: session[:city],
-    #     street_num: session[:street_num],
-    #     building: session[:building],
-    #     user_id: session[:user_id]
-    #   )
-    #   if @address.save!
-    #     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    #     if session[:payjp_token].blank?
-    #       redirect_to action: "step4"
-    #     else
-    #       customer = Payjp::Customer.create(
-    #       card: session[:payjp_token],
-    #       metadata: {user_id: @user.id})
-    #       @card = Card.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
-    #       if @card.save!
-    #         sign_in @user
-    #       else
-    #         render step4_signups_path
-    #       end
-    #     end
-    #   else
-    #     render step3_signups_path
-    #   end
-    # else
+      session[:user_id] = @user.id
+      @address = Address.new(
+        post_num: session[:post_num],
+        prefecture_id: session[:prefecture_id],
+        city: session[:city],
+        street_num: session[:street_num],
+        building: session[:building],
+        user_id: session[:user_id]
+      )
+      if @address.save!
+        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+        if session[:payjp_token].blank?
+          redirect_to action: "step4"
+        else
+          customer = Payjp::Customer.create(
+          card: session[:payjp_token],
+          metadata: {user_id: @user.id})
+          @card = Card.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
+          if @card.save!
+            sign_in @user
+          else
+            render step4_signups_path
+          end
+        end
+      else
+        render step3_signups_path
+      end
+    else
       
-    #   render step1_signups_path
-    # end
+      render step1_signups_path
+    end
   end
 
   def step6

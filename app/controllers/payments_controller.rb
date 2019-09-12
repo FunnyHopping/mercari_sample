@@ -1,6 +1,5 @@
 class PaymentsController < ApplicationController
   require 'payjp'
-  
   def new
     @item = Item.last
     @address = current_user.address
@@ -12,7 +11,9 @@ class PaymentsController < ApplicationController
   
   def create
     @item = Item.last
-    if @item.update(buyer_id: current_user.id)
+    @item.buyer_id = current_user.id
+    puts @item
+    if @item.save
       begin
         card = Card.where(user_id: current_user.id).first
         Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
