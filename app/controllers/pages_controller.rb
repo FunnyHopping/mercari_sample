@@ -10,4 +10,8 @@ class PagesController < ApplicationController
     gon.parent_category = parent_category
     gon.child_category
   end
+
+  def show
+    @transaction_items = current_user.sold_items.where(transact: false)
+  end
 end

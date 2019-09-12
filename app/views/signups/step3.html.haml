@@ -5,15 +5,15 @@
         = image_tag("logo.svg")
     %nav.step3-container__header__nav
       %ol.step3-container__header__nav__ol
-        %li.active
+        %li.active.complete
           = "会員情報"
           .progress-status.middle
-        %li.active
+        %li.active.complete.midle-comp
           = "電話番号認証"
-          .progress-status.middle
-        %li.active
+          .progress-status
+        %li.active.midle-comp
           = "お届け先入力"
-          .progress-status.middle
+          .progress-status
         %li.deactive
           = "支払い方法"
           .progress-status.middle
@@ -32,7 +32,9 @@
           .step3-container__main__container__form__content__group
             = f.label :prefecture_id, "地域"
             %span.span="必須"
-            = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+            .step3-container__main__container__form__content__group__select
+              %i.icon-arrow-bottom
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name
           .step3-container__main__container__form__content__group
             = f.label :city, "市町村"
             %span.span="必須"
