@@ -8,6 +8,11 @@ class ItemsController < ApplicationController
     @item.save!
   end
 
+  def index
+    @search_items = Item.order("created_at DESC").ransack(params[:q])
+    @items = @search_items.result(distinct: true)
+  end
+
   def show
   end
 
