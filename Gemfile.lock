@@ -118,6 +118,8 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.8.0)
     erubis (2.7.0)
     excon (0.66.0)
@@ -243,6 +245,7 @@ GEM
       omniauth-oauth (~> 1.1)
       rack
     orm_adapter (0.5.0)
+    owlcarousel-rails (2.2.3.5)
     payjp (0.0.7)
       rest-client (~> 2.0)
     pry (0.12.2)
@@ -382,6 +385,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  enum_help
   fog-aws
   font-awesome-sass (>= 5.4.1)
   gon
@@ -396,6 +400,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
+  owlcarousel-rails
   payjp
   pry-rails
   puma (~> 3.11)

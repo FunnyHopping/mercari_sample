@@ -30,8 +30,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :payments
+  resources :items
   resources :cards
   resources :profiles, only: [:edit,:update]
+  resources :items
   resources :pages, only: [:show,:index]
 end
 
