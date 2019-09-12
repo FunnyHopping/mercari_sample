@@ -38,7 +38,7 @@
             もっと見る
         .markets__index
           .markets__index__item
-            = link_to "", class: "goods-link" do
+            = link_to new_payment_path, class: "goods-link" do
               %figure.style-card
                 .style-card__thumbnail
                   %span
@@ -60,16 +60,5 @@
 
       = render 'shared/sell-icon'
 
-  .footer
-    = render 'shared/footer'
+  = render 'shared/footer'
 
-
-
-- @parents.each do |parent|
-  %h1= parent.name
-  %h1= parent.id
-  - parent.children.each do |child|
-    %h2= child.name
-    %h2= child.id
-    - child.children.each do |baby|
-      = baby.name
