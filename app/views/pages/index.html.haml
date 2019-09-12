@@ -8,7 +8,6 @@
     .main__contents
 
       .slider
-        = link_to ""
         .slider__image
 
       .popular
@@ -41,10 +40,11 @@
           - @items.each do |item|
             = link_to items_path(item.id), class: "goods-link" do
               %figure.style-card
+                .soldout
                 .style-card__thumbnail
                   %span
                     = "￥#{item.price.to_s(:delimited, delimiter: ',')}"
-                  -# = image_tag item.images.first, class: "goods-image"
+                  = image_tag "#{item.images.first}", class: "goods-image"
                 %figcaption
                   %span 
                     = item.name
