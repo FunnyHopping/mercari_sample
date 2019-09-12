@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 2019_09_10_113949) do
     t.boolean "postage", default: false
     t.integer "prefecture_id", null: false
     t.integer "shipping_date", default: 0, null: false
+    t.integer "saler_id", null: false
+    t.integer "buyer_id"
+    t.boolean "transact", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
