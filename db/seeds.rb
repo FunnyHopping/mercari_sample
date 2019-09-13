@@ -38,3 +38,26 @@ end
 grandchild_array.each do |grandchild|
   Category.create(name: grandchild[0] , parent_id: grandchild[1])
 end
+
+parent_postage_array = ['送料込み(出品者負担)', '着払い(購入者負担)']
+
+parent_postage_array.each do |parent_postage|
+  Postage.create(name: parent_postage)
+end
+
+parent_child_postage_array = ['送料込み(出品者負担)', '未定', 'らくらくメルカリ便', 'ゆうメール','レターパック', '普通郵便(定形、定形外)', 'クロネコヤマト', 'ゆうパック', 'クリックポスト', 'ゆうパケット', '着払い(購入者負担)', '未定', 'クロネコヤマト', 'ゆうパック', 'ゆうメール']
+
+parent_postage_id_cnt = 0
+child_postage_array = []
+parent_child_postage_array.each do |child_postage|
+  if child_postage == parent_postage_array[parent_postage_id_cnt]
+    parent_postage_id_cnt += 1
+  else
+    child_postage_array.push([child_postage, parent_postage_id_cnt])
+  end
+end
+
+child_postage_array.each do |child_postage|
+  Postage.create(name: child_postage[0], parent_id: child_postage[1])
+end
+

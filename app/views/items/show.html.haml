@@ -5,7 +5,7 @@
     = @item.name
 
   -#   - if user_signed_in?
-  -#     else
+  -#   - else
   -# %p{class: "item-info-container__seller-info"}
   -#   = "『#{@item.name}』は"times"回の取引実績を持つ
   -#   %a{href: ""}SAMPLE_SELLER_NAME(to_page)
@@ -27,25 +27,17 @@
           %tr
             %th 出品者
             %td
-              = link_to ""
-              %p
-                = @item.saler.name
+              = @item.saler.name
           %tr
             %th カテゴリー
             %td 
-              = link_to ""
-              %p
-                -# = @item.category.name
+              = @item.category.name
           %tr
             %th ブランド
             %td 
-              = link_to ""
-            %p
-              -# = @item.brand.name
-          - if @item.size.present?
-            %tr
-              %th 商品のサイズ
-              %td
+          %tr
+            %th 商品のサイズ
+            %td
                 = @item.size
           %tr
             %th 商品の状態
@@ -54,19 +46,15 @@
           %tr
             %th 配送料の負担
             %td 
-              - if @item.postage == true
-                送料込み（購入者負担）
-              - else
-                着払い（発送者負担）
+              = @item.postage_id
           %tr
             %th 配送の方法
             %td
+              = @item.transact
           %tr
             %th 配送元地域
             %td
-              = link_to ""
-              %p
-                = @item.prefecture_id
+              = @item.prefecture_id
           %tr
             %th 発送日の目安
             %td
@@ -77,10 +65,4 @@
       %span{class: "item-main-content__price__tax"}
         (税込)
       %span{class: "item-main-content__price__shipping-fee"}
-        - if @item.postage == true
-          送料込み
-        - else
-          着払い
-
-//購入画面に進む
-//= link_to new_payment_path
+        = @item.postage_id
