@@ -2,7 +2,7 @@
   = render "shared/header"
 %section{class: "item-info-container"}
   %h1{class: "item-info-container__name"}
-    "SAMPLE_ITEM_NAME"
+    = @item.name
   %p{class: "item-info-container__seller-info"}
     『"SAMPLE_ITEM_NAME"』は"times"回の取引実績を持つ
     %a{href: ""}SAMPLE_SELLER_NAME(to_page)
@@ -12,11 +12,12 @@
   .item-main-content
     .item-main-content__flex-wrapper
       .item-main-content__photo
+        = image_tag "#{@item.images.first}",class: "item-photo"
       %table{class: "item-detail-table"}
         %tbody
           %tr
             %th 出品者
-            %td sample
+            %td 
           %tr
             %th カテゴリー
             %td sample
@@ -25,25 +26,30 @@
             %td sample
           %tr
             %th 商品のサイズ
-            %td sample
+            %td
+              = @item.size
           %tr
             %th 商品の状態
-            %td sample
+            %td
+              = @item.condition
           %tr
             %th 配送料の負担
             %td sample
           %tr
             %th 配送の方法
-            %td sample
+            %td
+              = @item.postage
           %tr
             %th 配送元地域
-            %td sample
+            %td
+              = @item.prefecture_id
           %tr
             %th 発送日の目安
-            %td sample
+            %td
+              = @item.shipping_date
     .item-main-content__price
       %span{class: "item-main-content__price__item-price"}
-        ¥1,000,000,000
+        = "￥#{@item.price.to_s(:delimited, delimiter: ',')}"
       %span{class: "item-main-content__price__tax"}
         (税込)
       %span{class: "item-main-content__price__shipping-fee"}

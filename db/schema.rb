@@ -64,28 +64,15 @@ ActiveRecord::Schema.define(version: 2019_09_12_035515) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
+    t.string "images", null: false
     t.text "introduct", null: false
     t.string "size"
     t.integer "condition", default: 0, null: false
     t.boolean "postage", default: false
     t.integer "prefecture_id", null: false
-    t.integer "shipping_date", default: 0, null: false
-    t.integer "saler_id", null: false
+    t.integer "shipping_date", null: false
+    t.integer "saler_id"
     t.integer "buyer_id"
-    t.boolean "transact", default: false
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
-  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.bigint "user_id"
-    t.integer "saler_id", null: false
-    t.integer "buyer_id"
-    t.boolean "transact", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -97,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_09_12_035515) do
     t.string "first_name_kana", null: false
     t.string "family_name_kana", null: false
     t.string "birth_day", null: false
-    t.string "phone_num"
+    t.integer "phone_num"
     t.text "profile"
     t.string "image"
     t.string "email", default: "", null: false
