@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @parents = Category.all.order("id ASC").limit(13)
-    
+    @postages = Postage.all.order("id ASC").limit(2)
   end
 
   def create
@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name,
     :price, :category_id, :introduct, :size,
-    :condition, :postage, :shipping_date,
+    :condition, :postage_id, :shipping_date,
     :sale_status, :prefecture_id, images: []).merge(saler_id: current_user.id)
   end
 end

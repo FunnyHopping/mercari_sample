@@ -6,13 +6,13 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string  :images,             null: false
       t.text    :introduct,          null: false
       t.string  :size
-      t.integer :condition,          null: false,default: 0
-      t.boolean :postage,            default: false
+      t.integer :condition,          null: false
+      t.integer :postage_id,         null: false
       t.integer :prefecture_id,      null: false
-      t.integer :shipping_date,      null: false,efault: 0
+      t.integer :shipping_date,      null: false
       t.integer :saler_id
       t.integer :buyer_id
-      t.integer :category_id
+      t.integer :category_id,        null: false
       t.timestamps
     end
   end

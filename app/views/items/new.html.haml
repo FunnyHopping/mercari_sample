@@ -109,14 +109,14 @@
           = link_to root_path, target: "_blank", class: "form-question" do
             ?
           .item-form-box
-            .form-group
+            .form-group#postage-select-box_list
               %label
-                配送量の負担
+                配送料の負担
                 %span.form-require
                   必須
-              .select-wrap
+              .select-wrap#postage_box
                 %i.icon-arrow-bottom
-                = f.select :postage, [["発送者負担", false], ["購入者負担", true]], {}, class: "select-default"
+                = f.collection_select :parent_id, @postages, :id, :name, {prompt: "---"}, class: "select-default", id: "postage_form"
             .form-group
               %label
                 発送元の地域

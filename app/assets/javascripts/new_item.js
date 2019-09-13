@@ -1,35 +1,50 @@
 $(document).on("turbolinks:load",function() {
-  function appendOption(category){
-    let html = `<option value="${category.id}">${category.name}</option>`
+  function appendOption(select){
+    let html = `<option value="${select.id}">${select.name}</option>`
     return html;
   }
 
   function childBox(insertHTML){
     let childBoxHTML =`<div class="select-wrap" id="child_box">
-                    <i class="icon-arrow-bottom"></i>
-                    <select class="select-default" id="child_form" name="item[child_id]">
-                      <option value="">---</option>
-                      ${insertHTML}
-                    </select>
-                  </div>`
+                        <i class="icon-arrow-bottom"></i>
+                        <select class="select-default" id="child_form" name="item[child_id]">
+                          <option value="">---</option>
+                          ${insertHTML}
+                      </select>
+                      </div>`
     $("#category-select-box_list").append(childBoxHTML);
   }
 
   function grandChildBox(insertHTML){
     let grandChildBoxHTML =`<div class="select-wrap" id="grandchild_box">
-                    <i class="icon-arrow-bottom"></i>
-                    <select class="select-default" id="grandchild_form" name="item[category_id]">
-                      <option value="">---</option>
-                      ${insertHTML}
-                    </select>
-                  </div>`
+                              <i class="icon-arrow-bottom"></i>
+                              <select class="select-default" id="grandchild_form" name="item[category_id]">
+                                <option value="">---</option>
+                                ${insertHTML}
+                              </select>
+                            </div>`
     $("#category-select-box_list").append(grandChildBoxHTML);
+  }
+
+  function postagePlanBox(insertHTML){
+    let postagePlanBoxHTML = `<div class="form-group" id="postage-plan-box_list">
+                                <label>配送の方法
+                                  <span class="form-require">必須</span>
+                                </label>
+                                <div class="select-wrap">
+                                  <i class="icon-arrow-bottom"></i>
+                                  <select class="select-default" name="item[postage_id]">
+                                  <option value="">---</option>
+                                  ${insertHTML}
+                                  </select>
+                                </div>
+                              </div>`
+    $("#postage-select-box_list").append(postagePlanBoxHTML);
   }
 
   $(function() {
     $("#parent_form").on('change', function(){
       let parentValue = $(this).val();
-      console.log(parentValue);
       if(parentValue != ""){
         $.ajax({
           url: "/categories/get_child_category",
@@ -60,6 +75,7 @@ $(document).on("turbolinks:load",function() {
         $("#brand_box").remove();
       }
     })
+
     $(function() {
       $("#category-select-box_list").on('change', "#child_form", function(){
         let childValue = $("#child_form").val();
@@ -92,6 +108,35 @@ $(document).on("turbolinks:load",function() {
         }
       })
     })
+
+    $(function() {
+      $("#postage_form").on('change', function(){
+        let postageValue = $(this).val();
+        if(postageValue != ""){
+          $.ajax({
+            url: "/postages/get_postage_plan",
+            type: "GET",
+            data: {
+              parent_id: postageValue
+            },
+            dataType: "json"
+          })
+          .done(function(plans){
+            $("postage-plan-box_list").remove();
+            let insertHTML = "";
+            plans.forEach(function(plan){
+              insertHTML += appendOption(plan);
+            });
+            postagePlanBox(insertHTML);
+          })
+          .fail(function(){
+            alert("カテゴリー取得に失敗しました");
+          })
+        } else {
+          $("#postage-plan-box_list").remove();
+        }
+      })
+    })
   });
 });
 
@@ -117,3 +162,5 @@ $(document).on("turbolinks:load",function() {
     })
   })
 });
+
+
