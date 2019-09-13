@@ -3,7 +3,6 @@ class CreateItems < ActiveRecord::Migration[5.2]
     create_table :items do |t|
       t.string  :name,               null: false
       t.integer :price,              null: false
-      t.string  :images,             null: false
       t.text    :introduct,          null: false
       t.string  :size
       t.integer :condition,          null: false
@@ -13,6 +12,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :saler_id
       t.integer :buyer_id
       t.integer :category_id,        null: false
+      t.boolean :transact,        default: false
       t.timestamps
     end
   end

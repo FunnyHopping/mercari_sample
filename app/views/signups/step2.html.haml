@@ -5,10 +5,10 @@
         = image_tag("logo.svg")
     %nav.step2-container__header__nav
       %ol.step2-container__header__nav__ol
-        %li.active
+        %li.active.complete
           = "会員情報"
           .progress-status.middle
-        %li.active
+        %li.active.midle-comp
           = "電話番号認証"
           .progress-status.middle
         %li.deactive
@@ -27,8 +27,11 @@
         .step2-container__main__container__form__content
           .step2-container__main__container__form__content__group
             = f.label :phone_num, "携帯電話の番号"
-            = f.text_field :phone_num,placeholder: "携帯電話の番号",clss: "input-default"
+            = f.phone_field :phone_num,placeholder: "携帯電話の番号",clss: "input-default"
+            %ul.error-text.error-phone
+              %li= "電話番号の書式ご確認願います"
             %p= "本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。"
           .step2-container__main__container__form__content__submit
             = f.submit "SMSを送信する",class:"btn-default btn-red"
             %p= "※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。"
+    = render "shared/logo_footer"
