@@ -29,23 +29,34 @@
             = f.label :post_num, "郵便番号"
             %span.span="必須"
             = f.text_field :post_num,placeholder: "郵便番号"
+            %ul.error-text.error-post
+              %li= "郵便番号を入力して下さい"
+            %ul.error-text.error-post-reg
+              %li= "郵便番号の書式に誤りがあります"            
           .step3-container__main__container__form__content__group
             = f.label :prefecture_id, "地域"
             %span.span="必須"
             .step3-container__main__container__form__content__group__select
               %i.icon-arrow-bottom
               = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+              %ul.error-text.error-area
+                %li= "地域を選択して下さい"        
           .step3-container__main__container__form__content__group
             = f.label :city, "市町村"
             %span.span="必須"
             = f.text_field :city,placeholder: "市町村"
+            %ul.error-text.error-city
+              %li= "市町村を入力して下さい"       
           .step3-container__main__container__form__content__group
             = f.label :street_num, "番地"
             %span.span="必須"
             = f.text_field :street_num,placeholder: "番地"
+            %ul.error-text.error-street
+              %li= "番地を入力して下さい"     
           .step3-container__main__container__form__content__group
             = f.label :building, "建物名"
             %span.span="任意"
-            = f.text_field :building,placeholder: "建物名"
+            = f.text_field :building,placeholder: "建物名" 
           .step3-container__main__container__form__content__submit
             = f.submit "次へ進む",class:"btn-default btn-red"
+    = render "shared/logo_footer"

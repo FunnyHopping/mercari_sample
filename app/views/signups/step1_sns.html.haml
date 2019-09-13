@@ -29,11 +29,14 @@
             = f.label :name, "ニックネーム"
             %span.span="必須"
             = f.text_field :name,placeholder: "ニックネーム",value: session[:name],clss: "input-default"
+            %ul.error-text.error-name
+              %li= "ニックネームを入力して下さい"
           .step1-container__main__container__form__content__group
             = f.label :email, "メールアドレス"
             %span.span="必須"
             = f.email_field :email,placeholder: "メール",value: session[:email],clss: "input-default"
-          
+            %ul.error-text.error-mail
+              %li= "メールアドレス を入力してください"
           .step1-container__main__container__form__content__group
             %h3="本人確認"
             %p
@@ -43,12 +46,16 @@
               %span.span="必須"
             = f.text_field :family_name,placeholder: "苗字",clss: "half"
             = f.text_field :first_name,placeholder: "名前",clss: "half"
+            %ul.error-text.error-2byte-first
+              %li= "名 を入力してください"
           .step1-container__main__container__form__content__group
             %div
               = f.label :family_name, "お名前カナ(全角)"
               %span="必須"
             = f.text_field :first_name_kana,placeholder: "苗字カナ",clss: "half"
             = f.text_field :family_name_kana,placeholder: "名前カナ",clss: "half"
+            %ul.error-text.error-1byte-first-kana
+              %li= "名カナ を入力してください"
           .step1-container__main__container__form__content__group
             = f.label :birth_day,"生年月日"
             %span.span="必須"
@@ -69,7 +76,9 @@
                 %select.select-default.day{name: "day"}
               %span
                 ="日"
+              %ul.error-text.error-birth
+                %li= "生年月日　を入力して下さい"
           .step1-container__main__container__form__content__submit
             = f.submit "次へ進む",class:"btn-default btn-red"
 
-  %footer.step1-container__footer
+  = render "shared/logo_footer"

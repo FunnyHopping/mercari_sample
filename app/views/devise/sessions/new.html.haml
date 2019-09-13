@@ -21,7 +21,11 @@
         .devise-login-container__main__container__form__content
           .devise-login-container__main__container__form__content__group
             = f.email_field :email, autofocus: true, autocomplete: "email",class: "input-default",placeholder: "メールアドレス"
+            %ul.error-text.error-mail
+              %li= "メールアドレス を入力してください"
           .devise-login-container__main__container__form__content__group
             = f.password_field :password, autocomplete: "current-password",class: "input-default",placeholder: "パスワード"
+            %ul.error-text.error-pass
+              %li= "パスワード を入力してください"
           .devise-login-container__main__container__form__content__submit
             = f.submit "ログイン",class:"btn-default btn-red"
