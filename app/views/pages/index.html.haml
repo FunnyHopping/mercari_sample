@@ -8,7 +8,6 @@
     .main__contents
 
       .slider
-        = link_to ""
         .slider__image
 
       .popular
@@ -38,25 +37,18 @@
             もっと見る
         .markets__index
           .markets__index__item
+          - @items.each do |item|
+            = link_to items_path(item.id), class: "goods-link" do
             = link_to new_payment_path, class: "goods-link" do
               %figure.style-card
+                .soldout
                 .style-card__thumbnail
                   %span
-                    ￥5,000
-                  = image_tag 'syouhin.jpg', class: "goods-image"
+                    = "￥#{item.price.to_s(:delimited, delimiter: ',')}"
+                  = image_tag "#{item.images.first}", class: "goods-image"
                 %figcaption
                   %span 
-                    キャノン ミラーレス一眼カメラ EOS M100 標準レンズキット
-
-            = link_to "", class: "goods-link" do
-              %figure.style-card
-                .style-card__thumbnail
-                  %span
-                    ￥8,000
-                  = image_tag 'syouhin2.jpg', class: "goods-image"
-                %figcaption
-                  %span 
-                    カラーラ
+                    = item.name
 
       = render 'shared/sell-icon'
 

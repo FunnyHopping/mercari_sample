@@ -9,9 +9,12 @@ class PagesController < ApplicationController
     end
     gon.parent_category = parent_category
     gon.child_category
+    
+    @items = Item.order("created_at DESC").limit(10)
   end
 
   def show
     @transaction_items = current_user.sold_items.where(transact: false)
   end
 end
+
