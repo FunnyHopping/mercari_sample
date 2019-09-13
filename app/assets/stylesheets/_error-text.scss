@@ -1,0 +1,11 @@
+.error-text{
+  color: #ea352d;
+  line-height: 1.5;
+  font-size: 14px;
+  list-style: none;
+  & li{
+    margin: 8px 0 0;
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+}

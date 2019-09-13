@@ -23,21 +23,38 @@
   %main.step1-container__main
     %section.step1-container__main__container
       %h2= "会員情報入力"
-      = form_with model:@user, url: step2_signups_path,local: true,method: :get,class: "step1-container__main__container__form" do |f|
+      = form_with model:@user, url: step2_signups_path,local: true,method: :get,class: "step1-container__main__container__form",id:"signupform1" do |f|
         .step1-container__main__container__form__content
-          = "パス"
-          = f.password_field :password
-          = "パスもう一度"
-          = f.password_field :password_confirmation
           .step1-container__main__container__form__content__group
             = f.label :name, "ニックネーム"
             %span.span="必須"
-            = f.text_field :name,placeholder: "ニックネーム",clss: "input-default"
+            = f.text_field :name,placeholder: "ニックネーム",clss: "step1-field"
+            %ul.error-text.error-name
+              %li= "ニックネームを入力して下さい"
           .step1-container__main__container__form__content__group
             = f.label :email, "メールアドレス"
             %span.span="必須"
-            = f.email_field :email,placeholder: "メール",clss: "input-default"
-          
+            = f.email_field :email,placeholder: "メール",clss: "step1-field"
+            %ul.error-text.error-mail
+              %li= "メールアドレス を入力してください"
+          .step1-container__main__container__form__content__group
+            = f.label :password, "パスワード"
+            %span.span="必須"
+            = f.password_field :password,placeholder: "パスワード", class: "step1-field"
+            %ul.error-text.error-pass
+              %li= "パスワード を入力してください"
+            %ul.error-text.error-pass-length
+              %li= "パスワードは7文字以上128文字以下で入力してください"
+            %ul.error-text.error-pass-regular
+              %li= "英字と数字両方を含むパスワードを設定してください"
+          .step1-container__main__container__form__content__group
+            = f.label :password, "パスワード(確認用)"
+            %span.span="必須"
+            = f.password_field :password_confirmation,placeholder: "パスワード(確認用)", class: "step1-field"
+            %ul.error-text.error-passcon
+              %li= "パスワード (確認) を入力してください"
+            %ul.error-text.error-passcon-same
+              %li= "パスワードと確認用のパスワードの値が異なります"
           .step1-container__main__container__form__content__group
             %h3="本人確認"
             %p
@@ -45,14 +62,18 @@
             %div
               = f.label :family_name, "お名前(全角)"
               %span.span="必須"
-            = f.text_field :family_name,placeholder: "苗字",clss: "half"
-            = f.text_field :first_name,placeholder: "名前",clss: "half"
+            = f.text_field :family_name,placeholder: "苗字",clss: "half step1-field"
+            = f.text_field :first_name,placeholder: "名前",clss: "half step1-field"
+            %ul.error-text.error-2byte-first
+              %li= "名 を入力してください"
           .step1-container__main__container__form__content__group
             %div
               = f.label :family_name, "お名前カナ(全角)"
               %span="必須"
-            = f.text_field :first_name_kana,placeholder: "苗字カナ",clss: "half"
-            = f.text_field :family_name_kana,placeholder: "名前カナ",clss: "half"
+            = f.text_field :family_name_kana,placeholder: "苗字カナ",clss: "half step1-field"
+            = f.text_field :first_name_kana,placeholder: "名前カナ",clss: "half step1-field 1byte-first-kana"
+            %ul.error-text.error-1byte-first-kana
+              %li= "名カナ を入力してください"
           .step1-container__main__container__form__content__group
             = f.label :birth_day,"生年月日"
             %span.span="必須"
@@ -60,20 +81,22 @@
             .step1-container__main__container__form__content__group__select
               .step1-container__main__container__form__content__group__select__wrap
                 %i.icon-arrow-bottom
-                %select.select-default.year{name: "year"}
+                %select.select-default.year.step1-field{name: "year"}
               %span
                 ="年"
               .step1-container__main__container__form__content__group__select__wrap
                 %i.icon-arrow-bottom
-                %select.select-default.month{name: "month"}
+                %select.select-default.month.step1-field{name: "month"}
               %span
                 ="月"
               .step1-container__main__container__form__content__group__select__wrap
                 %i.icon-arrow-bottom
-                %select.select-default.day{name: "day"}
+                %select.select-default.day.step1-field{name: "day"}
               %span
                 ="日"
+              %ul.error-text.error-birth
+                %li= "生年月日　を入力して下さい"
           .step1-container__main__container__form__content__submit
             = f.submit "次へ進む",class:"btn-default btn-red"
 
-  %footer.step1-container__footer
+  = render "shared/logo_footer"
