@@ -33,7 +33,12 @@ Rails.application.routes.draw do
   resources :items
   resources :cards
   resources :profiles, only: [:edit,:update]
-  resources :items
   resources :pages, only: [:show,:index]
+  resources :categories, only: :index do
+    collection do
+      get 'get_child_category'
+      get 'get_grandchild_category'
+    end
+  end
 end
 

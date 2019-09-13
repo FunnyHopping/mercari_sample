@@ -1,20 +1,21 @@
 class Item < ApplicationRecord
   belongs_to :saler, class_name: "User"
   # belongs_to :buyer, class_name: "User"
+  belongs_to :category
   mount_uploaders :images, ImageUploader
 
   enum size: {
-    default: 0,
-    XXS: 1,
-    XS_SS: 2,
-    S: 3,
-    M: 4,
-    L: 5,
-    XL_LL: 6,
-    XXL_3L: 7,
-    XXXL_4L: 8,
-    XXXXL_5L: 9,
-    FREE_SIZE: 10,
+    "---": nil,
+    XXS: 0,
+    XS_SS: 1,
+    S: 2,
+    M: 3,
+    L: 4,
+    XL_LL: 5,
+    XXL_3L: 6,
+    XXXL_4L: 7,
+    XXXXL_5L: 8,
+    FREE_SIZE: 9,
   },  _prefix: true
 
   enum condition:{
@@ -28,8 +29,9 @@ class Item < ApplicationRecord
   }, _prefix: true
 
   enum shipping_date: {
-    one_two_days: 0,
-    two_three_days: 1,
-    four_seven_days: 2,
+    default: 0,
+    one_two_days: 1,
+    two_three_days: 2,
+    four_seven_days: 3,
   }, _prefix: true
 end

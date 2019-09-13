@@ -1,6 +1,13 @@
 class ItemsController < ApplicationController
+  def index
+    @parents = Category.all.order("id ASC").limit(13)
+    
+  end
+
   def new
     @item = Item.new
+    @parents = Category.all.order("id ASC").limit(13)
+    
   end
 
   def create
@@ -23,7 +30,7 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name,
-    :price, :introduct, :size,
+    :price, :category_id, :introduct, :size,
     :condition, :postage, :shipping_date,
     :sale_status, :prefecture_id, images: []).merge(saler_id: current_user.id)
   end

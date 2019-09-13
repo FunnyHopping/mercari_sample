@@ -12,6 +12,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :shipping_date,      null: false,efault: 0
       t.integer :saler_id
       t.integer :buyer_id
+      t.integer :category_id
       t.timestamps
     end
   end
