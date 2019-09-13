@@ -72,28 +72,29 @@
           %h3.item-sub-head
             商品の詳細
           .item-form-box
-            .form-group
+            .form-group#category-select-box_list
               %label
                 カテゴリー
                 %span.form-require
                   必須
-                .select-wrap
-                  %i.icon-arrow-bottom
-                  = f.text_field :category_id
-                .select-wrap
-                  %i.icon-arrow-bottom
-                  = f.text_field :category_id
-                .select-wrap
-                  %i.icon-arrow-bottom
-                  = f.text_field :category_id
-            .form-group
-              %label
-                サイズ
-                %span.form-require
-                  必須
-              .select-wrap
+              .select-wrap#parent_box
                 %i.icon-arrow-bottom
-                = f.select :size, options_for_select(Item.sizes.keys), {}, class: "select-default"
+                = f.collection_select :parent_id, @parents, :id, :name,{prompt: "---"}, class: "select-default", id: "parent_form"
+              .form-group#size_box
+                %label
+                  サイズ
+                  %span.form-require
+                    必須
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :size, options_for_select(Item.sizes.keys), {}, class: "select-default"
+              .form-group#brand_box
+                %label
+                  ブランド名
+                  %span.form-arbitrary
+                    任意
+                %div
+                  = f.text_field :brand_id, placeholder: "例）シャネル", class: "input-default"
             .form-group
               %label
                 商品の状態
@@ -149,15 +150,15 @@
                     ¥
                     .input-price
                       = f.text_field :price, class: "input-default", placeholder: "例）300"
-              %li.clearfix
+              %li.clearfix#sale-tax
                 .left-text
                   販売手数料 (10%)
-                .right-text
+                .right-text#tax-text
                   ー
               %li.clearfix.bold
                 .left-text
                   販売利益
-                .right-text
+                .right-text#profit-text
                   ー
         .single-main__box__sell__inner__form__index-box
           .attention-text
@@ -171,6 +172,4 @@
           = link_to root_path, class: "btn-default btn-gray" do
             戻る
   = render "shared/logo_footer"
-
-  -# 新規登録や出品ページのフッター
 

@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_09_12_035515) do
     t.bigint "user_id"
     t.integer "saler_id", null: false
     t.integer "buyer_id"
+    t.integer "category_id"
     t.boolean "transact", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
