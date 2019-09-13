@@ -1,18 +1,18 @@
 .header
   = render "shared/header"
-%section{class: "item-info-container"}
-  %h1{class: "item-info-container__name"}
+%section.item-info-container
+  %h1.item-info-container__name
     "SAMPLE_ITEM_NAME"
-  %p{class: "item-info-container__seller-info"}
+  %p.item-info-container__seller-info
     『"SAMPLE_ITEM_NAME"』は"times"回の取引実績を持つ
-    %a{href: ""}SAMPLE_SELLER_NAME(to_page)
+    %a{href: "/"}SAMPLE_SELLER_NAME(to_page)
     さんから出品されました。
-    %a{href: ""}最下カテゴリ/最上位
+    %a{href: "/"}最下カテゴリ/最上位
     の商品で、"Address.city"から"？？"日で発送されます。
   .item-main-content
     .item-main-content__flex-wrapper
       .item-main-content__photo
-      %table{class: "item-detail-table"}
+      %table.item-detail-table
         %tbody
           %tr
             %th 出品者
@@ -42,9 +42,25 @@
             %th 発送日の目安
             %td sample
     .item-main-content__price
-      %span{class: "item-main-content__price__item-price"}
+      %span.item-main-content__price__item-price
         ¥1,000,000,000
-      %span{class: "item-main-content__price__tax"}
+      %span.item-main-content__price__tax
         (税込)
-      %span{class: "item-main-content__price__shipping-fee"}
+      %span.item-main-content__price__shipping-fee
         送料込み
+    %a.item-buy-btn{href: '/'}
+      購入画面に進む
+    .item-main-content__description
+      %p.item-main-content__description__item-description
+        SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE 
+        SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE 
+        SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE 
+.message-container
+  .message-content
+    %ul.messages
+      %li.messages__message
+        %a.messages__message__user{href: "/"}
+        .messages__message__body
+          .message__body__text
+          .message__body__icons
+            = icon 'far', 'clock'
