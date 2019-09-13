@@ -9,6 +9,7 @@ document.addEventListener('turbolinks:load',function(){
           exp_month: document.getElementById("exp_month").value,
           exp_year: document.getElementById("exp_year").value
         }; 
+        console.log(card)
         Payjp.createToken(card, (status, response) => {
           if (status === 200) { 
             console.log("OK")
