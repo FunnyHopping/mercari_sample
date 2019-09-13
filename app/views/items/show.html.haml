@@ -5,9 +5,9 @@
     = @item.name
 
   -#   - if user_signed_in?
-  -#   else
+  -#     else
   -# %p{class: "item-info-container__seller-info"}
-  -#   『"SAMPLE_ITEM_NAME"』は"times"回の取引実績を持つ
+  -#   = "『#{@item.name}』は"times"回の取引実績を持つ
   -#   %a{href: ""}SAMPLE_SELLER_NAME(to_page)
   -#   さんから出品されました。
   -#   %a{href: ""}最下カテゴリ/最上位
@@ -17,37 +17,56 @@
     .item-main-content__flex-wrapper
       .item-main-content__photo
         = image_tag "#{@item.images.first}",class: "item-photo"
+      .item-main-content__photo__smalls
+        - @item.images.each do |image|
+          .item-main-content__photo__smalls__image
+            = image_tag "#{image}",class: "item-photo"
+
       %table{class: "item-detail-table"}
         %tbody
           %tr
             %th 出品者
-            %td 
-              -# = @item.saler.name
+            %td
+              = link_to ""
+              %p
+                = @item.saler.name
           %tr
             %th カテゴリー
             %td 
+              = link_to ""
+              %p
+                -# = @item.category.name
           %tr
             %th ブランド
             %td 
-          %tr
-            %th 商品のサイズ
-            %td
-              = @item.size
+              = link_to ""
+            %p
+              -# = @item.brand.name
+          - if @item.size.present?
+            %tr
+              %th 商品のサイズ
+              %td
+                = @item.size
           %tr
             %th 商品の状態
             %td
               = @item.condition
           %tr
             %th 配送料の負担
-            %td sample
+            %td 
+              - if @item.postage == true
+                送料込み（購入者負担）
+              - else
+                着払い（発送者負担）
           %tr
             %th 配送の方法
             %td
-              = @item.postage
           %tr
             %th 配送元地域
             %td
-              = @item.prefecture_id
+              = link_to ""
+              %p
+                = @item.prefecture_id
           %tr
             %th 発送日の目安
             %td
@@ -58,7 +77,10 @@
       %span{class: "item-main-content__price__tax"}
         (税込)
       %span{class: "item-main-content__price__shipping-fee"}
-        送料込み
+        - if @item.postage == true
+          送料込み
+        - else
+          着払い
 
 //購入画面に進む
 //= link_to new_payment_path
