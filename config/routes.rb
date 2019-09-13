@@ -40,5 +40,10 @@ Rails.application.routes.draw do
       get 'get_grandchild_category'
     end
   end
+  resources :postages, only: :index do
+    collection do
+      get 'get_postage_plan'
+    end
+  end
 end
 
