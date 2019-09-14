@@ -1,28 +1,21 @@
 .header
-  = render "shared/header"
-%section{class: "item-info-container"}
-  %h1{class: "item-info-container__name"}
+  -if user_signed_in?
+    = render 'shared/header_mypage'
+  -else
+    = render 'shared/header'
+%section.item-info-container
+  %h1.item-info-container__name
     = @item.name
-
-  -#   - if user_signed_in?
-  -#   - else
-  -# %p{class: "item-info-container__seller-info"}
-  -#   = "『#{@item.name}』は"times"回の取引実績を持つ
-  -#   %a{href: ""}SAMPLE_SELLER_NAME(to_page)
-  -#   さんから出品されました。
-  -#   %a{href: ""}最下カテゴリ/最上位
-  -#   の商品で、"Address.city"から"？？"日で発送されます。
-
+  -if user_signed_in?
+  -else
+    %p.item-info-container__seller-info
+      -# = "『#{@item.name}』は"times"回の取引実績を持つ#{@item.saler.name}さんから出品されました。
+      -# 最下カテゴリ/最上位の商品で、Address.cityから#{@item.shipping_date}日で発送されます。"
   .item-main-content
     .item-main-content__flex-wrapper
       .item-main-content__photo
-        = image_tag "#{@item.images.first}",class: "item-photo"
-      .item-main-content__photo__smalls
-        - @item.images.each do |image|
-          .item-main-content__photo__smalls__image
-            = image_tag "#{image}",class: "item-photo"
-
-      %table{class: "item-detail-table"}
+        = @item.images.first
+      %table.item-detail-table
         %tbody
           %tr
             %th 出品者
@@ -30,14 +23,23 @@
               = @item.saler.name
           %tr
             %th カテゴリー
-            %td 
-              = @item.category.name
+            %td
+              = link_to "" do
+                = @item.category.parent.parent.name
+              %br
+              = link_to "" do
+                = @item.category.parent.name
+              %br
+              = link_to "" do
+                = @item.category.name
           %tr
             %th ブランド
             %td 
-          %tr
-            %th 商品のサイズ
-            %td
+          -if @item.size
+            //商品サイズがあるときのみ表示させる
+            %tr
+              %th 商品のサイズ
+              %td
                 = @item.size
           %tr
             %th 商品の状態
@@ -46,7 +48,7 @@
           %tr
             %th 配送料の負担
             %td 
-              = @item.postage_id
+              = @item.postage.name
           %tr
             %th 配送の方法
             %td
@@ -54,15 +56,32 @@
           %tr
             %th 配送元地域
             %td
-              = @item.prefecture_id
+              = Address.find(@item.saler_id).city
           %tr
             %th 発送日の目安
             %td
               = @item.shipping_date
     .item-main-content__price
-      %span{class: "item-main-content__price__item-price"}
+      %span.item-main-content__price__item-price
         = "￥#{@item.price.to_s(:delimited, delimiter: ',')}"
-      %span{class: "item-main-content__price__tax"}
+      %span.item-main-content__price__tax
         (税込)
-      %span{class: "item-main-content__price__shipping-fee"}
-        = @item.postage_id
+      %span.item-main-content__price__shipping-fee
+        = @item.postage.name.slice(0..3)
+    .item-buy-btn
+      = link_to new_payment_path(@item.id) do
+        購入画面に進む
+    .item-main-content__description
+      %p.item-main-content__description__item-description
+        = @item.introduct
+.message-container
+  .message-content
+    %ul.messages
+      %li.messages__message
+        %a.messages__message__user{href: "/"}
+        .messages__message__body
+          .message__body__text
+          .message__body__icons
+            = icon 'far', 'clock'
+
+= render 'shared/footer'
