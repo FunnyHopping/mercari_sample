@@ -6,21 +6,25 @@
 %section.item-info-container
   %h1.item-info-container__name
     = @item.name
+
   -if user_signed_in?
   -else
     %p.item-info-container__seller-info
-      -# = "『#{@item.name}』は"times"回の取引実績を持つ#{@item.saler.name}さんから出品されました。
-      -# 最下カテゴリ/最上位の商品で、Address.cityから#{@item.shipping_date}日で発送されます。"
+      = "『#{@item.name}』は{@user.rating.count}回の取引実績を持つ#{@item.saler.name}さんから出品されました。"
+      %br
+      = "#{@item.category.name}/#{@item.category.parent.parent.name}の商品で、#{Address.find(@item.saler_id).city}から#{@item.shipping_date}日で発送されます。"
+
   .item-main-content
     .item-main-content__flex-wrapper
       .item-main-content__photo
-        = @item.images.first
+        = image_tag "#{@item.images.first}"
       %table.item-detail-table
         %tbody
           %tr
             %th 出品者
             %td
-              = @item.saler.name
+              = link_to "" do
+                = @item.saler.name
           %tr
             %th カテゴリー
             %td
@@ -28,9 +32,11 @@
                 = @item.category.parent.parent.name
               %br
               = link_to "" do
+                %i.chevron-right
                 = @item.category.parent.name
               %br
               = link_to "" do
+                %i.chevron-right
                 = @item.category.name
           %tr
             %th ブランド
@@ -48,15 +54,16 @@
           %tr
             %th 配送料の負担
             %td 
-              = @item.postage.name
+              = @item.postage.parent.name
           %tr
             %th 配送の方法
             %td
-              = @item.transact
+              = @item.postage.name
           %tr
             %th 配送元地域
             %td
-              = Address.find(@item.saler_id).city
+              = link_to "" do
+                = Address.find(@item.saler_id).city
           %tr
             %th 発送日の目安
             %td
@@ -67,7 +74,7 @@
       %span.item-main-content__price__tax
         (税込)
       %span.item-main-content__price__shipping-fee
-        = @item.postage.name.slice(0..3)
+        = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
     .item-buy-btn
       = link_to new_payment_path(@item.id) do
         購入画面に進む
@@ -75,6 +82,8 @@
       %p.item-main-content__description__item-description
         = @item.introduct
 .message-container
+
+-# 以下コメント欄
   .message-content
     %ul.messages
       %li.messages__message
