@@ -1,0 +1,40 @@
+.slider
+  %a 
+    .slider__top
+
+  .slider__main
+    .slider__main__frame
+      %ul.slider__main__frame__list
+        %li.slider__main__frame__list__slide1
+          = link_to "" do
+            .area-hidden1
+        %li.slider__main__frame__list__slide2
+          = link_to "" do
+            .area-hidden2
+        %li.slider__main__frame__list__slide3
+          .area-hidden3
+            .slider__main__frame__list__slide3__image3
+              = image_tag "smart_phone.png" , class: "slider-photo"
+              .slider__main__frame__list__slide3__image3__contents
+                .slider__main__frame__list__slide3__image3__contents__text1
+                  スマホでかんたん
+                  %br
+                  フリマアプリ
+                %p.slider__main__frame__list__slide3__image3__contents__text2
+                  メルカリはスマホカメラからすぐに出品できる
+                  %br
+                  購入時も安心な独自システムのアプリです
+                .slider__main__frame__list__slide3__image3__contents__app
+                  %a
+                    = image_tag "app-store.svg", class: "app-store"
+                  %a
+                    = image_tag "google-play.svg", class: "google-play"
+  .slider__control__left
+    %i.slider-arrow__left
+  .slider__control__right
+    %i.slider-arrow__right
+  .slider__control__bottom
+    .slider__control__bottom__dots
+      %span.style-active
+      %span.style-active
+      %span.style-active

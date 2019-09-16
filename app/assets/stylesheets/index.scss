@@ -72,24 +72,6 @@ h2 {
   }
 }
 
-//スライド画像
-.slider {
-  height: 390px;
-  left: 50%;
-  margin-left: -50vw;
-  position: relative;
-  top: 0px;
-  width: 100vw;
-  overflow: hidden;
-  &__image {
-    position: relative;
-    background-size: cover;
-    height: 390px;
-    background-image: url(top-banner.jpg);
-    background-position: center center;
-  }
-}
-
 //人気のカテゴリータグ
 .popular {
   background-color: rgb(255, 255, 255);
