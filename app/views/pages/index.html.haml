@@ -39,8 +39,11 @@
           - @items.each do |item|
             = link_to item_path(item.id), class: "goods-link" do
               %figure.style-card
-                .soldout
                 .style-card__thumbnail
+                  - if item.buyer_id != nil
+                    .sold-flag
+                      .sold-flag__text
+                        SOLD
                   %span
                     = "￥#{item.price.to_s(:delimited, delimiter: ',')}"
                   = image_tag "#{item.images.first}", class: "goods-image"

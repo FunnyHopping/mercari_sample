@@ -6,14 +6,6 @@
   top: 0px;
   width: 100vw;
   overflow: hidden;
-  &__top {
-    height: 390px;
-    background-size: auto;
-    position: relative;
-    background-size: cover;
-    background-image: url(top-banner.jpg);
-    background-position: center center;
-  }
   &__main {
     box-sizing: border-box;
     display: block;
@@ -34,7 +26,7 @@
       touch-action: pinch-zoom pan-y;
       transform: translate3d(0, 0, 0);
       -webkit-transform: translate3d(0, 0, 0);
-      &__list {
+      &__item {
         transform: translate3d(0px, 0px, 0px);
         position: relative;
         display: block;
@@ -134,37 +126,15 @@
       }
     }
   }
-  &__control__left {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-  }
-  &__control__right {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-  }
-  &__control__bottom {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    &__dots {
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 0;
-      margin: 0;
-      padding: 0;
-    }
-  }
+}
+
+.area-hidden1 {
+  height: 390px;
+  background-size: auto;
+  position: relative;
+  background-size: cover;
+  background-image: url(top-banner.jpg);
+  background-position: center center;
 }
 
 .area-hidden2 {
