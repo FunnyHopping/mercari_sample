@@ -31,7 +31,49 @@
       .markets
         .markets__new
           %h3.markets__new__title
-            新着アイテム
+            新着カテゴリーアイテム
+          = link_to "", class: "more-link" do
+            もっと見る
+        .markets__index
+          .markets__index__item
+          - @items.each do |item|
+            = link_to item_path(item.id), class: "goods-link" do
+              %figure.style-card
+                .style-card__thumbnail
+                  - if item.buyer_id != nil
+                    .sold-flag
+                      .sold-flag__text
+                        SOLD
+                  %span
+                    = "￥#{item.price.to_s(:delimited, delimiter: ',')}"
+                  = image_tag "#{item.images.first}", class: "goods-image"
+                %figcaption
+                  %span  
+                    = item.name
+
+      .popular
+        %h2.popular__title
+          人気のブランド
+        .popular__list
+          //タグを押すと非同期で移動
+          %ul.popular__list__tag
+            %li.popular__list__tag__name
+              %a.tag-scroll
+                シャネル
+            %li.popular__list__tag__name
+              %a.tag-scroll
+                ルイヴィトン
+            %li.popular__list__tag__name
+              %a.tag-scroll
+                シュプリーム
+            %li.popular__list__tag__name
+              %a.tag-scroll
+                ナイキ
+
+      .markets
+        .markets__new
+          %h3.markets__new__title
+            新着ブランドアイテム
           = link_to "", class: "more-link" do
             もっと見る
         .markets__index
@@ -54,4 +96,3 @@
       = render 'shared/sell-icon'
 
   = render 'shared/footer'
-

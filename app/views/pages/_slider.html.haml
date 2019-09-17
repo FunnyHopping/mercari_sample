@@ -1,36 +1,20 @@
 .slider
-  .slider__main
-    .slider__main__frame
-      .slider__main__frame__item
-        = link_to "/", class:"slider-link" do
-          .area-hidden1
-      .slider__main__frame__item
-        = link_to "/", class:"slider-link" do
-          .area-hidden2
-      .slider__main__frame__item
-        .area-hidden3
-          .slider__main__frame__list3__image3
-            .slider__main__frame__list3__image3__contents
-              .slider__main__frame__list3__image3__contents__text1
-                スマホでかんたん
-                %br フリマアプリ
-              %p
-                メルカリはスマホカメラからすぐに出品できる
-                %br 購入時も安心な独自システムのアプリです
-              .slider__main__frame__list3__image3__contents__app
-                = link_to "/", target: "_blank", class:"slider-link" do
-                  = image_tag "app-store.svg", class: "app-store"
-                = link_to "/", target: "_blank", class:"slider-link" do
-                  = image_tag "google-play.svg", class: "google-play"
-            = image_tag "smart_phone.png" , class: "slider-photo"
-
-  .slider__nav
-    %i.slider-arrow__left
-    %i.slider-arrow__right
-  .slider__dots
-    .slider__dot
-      %span
-    .slider__dot
-      %span
-    .slider__dot
-      %span
+  %ul.slider__list
+    %li.slider__list__item
+      = link_to "/", class:"slider-link" do
+        = image_tag "top-banner.jpg", class: "slider-image"
+    %li.slider__list__item
+      = link_to "/", class:"slider-link" do
+        = image_tag "top-banner-camp.jpg", class: "slider-image"
+    -# %li.slider__list__item
+    -#   = link_to "/", class:"slider-link" do
+    -#     -# = image_tag "smart_phone.png"
+    -#   スマホでかんたん
+    -#   %br フリマアプリ
+    -#   %p
+    -#     メルカリはスマホカメラからすぐに出品できる
+    -#     %br 購入時も安心な独自システムのアプリです
+    -#     = link_to "/", target: "_blank", class:"slider-link" do
+    -#       = image_tag "app-store.svg", class: "app-store"
+    -#       = link_to "/", target: "_blank", class:"slider-link" do
+    -#         = image_tag "google-play.svg", class: "google-play"
