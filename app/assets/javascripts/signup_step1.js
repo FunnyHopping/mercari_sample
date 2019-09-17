@@ -80,7 +80,7 @@ document.addEventListener('turbolinks:load',function(){
   }
 
 
-  $('.step1-container__main__container__form').submit(function(){
+  $('#signupform1').submit(function(){
     sendflag = true
     let name               = $('#user_name')
     let email              = $('#user_email')

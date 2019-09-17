@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_035515) do
+ActiveRecord::Schema.define(version: 2019_09_13_044450) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -69,23 +69,11 @@ ActiveRecord::Schema.define(version: 2019_09_12_035515) do
     t.integer "condition", null: false
     t.integer "postage_id", null: false
     t.integer "prefecture_id", null: false
-    t.integer "shipping_date", default: 0, null: false
-    t.integer "saler_id", null: false
-    t.integer "buyer_id"
-    t.boolean "transact", default: false
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
-  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.bigint "user_id"
-    t.integer "saler_id", null: false
+    t.integer "shipping_date", null: false
+    t.integer "saler_id"
     t.integer "buyer_id"
     t.integer "category_id", null: false
+    t.boolean "transact", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -94,8 +82,6 @@ ActiveRecord::Schema.define(version: 2019_09_12_035515) do
     t.string "name"
     t.string "ancestry"
     t.string "index"
-    t.integer "category_id"
-    t.boolean "transact", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
