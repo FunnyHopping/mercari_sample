@@ -67,5 +67,12 @@
               user
         .messages__message__body
           .message__body__text
+            tetetetetetetetetextああああああテキスト
           .message__body__icons
             = icon 'far', 'clock'
+            1日前
+  .message-content
+    = form_with url: '/', local: true, class: "message-form" do |form|
+      %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      =form.text_area :text ,class: "message-form__field"
+      =form.button type: "submit", class: "message-form__submit-btn" 
