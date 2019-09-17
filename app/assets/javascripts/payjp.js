@@ -1,8 +1,7 @@
 document.addEventListener('turbolinks:load',function(){
   if($("token_submit").length){
-
-    Payjp.setPublicKey("pk_test_f469c68dd79c1e893366a3f6"); 
-    var btn = document.getElementById("token_submit");
+      Payjp.setPublicKey("pk_test_f59caea5ae7d04bd88784b9a"); 
+      var btn = document.getElementById("token_submit");
       btn.addEventListener("click", e => {
         e.preventDefault();
         let card = {
@@ -11,6 +10,7 @@ document.addEventListener('turbolinks:load',function(){
           exp_month: document.getElementById("exp_month").value,
           exp_year: document.getElementById("exp_year").value
         }; 
+        console.log(card)
         Payjp.createToken(card, (status, response) => {
           if (status === 200) { 
             console.log("OK")
