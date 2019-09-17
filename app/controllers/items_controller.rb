@@ -6,6 +6,8 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save!
+    @order = Order.new(item_id: @item.id)
+    @order.save!
   end
 
   def index
@@ -32,4 +34,5 @@ class ItemsController < ApplicationController
     :condition, :postage, :shipping_date,
     :sale_status, :prefecture_id,images: []).merge(saler_id: current_user.id)
   end
+
 end

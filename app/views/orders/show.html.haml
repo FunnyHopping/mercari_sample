@@ -1,0 +1,148 @@
+.container
+  = render 'shared/header_mypage'
+  - breadcrumb :order
+  = render "shared/breadcrumbs"
+  %main.order-show-wrapper
+    .order-show-wrapper__lcontent
+      %section.order-show-wrapper__lcontent__container
+        %h2.order-show-wrapper__lcontent__container__h2
+          = "取引画面"
+        .order-show-wrapper__lcontent__container__attention
+          %h3.order-show-wrapper__lcontent__container__attention__h3
+            %i.icon-good
+            %span 受け取り評価をしてください
+          %p= "商品が発送されました。商品が到着したら、出品者の評価をしてください。"
+        %ul.order-show-wrapper__lcontent__container__guid-txt
+          %li
+            = link_to  root_path do
+              = "購入したあとの流れ"
+              %i.icon-arrow-right
+          %li
+            = link_to  root_path do
+              = "購入者のよくある質問"
+              %i.icon-arrow-right
+        %section.order-show-wrapper__lcontent__container__deliver
+          %h3.order-show-wrapper__lcontent__container__deliver__h3 
+            = "配送状況"
+          %nav.order-show-wrapper__lcontent__container__deliver__progre
+            %ol.order-show-wrapper__lcontent__container__deliver__progre__clearfix
+              %li.clearfix__through.complete
+                = "発送済み"
+                .clearfix__through__status
+              %li.clearfix__through.complete.midle-comp
+                = "輸送中"
+                .clearfix__through__status
+              %li.clearfix__through.complete.midle-comp
+                = "配達済み"
+                .clearfix__through__status
+              %li.clearfix__through.midle-comp
+                = "受取"
+                .clearfix__through__status
+          %p.order-show-wrapper__lcontent__container__deliver__p
+            = "お届け先にお届け済み"
+          %p.order-show-wrapper__lcontent__container__deliver__guid
+            %span.order-show-wrapper__lcontent__container__deliver__guid__span
+              = "※ゆうゆうメルカリ便に関するお問い合わせは"
+              = link_to "こちら", root_path
+            %br
+              = "(日本郵便には、直接お問い合わせされないようお願いします)"
+        = form_with model:@transact, url: transacts_path ,local: true, class: "order-show-wrapper__lcontent__container__form" do |f|
+          .order-show-wrapper__lcontent__container__form__check
+            = f.check_box :confirmat,class: "order-show-wrapper__lcontent__container__form__check__box"
+            = icon("fas", "icon-check",class: "form__check")
+            %label.order-show-wrapper__lcontent__container__form__check__label
+              = "商品の中身を確認しました。"
+          %ul.order-show-wrapper__lcontent__container__form__review
+            %li.order-show-wrapper__lcontent__container__form__review__li.good
+              = f.radio_button :evaluat,value: "good"
+              .order-show-wrapper__lcontent__container__form__review__li__icon.divgood
+                %i.icon-good
+                %label= "良い"
+            %li.order-show-wrapper__lcontent__container__form__review__li.normal
+              = f.radio_button :evaluat,value: "normal"
+              .order-show-wrapper__lcontent__container__form__review__li__icon.divnormal
+                %i.icon-normal
+                %label= "普通"
+            %li.order-show-wrapper__lcontent__container__form__review__li.bad
+              = f.radio_button :evaluat,value: "bad"
+              .order-show-wrapper__lcontent__container__form__review__li__icon.divbad
+                %i.icon-bad
+                %label= "悪い"
+          %p.order-show-wrapper__lcontent__container__form__p
+            ="評価のコメントを記入しましょう"
+          = f.text_area :body,placeholder: "コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。",class: "order-show-wrapper__lcontent__container__form__area"
+          = f.submit "評価を投稿する", class: "btn-default btn-red"
+          = f.hidden_field :item_id, value: @item.id
+      .order-show-wrapper__lcontent__container__messages
+        .order-show-wrapper__lcontent__container__messages__index#comments
+          = render @comments
+        .order-show-wrapper__lcontent__container__messages__content
+          %p 取引メッセージの内容は、必要に応じて事務局で確認しています
+          = form_with model:@comment, url: ordercomments_path ,class: "order-show-wrapper__lcontent__container__messages__content__form" do |f|
+            = f.text_area :comment,class: "order-show-wrapper__lcontent__container__messages__content__form__area"
+            = f.submit "取引メッセージを送る", class: "btn-default"
+            = f.hidden_field :order_id, value: @item.order.id
+        .order-show-wrapper__lcontent__container__envolius
+          = "※お困りの際は"
+          = link_to "よくある質問" , root_path
+          = "をご確認ください。"
+
+    .order-show-wrapper__rcontent
+      %section.order-show-wrapper__rcontent__container
+        %h3.order-show-wrapper__rcontent__container__h3
+          = "取引情報"
+        .order-show-wrapper__rcontent__container__inner
+          %ul.order-show-wrapper__rcontent__container__inner__ul
+            %li.order-show-wrapper__rcontent__container__inner__ul__li
+              %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul
+                %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__li
+                  %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__li__span
+                    = "商品"
+                  = link_to root_path do
+                    = image_tag("mercari_mark.png")
+                    .name
+                      = @item.name
+                      %br
+                      = "¥#{@item.price}"
+                %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__postage
+                  %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__postage__span
+                    = "送料"
+                  %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul__postage__ul
+                    %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__postage__ul__li
+                      = "アイテムの送料負担"
+                %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__buy-day
+                  %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__buy-day__span
+                    = "購入日時"
+                  %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul__buy-day__ul
+                    %li= @item.order.created_at.strftime("%m月%d日 %H:%M")
+                %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__item-id
+                  %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__item-id__span
+                    = "商品ID"
+                  %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul__item-id__ul
+                    %li="1343u02"
+                %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__address
+                  %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__address__span
+                    = "お届け先"
+                  %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul__address__ul
+                    %li
+                      %p=@address.post_num
+                      %p="#{@address.prefecture_id}  #{@address.city}"
+                      %p="#{current_user.name}様"
+        %section.order-show-wrapper__rcontent__container__info
+          %h3.order-show-wrapper__rcontent__container__info__h3
+            = "出品者情報"
+          .order-show-wrapper__rcontent__container__info__inner
+            = link_to root_path do
+              %figure
+                .image
+                  = image_tag("mercari_mark.png")
+                %figcaption
+                  .username= User.find(@item.saler_id).name
+              %i.icon-arrow-right
+= render 'shared/footer'
+
+                
+
+
+      
+      

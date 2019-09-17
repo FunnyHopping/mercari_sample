@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_035515) do
+ActiveRecord::Schema.define(version: 2019_09_16_061054) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -77,6 +77,34 @@ ActiveRecord::Schema.define(version: 2019_09_12_035515) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ordercomments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "user_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_ordercomments_on_order_id"
+    t.index ["user_id"], name: "index_ordercomments_on_user_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "state", default: 0
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_orders_on_item_id"
+  end
+
+  create_table "transacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "evaluat", null: false
+    t.boolean "confirmat", default: false
+    t.text "body"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_transacts_on_item_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "first_name", null: false
@@ -102,4 +130,8 @@ ActiveRecord::Schema.define(version: 2019_09_12_035515) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
+  add_foreign_key "ordercomments", "orders"
+  add_foreign_key "ordercomments", "users"
+  add_foreign_key "orders", "items"
+  add_foreign_key "transacts", "items"
 end

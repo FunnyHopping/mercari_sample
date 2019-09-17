@@ -1,0 +1,33 @@
+%ul.order-show-wrapper__lcontent__container__messages__index__ul
+  - if ordercomment.user_id != current_user.id
+    %li.order-show-wrapper__lcontent__container__messages__index__ul__li
+      = link_to root_path do
+        %figure
+          .image
+            = image_tag("mercari_mark.png")
+          %figcaption
+            = ordercomment.user.name
+          = icon("fas", "good")
+        .message
+          .text
+            = simple_format(ordercomment.comment)
+          .clearfix
+            .time-icon
+              %i.icon-time
+            %span= distance_of_time_in_words_to_now(ordercomment.created_at)
+  - else
+    %li.order-show-wrapper__lcontent__container__messages__index__ul__li-user
+      = link_to root_path do
+        %figure
+          .image
+            = image_tag("mercari_mark.png")
+          %figcaption
+            = ordercomment.user.name
+          = icon("fas", "good")
+        .message
+          .text
+            = simple_format(ordercomment.comment)
+          .clearfix
+            .time-icon
+              %i.icon-time
+            %span= distance_of_time_in_words_to_now(ordercomment.created_at)

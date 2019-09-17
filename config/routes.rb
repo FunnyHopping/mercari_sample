@@ -35,5 +35,8 @@ Rails.application.routes.draw do
   resources :profiles, only: [:edit,:update]
   resources :items
   resources :pages, only: [:show,:index]
+  resources :transacts, only: [:create]
+  resources :orders, only: [:show]
+  resources :ordercomments, only: [:create]
 end
 

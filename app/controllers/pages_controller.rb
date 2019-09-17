@@ -13,5 +13,6 @@ class PagesController < ApplicationController
 
   def show
     @transaction_items = current_user.sold_items.where(transact: false)
+    @transacted_items  = current_user.sold_items.where(transact: true)
   end
 end
