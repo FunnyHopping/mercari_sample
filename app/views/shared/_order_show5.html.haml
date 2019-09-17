@@ -1,0 +1,76 @@
+%main.order-show-wrapper
+  .order-show-wrapper__lcontent
+    %section.order-show-wrapper__lcontent__container
+      %h2.order-show-wrapper__lcontent__container__h2
+        = "取引画面"
+      .order-show-wrapper__lcontent__container__attention
+        %h3.order-show-wrapper__lcontent__container__attention__h3
+          %i.icon-check
+          %span 取引が完了しました
+        %p= "このたびはメルカリのご利用ありがとうございました"
+    .order-show-wrapper__lcontent__container__messages
+      .order-show-wrapper__lcontent__container__messages__index#comments
+        = render @comments
+      .order-show-wrapper__lcontent__container__messages__content
+        %p 取引メッセージの内容は、必要に応じて事務局で確認しています
+        = form_with model:@comment, url: ordercomments_path ,class: "order-show-wrapper__lcontent__container__messages__content__form", id: "order-show-message" do |f|
+          = f.text_area :comment,class: "order-show-wrapper__lcontent__container__messages__content__form__area"
+          = f.submit "取引メッセージを送る", class: "btn-default"
+          = f.hidden_field :order_id, value: @item.order.id
+      .order-show-wrapper__lcontent__container__envolius
+        = "※お困りの際は"
+        = link_to "よくある質問" , root_path
+        = "をご確認ください。"
+
+  .order-show-wrapper__rcontent
+    %section.order-show-wrapper__rcontent__container
+      %h3.order-show-wrapper__rcontent__container__h3
+        = "取引情報"
+      .order-show-wrapper__rcontent__container__inner
+        %ul.order-show-wrapper__rcontent__container__inner__ul
+          %li.order-show-wrapper__rcontent__container__inner__ul__li
+            %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul
+              %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__li
+                %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__li__span
+                  = "商品"
+                = link_to root_path do
+                  = image_tag("mercari_mark.png")
+                  .name
+                    = @item.name
+                    %br
+                    = "¥#{@item.price}"
+              %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__postage
+                %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__postage__span
+                  = "送料"
+                %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul__postage__ul
+                  %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__postage__ul__li
+                    = "アイテムの送料負担"
+              %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__buy-day
+                %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__buy-day__span
+                  = "購入日時"
+                %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul__buy-day__ul
+                  %li= @item.order.created_at.strftime("%m月%d日 %H:%M")
+              %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__item-id
+                %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__item-id__span
+                  = "商品ID"
+                %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul__item-id__ul
+                  %li="1343u02"
+              %li.order-show-wrapper__rcontent__container__inner__ul__li__ul__address
+                %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__address__span
+                  = "お届け先"
+                %ul.order-show-wrapper__rcontent__container__inner__ul__li__ul__address__ul
+                  %li
+                    %p=@address.post_num
+                    %p="#{@address.prefecture_id}  #{@address.city}"
+                    %p="#{current_user.name}様"
+      %section.order-show-wrapper__rcontent__container__info
+        %h3.order-show-wrapper__rcontent__container__info__h3
+          = "出品者情報"
+        .order-show-wrapper__rcontent__container__info__inner
+          = link_to root_path do
+            %figure
+              .image
+                = image_tag("mercari_mark.png")
+              %figcaption
+                .username= User.find(@item.saler_id).name
+            %i.icon-arrow-right

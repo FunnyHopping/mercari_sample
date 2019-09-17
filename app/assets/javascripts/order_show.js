@@ -43,6 +43,9 @@ document.addEventListener('turbolinks:load',function(){
   console.log(result)
   $('.order-show-wrapper').css('height', result + 1200 )
 
+  let result_order = parseFloat($('#order-show-message').css('height'));
+  $('.order-show-wrapper').css('height', result_order + 2000 )
+
   $(".order-show-wrapper__lcontent__container__messages__content__form").on("submit",function(){
     let result = parseFloat($('.order-show-wrapper__lcontent__container__messages__content').css('height'));
     console.log(result)
