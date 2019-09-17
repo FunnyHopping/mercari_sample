@@ -7,7 +7,7 @@
     %section.single-main__box__sell__inner
       %h2.single-main__box__sell__inner__head
         商品の情報を入力
-      = form_with model: @item, local: true, class: "single-main__box__sell__inner__form"  do |f|
+      = form_with model: @item, local: true, class: "single-main__box__sell__inner__form", id: "form_with"  do |f|
         .single-main__box__sell__inner__form__upload
           %h3.single-main__box__sell__inner__form__upload__head
             出品画像
@@ -16,43 +16,15 @@
           %p 
             最大10枚までアップロードできます
           .single-main__box__sell__inner__form__upload__items
-            -# .single-main__box__sell__inner__form__upload__items__box
-            -#   .single-main__box__sell__inner__form__upload__items__box__have-1
-            -#     %ul
-            -#       %li.upload-sell-item
-            -#         %figure.upload-sell-figure
-            -#           = image_tag "modal_banner.jpg"
-            -#         .upload-sell-btn
-            -#           = link_to root_path, class: "upload-sell-edit" do
-            -#             編集
-            -#           = link_to root_path, class: "upload-sell-delete" do
-            -#             削除
             .single-main__box__sell__inner__form__upload__items__box
-              .single-main__box__sell__inner__form__upload__items__box__have-2
-                %ul
-                  %li.upload-sell-item
-                    %figure.upload-sell-figure
-                      = image_tag "modal_banner.jpg"
-                    .upload-sell-btn
-                      = link_to root_path, class: "upload-sell-edit" do
-                        編集
-                      = link_to root_path, class: "upload-sell-delete" do
-                        削除
-                  %li.upload-sell-item
-                    %figure.upload-sell-figure
-                      = image_tag "modal_banner.jpg"
-                    .upload-sell-btn
-                      = link_to root_path, class: "upload-sell-edit" do
-                        編集
-                      = link_to root_path, class: "upload-sell-delete" do
-                        削除
-            = f.label :images do
-              .single-main__box__sell__inner__form__upload__drop-0
-                = f.file_field :images, multiple: true, class: 'upload-sell-drop-file'
-                .drop-field
-                %pre.drop-text 
-                  ドラッグアンドドロップ
-                  またはクリックしてファイルをアップロード
+              .single-main__box__sell__inner__form__upload__items__box__have#preview_box
+              = f.label :images do
+                .single-main__box__sell__inner__form__upload__drop-0#drop_box
+                  = f.file_field :images, multiple: true, class: 'upload-sell-drop-file', accept: "image/jpeg, image/png"
+                  .drop-field
+                  %pre.drop-text 
+                    ドラッグアンドドロップ
+                    またはクリックしてファイルをアップロード
         .single-main__box__sell__inner__form__index-box
           .form-group
             %label
@@ -72,28 +44,29 @@
           %h3.item-sub-head
             商品の詳細
           .item-form-box
-            .form-group
+            .form-group#category-select-box_list
               %label
                 カテゴリー
                 %span.form-require
                   必須
-                .select-wrap
-                  %i.icon-arrow-bottom
-                  = f.text_field :category_id
-                .select-wrap
-                  %i.icon-arrow-bottom
-                  = f.text_field :category_id
-                .select-wrap
-                  %i.icon-arrow-bottom
-                  = f.text_field :category_id
-            .form-group
-              %label
-                サイズ
-                %span.form-require
-                  必須
-              .select-wrap
+              .select-wrap#parent_box
                 %i.icon-arrow-bottom
-                = f.select :size, options_for_select(Item.sizes.keys), {}, class: "select-default"
+                = f.collection_select :parent_id, @parents, :id, :name,{prompt: "---"}, class: "select-default", id: "parent_form"
+              .form-group#size_box
+                %label
+                  サイズ
+                  %span.form-require
+                    必須
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :size, options_for_select(Item.sizes.keys), {}, class: "select-default"
+              .form-group#brand_box
+                %label
+                  ブランド名
+                  %span.form-arbitrary
+                    任意
+                %div
+                  = f.text_field :brand_id, placeholder: "例）シャネル", class: "input-default"
             .form-group
               %label
                 商品の状態
@@ -108,14 +81,14 @@
           = link_to root_path, target: "_blank", class: "form-question" do
             ?
           .item-form-box
-            .form-group
+            .form-group#postage-select-box_list
               %label
-                配送量の負担
+                配送料の負担
                 %span.form-require
                   必須
-              .select-wrap
+              .select-wrap#postage_box
                 %i.icon-arrow-bottom
-                = f.select :postage, [["発送者負担", false], ["購入者負担", true]], {}, class: "select-default"
+                = f.collection_select :parent_id, @postages, :id, :name, {prompt: "---"}, class: "select-default", id: "postage_form"
             .form-group
               %label
                 発送元の地域
@@ -149,15 +122,15 @@
                     ¥
                     .input-price
                       = f.text_field :price, class: "input-default", placeholder: "例）300"
-              %li.clearfix
+              %li.clearfix#sale-tax
                 .left-text
                   販売手数料 (10%)
-                .right-text
+                .right-text#tax-text
                   ー
               %li.clearfix.bold
                 .left-text
                   販売利益
-                .right-text
+                .right-text#profit-text
                   ー
         .single-main__box__sell__inner__form__index-box
           .attention-text
@@ -167,10 +140,8 @@
               またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
             %p
               また、出品をもちまして加盟店規約に同意したことになります。
-          = f.submit "出品する", class: "btn-default btn-red"
+          = f.submit "出品する", class: "btn-default btn-red", id: "item-submit"
           = link_to root_path, class: "btn-default btn-gray" do
             戻る
   = render "shared/logo_footer"
-
-  -# 新規登録や出品ページのフッター
 

@@ -66,12 +66,13 @@ ActiveRecord::Schema.define(version: 2019_09_16_061054) do
     t.integer "price", null: false
     t.text "introduct", null: false
     t.string "size"
-    t.integer "condition", default: 0, null: false
-    t.boolean "postage", default: false
+    t.integer "condition", null: false
+    t.integer "postage_id", null: false
     t.integer "prefecture_id", null: false
-    t.integer "shipping_date", default: 0, null: false
-    t.integer "saler_id", null: false
+    t.integer "shipping_date", null: false
+    t.integer "saler_id"
     t.integer "buyer_id"
+    t.integer "category_id", null: false
     t.boolean "transact", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -93,6 +94,14 @@ ActiveRecord::Schema.define(version: 2019_09_16_061054) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_orders_on_item_id"
+  end
+
+  create_table "postages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "ancestry"
+    t.string "index"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "transacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -18,7 +18,7 @@
   }
   .item-main-content {
     margin-top: 16px;
-  
+
     &__photo {
       float: left;
       width: 300px;
@@ -27,7 +27,7 @@
       // max-width: 300px;
       // min-height: 375px;
       //fixme
-      background-color: lightgray;
+      background-color: #fafafa;
     }
   
     &__flex-wrapper {
@@ -41,6 +41,10 @@
       width: 100%;
       border-collapse: collapse;
       border: 1px solid #f5f5f5;
+      a {
+        color: #0099e8;
+      }
+    
       tbody {
         display: table-row-group;
         vertical-align: middle;
@@ -50,6 +54,7 @@
         border-collapse: collapse;
         border: 1px solid #f5f5f5;
         padding: 8px;
+        background-color: #fafafa;
       }
       td {
         border-collapse: collapse;
@@ -72,6 +77,117 @@
       &__shipping-fee {
         display: inline-block;
         font-size: 16px;
+      }
+    }
+  
+    .item-buy-btn {
+      display: block;
+      margin-top: 16px;
+      background: #ea352d;
+      font-size: 24px;
+      color: #fff;
+      line-height: 56px;
+      text-align: center;
+      font-weight: 600;
+      -webkit-transition: all ease-out .3s;
+      transition: all ease-out .3s;
+    }
+
+    &__description {
+      padding: 24px 0 0;
+      line-height: 1.5;
+      font-size: 18px;
+      &__item-description {
+          white-space: pre-wrap;
+      }
+    }
+  }
+}
+
+.message-container {
+  margin: 8px auto;
+  width: 700px;
+
+  .message-content {
+    padding: 24px;
+    background: #fff;
+
+    .messages {
+      margin: 0;
+
+      &__message {
+        @include clearfix;
+        margin: 1.5em 0 0;
+
+        &__user {
+          float: left;
+          position: relative;
+          top: -20px;
+          display: inline-block;
+          color: #333;
+          img {
+            width: 100%;
+          }
+        }
+
+        &__body {
+          float: right;
+          position: relative;
+          width: calc(100% - 56px);
+          padding: 16px;
+          background: #eef0f4;
+          border-radius: 15px;
+          line-height: 1.5;
+          word-break: break-all;
+
+          .message__body__icons {
+            margin: 8px 0 0;
+            display: block;
+            color: #aaa;
+          }
+        }
+      }
+    }
+    .message-form {
+      p {
+        padding: 8px;
+        font-size: 14px;
+        background: #fff6de;
+      }
+
+      &__field {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-height: 104px;
+        padding: 10px;
+        margin: 8px 0 0;
+        border: 1px solid #ccc;
+        background: #fff;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: start;
+        resize: vertical;
+
+        &:focus {
+          border: 1px solid #0099E8;
+          outline: 0;
+        }
+      }
+
+    &__submit-btn {
+      width: 100%;
+      margin: 8px 0 0;
+      text-align: center;
+      display: block;
+      line-height: 48px;
+      font-size: 14px;
+      -webkit-transition: all ease-out .3s;
+      transition: all ease-out .3s;
+      cursor: pointer;
+      background: #aaa;
+      border: 1px solid #aaa;
+      color: #fff;
       }
     }
   }

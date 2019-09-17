@@ -1,37 +1,46 @@
 class Item < ApplicationRecord
   belongs_to :saler, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
-  has_many_attached :images
+  
   has_one :order
-
+  belongs_to :category
+  has_many_attached :images
+  belongs_to :postage
 
   enum size: {
-    default: 0,
-    XXS: 1,
-    XS_SS: 2,
-    S: 3,
-    M: 4,
-    L: 5,
-    XL_LL: 6,
-    XXL_3L: 7,
-    XXXL_4L: 8,
-    XXXXL_5L: 9,
-    FREE_SIZE: 10,
+    "---": nil,
+    "XXS以下": 0,
+    "XS(SS)": 1,
+    "S": 2,
+    "M": 3,
+    "L": 4,
+    "XL(LL)": 5,
+    "2XL(3L)": 6,
+    "3XL(4L)": 7,
+    "4XL(5L)以上": 8,
+    "FREE_SIZE": 9,
   },  _prefix: true
 
-  enum condition:{
-    default: 0,
-    new_no_use: 1,
-    almost_no_use: 2,
-    almost_no_dirt: 3,
-    a_little_dirt: 4,
-    dirt: 5,
-    bad_condition: 6,
+  enum condition: {
+    "---": nil,
+    "新品、未使用": 0,
+    "未使用に近い": 1,
+    "目立った傷や汚れなし": 2,
+    "やや傷や汚れあり": 3,
+    "傷や汚れあり": 4,
+    "全体的に状態が悪い": 5,
+  }, _prefix: true
+  
+  enum postage: {
+    "---": nil,
+    "送料込み(出品者負担)": 0,
+    "着払い(購入者負担)": 1,
   }, _prefix: true
 
   enum shipping_date: {
-    one_two_days: 0,
-    two_three_days: 1,
-    four_seven_days: 2,
+    "---": nil,
+    "1~2日で発送": 0,
+    "2~3日で発送": 1,
+    "4~7日で発送": 2,
   }, _prefix: true
 end

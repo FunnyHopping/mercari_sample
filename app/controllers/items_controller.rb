@@ -1,10 +1,19 @@
 class ItemsController < ApplicationController
+  
+  def index
+    @parents = Category.all.order("id ASC").limit(13)
+    
+  end
+
   def new
     @item = Item.new
+    @parents = Category.all.order("id ASC").limit(13)
+    @postages = Postage.all.order("id ASC").limit(2)
   end
 
   def create
     @item = Item.new(item_params)
+    @item.update(image_params)
     @item.save!
     @order = Order.new(item_id: @item.id)
     @order.save!
@@ -16,9 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @user = User.find(@item.saler_id)
   end
 
-  def edit
+  def edit                        
   end
 
   def update
@@ -30,9 +41,13 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name,
-    :price, :introduct, :size,
-    :condition, :postage, :shipping_date,
-    :sale_status, :prefecture_id,images: []).merge(saler_id: current_user.id)
+    :price, :category_id, :introduct, :size,
+    :condition, :postage_id, :shipping_date,
+    :sale_status, :prefecture_id).merge(saler_id: current_user.id)
+  end
+
+  def image_params
+    params.require(:new_images).permit(images: [])
   end
 
 end
