@@ -22,9 +22,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @user = User.find(@item.saler_id)
   end
 
-  def edit
+  def edit                        
   end
 
   def update
