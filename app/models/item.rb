@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   belongs_to :saler, class_name: "User"
   # belongs_to :buyer, class_name: "User"
   belongs_to :category
-  mount_uploaders :images, ImageUploader
+  # mount_uploaders :images, ImageUploader
   has_many_attached :images
   belongs_to :postage
 
