@@ -1,61 +1,89 @@
 .header
-  = render "shared/header"
+  -if user_signed_in?
+    = render 'shared/header_mypage'
+  -else
+    = render 'shared/header'
 %section.item-info-container
   %h1.item-info-container__name
-    "SAMPLE_ITEM_NAME"
-  %p.item-info-container__seller-info
-    『"SAMPLE_ITEM_NAME"』は"times"回の取引実績を持つ
-    %a{href: "/"}SAMPLE_SELLER_NAME(to_page)
-    さんから出品されました。
-    %a{href: "/"}最下カテゴリ/最上位
-    の商品で、"Address.city"から"？？"日で発送されます。
+    = @item.name
+
+  -if user_signed_in?
+  -else
+    %p.item-info-container__seller-info
+      = "『#{@item.name}』は{@user.rating.count}回の取引実績を持つ#{@item.saler.name}さんから出品されました。"
+      %br
+      = "#{@item.category.name}/#{@item.category.parent.parent.name}の商品で、#{Address.find(@item.saler_id).city}から#{@item.shipping_date}日で発送されます。"
+
   .item-main-content
     .item-main-content__flex-wrapper
       .item-main-content__photo
+        = image_tag "#{@item.images.first}"
       %table.item-detail-table
         %tbody
           %tr
             %th 出品者
-            %td sample
+            %td
+              = link_to "" do
+                = @item.saler.name
           %tr
             %th カテゴリー
-            %td sample
+            %td
+              = link_to "" do
+                = @item.category.parent.parent.name
+              %br
+              = link_to "" do
+                %i.chevron-right
+                = @item.category.parent.name
+              %br
+              = link_to "" do
+                %i.chevron-right
+                = @item.category.name
           %tr
             %th ブランド
-            %td sample
-          %tr
-            %th 商品のサイズ
-            %td sample
+            %td 
+          -if @item.size
+            //商品サイズがあるときのみ表示させる
+            %tr
+              %th 商品のサイズ
+              %td
+                = @item.size
           %tr
             %th 商品の状態
-            %td sample
+            %td
+              = @item.condition
           %tr
             %th 配送料の負担
-            %td sample
+            %td 
+              = @item.postage.parent.name
           %tr
             %th 配送の方法
-            %td sample
+            %td
+              = @item.postage.name
           %tr
             %th 配送元地域
-            %td sample
+            %td
+              = link_to "" do
+                = Address.find(@item.saler_id).city
           %tr
             %th 発送日の目安
-            %td sample
+            %td
+              = @item.shipping_date
     .item-main-content__price
       %span.item-main-content__price__item-price
-        ¥1,000,000,000
+        = "￥#{@item.price.to_s(:delimited, delimiter: ',')}"
       %span.item-main-content__price__tax
         (税込)
       %span.item-main-content__price__shipping-fee
-        送料込み
-    %a.item-buy-btn{href: '/'}
-      購入画面に進む
+        = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
+    .item-buy-btn
+      = link_to new_payment_path(@item.id) do
+        購入画面に進む
     .item-main-content__description
       %p.item-main-content__description__item-description
-        SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE 
-        SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE 
-        SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE 
+        = @item.introduct
 .message-container
+
+-# 以下コメント欄
   .message-content
     %ul.messages
       %li.messages__message
@@ -64,3 +92,5 @@
           .message__body__text
           .message__body__icons
             = icon 'far', 'clock'
+
+= render 'shared/footer'
