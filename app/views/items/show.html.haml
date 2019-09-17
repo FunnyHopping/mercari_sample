@@ -58,8 +58,13 @@
 .message-container
   .message-content
     %ul.messages
-      %li.messages__message
+      %li.messages__message.clearfix
         %a.messages__message__user{href: "/"}
+          %figure
+            %div
+              %img
+            %figcaption.bold
+              user
         .messages__message__body
           .message__body__text
           .message__body__icons

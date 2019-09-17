@@ -102,8 +102,26 @@
 .message-container {
   margin: 8px auto;
   width: 700px;
+
   .message-content {
     padding: 24px 7.5%;
     background: #fff;
+
+    .messages {
+      margin: 0;
+
+      &__message {
+        @include clearfix;
+        margin: 1.5em 0 0;
+
+        &__user {
+          float: left;
+          position: relative;
+          top: -20px;
+          display: inline-block;
+          color: #333;
+        }
+      }
+    }
   }
 }
