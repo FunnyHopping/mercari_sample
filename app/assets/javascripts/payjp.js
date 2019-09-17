@@ -19,12 +19,13 @@ document.addEventListener('turbolinks:load',function(){
             $("#exp_year").removeAttr("name"); 
             $("#card_token").append(
               $('<input type="hidden" name="payjp-token">').val(response.id)
-            ); 
-            $("#card_form").submit();
-            alert("登録が完了しました"); 
-          } else {
-            alert("カード情報が正しくありません。"); 
-          }
+              ); 
+              $("#card_form").submit();
+              alert("登録が完了しました"); 
+            } else {
+              alert("カード情報が正しくありません。"); 
+            }
         });
       });
+  }
 })

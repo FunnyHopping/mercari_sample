@@ -53,7 +53,7 @@
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
 }
-.icon-camera:before {
+.icon-camera::before {
   font-family: "Font Awesome 5 Free";
   content: "\f030";
   font-weight: 900;
