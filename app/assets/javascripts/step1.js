@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load',function(){
   for (var i=0; i<31;i++){
     day.push(i+1)
   }
-
+  console.log("testest")
   function selectOption(arry,date){
     for (var i=0; i<arry.length;i++){
       if (arry[i] < 10){
