@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   resources :cards
   resources :profiles, only: [:edit,:update]
   resources :pages, only: [:show,:index]
+  resources :transacts, only: [:create]
+  resources :orders, only: [:show]
+  resources :ordercomments, only: [:create]
 
   resources :categories, only: :index do
     collection do
@@ -46,9 +49,5 @@ Rails.application.routes.draw do
       get 'get_postage_plan'
     end
   end
-  
-  resources :transacts, only: [:create]
-  resources :orders, only: [:show]
-  resources :ordercomments, only: [:create]
 end
 

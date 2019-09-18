@@ -9,7 +9,7 @@
       %section.payment-new-container__main__section__item
         .payment-new-container__main__section__item__content
           %h3.payment-new-container__main__section__item__content__image
-            = image_tag("mypage-icon.png")
+            = image_tag(@item.images.first)
           %p.payment-new-container__main__section__item__content__text
             = @item.name
           .payment-new-container__main__section__item__content__body
@@ -27,7 +27,7 @@
                 .payment-new-container__main__section__item__content__body__money__li__body
                   %span= "¥#{@item.price}" 
             .payment-new-container__main__section__item__content__body__btn
-              = link_to "購入する", payments_path, method: :post
+              = link_to "購入する", payments_path(@item.id), method: :post
       %section.payment-new-container__main__section__address
         .payment-new-container__main__section__address__content
           %h3= "配送先"

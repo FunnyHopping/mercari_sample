@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
   require 'payjp'
   def new
-    @item = Item.last
+    @item = Item.find(params[:format].to_i)
     @address = current_user.address
     card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
   end
   
   def create
-    @item = Item.last
+    @item = Item.find(params[:format].to_i)
     @item.buyer_id = current_user.id
     puts @item
     if @item.save
@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
   end
 
   def show
-    @item = Item.last
+    @item = @item = Item.find(params[:id])
     @address = current_user.address
     card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]

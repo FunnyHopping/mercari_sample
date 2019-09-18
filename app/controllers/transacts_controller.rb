@@ -1,6 +1,5 @@
 class TransactsController < ApplicationController
   def create
-    binding.pry
     @item = Item.find(params.require(:transact).require(:item_id))
     @item.transact = true
     @transact = Transact.new(transact_params)
