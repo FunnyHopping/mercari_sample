@@ -28,7 +28,6 @@ document.addEventListener('turbolinks:load',function(){
   })
 
   $(".form__check").on("click",function(){
-    console.log(1)
     var check = $("#transact_confirmat").prop('checked')
     if (check){
       $("#transact_confirmat").prop('checked', false)
@@ -40,7 +39,6 @@ document.addEventListener('turbolinks:load',function(){
   })
 
   let result = parseFloat($('.order-show-wrapper__lcontent__container__messages__content').css('height'));
-  console.log(result)
   $('.order-show-wrapper').css('height', result + 1200 )
 
   let result_order = parseFloat($('#order-show-message').css('height'));
@@ -48,7 +46,6 @@ document.addEventListener('turbolinks:load',function(){
 
   $(".order-show-wrapper__lcontent__container__messages__content__form").on("submit",function(){
     let result = parseFloat($('.order-show-wrapper__lcontent__container__messages__content').css('height'));
-    console.log(result)
     $('.order-show-wrapper').css('height', result + 1300 )
   })
 })

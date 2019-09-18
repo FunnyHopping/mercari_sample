@@ -13,5 +13,8 @@ class User < ApplicationRecord
 
   has_many :ordercomments
 
+  has_many :nices
+  has_many :nice_items, through: :nices, source: :item
+
 
 end

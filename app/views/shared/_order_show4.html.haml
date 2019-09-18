@@ -95,7 +95,7 @@
                 %span.order-show-wrapper__rcontent__container__inner__ul__li__ul__li__span
                   = "商品"
                 = link_to root_path do
-                  = image_tag("mercari_mark.png")
+                  = image_tag(@item.images.first)
                   .name
                     = @item.name
                     %br
