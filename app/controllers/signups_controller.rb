@@ -58,17 +58,15 @@ class SignupsController < ApplicationController
     )
     @user.birth_day = session[:birth_day]
     if @user.save!
-      
       session[:user_id] = @user.id
-      @address = Address.new(
-        post_num: session[:post_num],
+      @address = Address.new(post_num: session[:post_num],
         prefecture_id: session[:prefecture_id],
         city: session[:city],
         street_num: session[:street_num],
         building: session[:building],
         user_id: session[:user_id]
       )
-      if @address.save!
+      if @address.save
         Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
         if session[:payjp_token].blank?
           redirect_to action: "step4"
@@ -77,7 +75,7 @@ class SignupsController < ApplicationController
           card: session[:payjp_token],
           metadata: {user_id: @user.id})
           @card = Card.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
-          if @card.save!
+          if @card.save
             sign_in @user
           else
             render step4_signups_path
@@ -105,7 +103,6 @@ class SignupsController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:post_num,:prefecture_id,:city,
-      :street_num,:building)
+    params.require(:address).permit(:post_num,:prefecture_id,:city,:street_num,:building,:user_id)
   end
 end

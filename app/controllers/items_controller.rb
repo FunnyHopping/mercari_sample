@@ -15,6 +15,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.update(image_params)
     @item.save!
+    @order = Order.new(item_id: @item.id)
+    @order.save!
   end
 
   def index
@@ -47,4 +49,5 @@ class ItemsController < ApplicationController
   def image_params
     params.require(:new_images).permit(images: [])
   end
+
 end

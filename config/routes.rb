@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :cards
   resources :profiles, only: [:edit,:update]
   resources :pages, only: [:show,:index]
+
   resources :categories, only: :index do
     collection do
       get 'get_child_category'
@@ -45,5 +46,9 @@ Rails.application.routes.draw do
       get 'get_postage_plan'
     end
   end
+  
+  resources :transacts, only: [:create]
+  resources :orders, only: [:show]
+  resources :ordercomments, only: [:create]
 end
 
