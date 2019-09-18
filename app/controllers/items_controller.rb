@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
     @user = User.find(@item.saler_id)
   end
 
-  def edit
+  def edit                        
   end
 
   def update
