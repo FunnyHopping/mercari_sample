@@ -30,6 +30,9 @@
                   .num
                     .price
                       = "¥#{item.price}"
+      %ul.item-index-main__right__pager
+        = paginate @items
+    
     //パーシャル
     .item-index-main__left
 = render 'shared/sell-icon'
