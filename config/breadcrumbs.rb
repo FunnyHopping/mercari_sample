@@ -37,6 +37,11 @@ crumb :order do |order|
   parent :order_result
 end
 
+crumb :nice do |nice|
+  link "いいね一覧", nices_path
+  parent :mypage
+end
+
 crumb :ParentCategory do |category|
   category = Category.find(params[:id])
   if category.parent.nil?

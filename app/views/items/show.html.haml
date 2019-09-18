@@ -85,6 +85,15 @@
   - if @item.buyer_id != nil
     .item-sold-btn
       売り切れました
+    .nice-clearfix
+      .nice-clearfix__btn-left
+        = link_to nices_path(item_id:@item.id),method: :post, remote: true,class: "nice-clearfix__btn-left__nice" do
+          - if current_user.nices.where(item_id: @item.id).length != 0
+            %i.icon-heart-border-on.nice-btn
+          -else
+            %i.icon-heart-border.nice-btn
+          %span.text= "いいね！"
+          %span.nice-num= "1"
   - else
     .item-buy-btn
       = link_to new_payment_path(@item.id) do
@@ -94,6 +103,18 @@
     .item-main-content__description
       %p.item-main-content__description__item-description
         = simple_format(@item.introduct)
+    .nice-clearfix
+      .nice-clearfix__btn-left
+        = link_to nices_path(item_id:@item.id),method: :post, remote: true,class: "nice-clearfix__btn-left__nice" do
+          - if current_user.nices.where(item_id: @item.id).length != 0
+            %i.icon-heart-border-on.nice-btn
+          -else
+            %i.icon-heart-border.nice-btn
+          %span.text= "いいね！"
+          %span.nice-num= "1"
+
+
+
         
 .message-container
   .message-content

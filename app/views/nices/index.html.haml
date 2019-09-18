@@ -1,0 +1,28 @@
+= render 'shared/header_mypage'
+- breadcrumb :nice
+= render "shared/breadcrumbs"
+
+%main.index-container
+  .index-container__nice-index
+    %section.index-container__nice-index__container
+      %h2.index-container__nice-index__container__h2
+        = "いいね！一覧"
+      %ul.index-container__nice-index__container__ul
+        - @items.each do |item|
+          %li.index-container__nice-index__container__ul__li
+          = link_to item_path(item.id), class: "index-container__nice-index__container__ul__li__link" do
+            %figure.index-container__nice-index__container__ul__li__link__figure
+              .style-card__thumbnail
+                - if item.buyer_id != nil
+                  .sold-flag
+                    .sold-flag__text
+                      SOLD
+              = image_tag(item.images.first, class: "index-container__nice-index__container__ul__li__link__figure__img")
+            .index-container__nice-index__container__ul__li__link__body
+              .index-container__nice-index__container__ul__li__link__body__text
+                = item.name
+              .index-container__nice-index__container__ul__li__link__body__price
+                = "¥#{item.price.to_s(:delimited)}"
+            %i.index-container__nice-index__container__ul__li__link__icon.icon-arrow-right
+
+  = render "shared/mypage_side"

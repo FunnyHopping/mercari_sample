@@ -50,5 +50,6 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: [:new,:index,:show]
+  resources :nices, only: [:create,:index]
 end
 
