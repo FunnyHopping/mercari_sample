@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
   end
 
   def show
-    @item = @item = Item.find(params[:item_id])
+    @item =  Item.find(params[:id])
     @address = current_user.address
     card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]

@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
   def index
     @search_items = Item.order("created_at DESC").ransack(params[:q])
-    @items = @search_items.result(distinct: true)
+    @items = @search_items.result(distinct: true).page(params[:page]).per(1)
   end
 
   def show
