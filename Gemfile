@@ -93,3 +93,4 @@ gem 'binding_of_caller'
 gem 'ransack'
 gem 'owlcarousel-rails'
 gem 'enum_help'
+gem 'aws-sdk-s3', require: false
