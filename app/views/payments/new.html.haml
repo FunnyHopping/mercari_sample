@@ -27,7 +27,7 @@
                 .payment-new-container__main__section__item__content__body__money__li__body
                   %span= "¥#{@item.price}" 
             .payment-new-container__main__section__item__content__body__btn
-              = link_to "購入する", payments_path(@item.id), method: :post
+              = link_to "購入する", payments_path(item_id: @item.id), method: :post
       %section.payment-new-container__main__section__address
         .payment-new-container__main__section__address__content
           %h3= "配送先"
