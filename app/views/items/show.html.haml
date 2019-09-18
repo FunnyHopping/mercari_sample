@@ -17,7 +17,7 @@
   .item-main-content
     .item-main-content__flex-wrapper
       .item-main-content__photo
-        = image_tag "#{@item.images.first}"
+        = image_tag(@item.images.first, class: "item-main-content__photo")
       %table.item-detail-table
         %tbody
           %tr
