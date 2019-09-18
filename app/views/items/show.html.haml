@@ -17,7 +17,13 @@
   .item-main-content
     .item-main-content__flex-wrapper
       .item-main-content__photo
-        = image_tag "#{@item.images.first}"
+        - if @item.buyer_id != nil
+          .item__sold-flag
+            .item__sold-flag__text
+              SOLD
+
+        = image_tag(@item.images.first)
+
       %table.item-detail-table
         %tbody
           %tr
@@ -75,15 +81,21 @@
         (税込)
       %span.item-main-content__price__shipping-fee
         = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
+  
+  - if @item.buyer_id != nil
+    .item-sold-btn
+      売り切れました
+  - else
     .item-buy-btn
       = link_to new_payment_path(@item.id) do
         購入画面に進む
+
+
     .item-main-content__description
       %p.item-main-content__description__item-description
         = @item.introduct
+        
 .message-container
-
--# 以下コメント欄
   .message-content
     %ul.messages
       %li.messages__message.clearfix

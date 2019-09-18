@@ -19,6 +19,11 @@
             %section.container__category-index__content__items__list__item
               = link_to item_path(item.id), class: "container__category-index__content__items__list__item__link" do
                 %figure.container__category-index__content__items__list__item__link__figure
+                  .style-card__thumbnail
+                    - if item.buyer_id != nil
+                      .sold-flag
+                        .sold-flag__text
+                          SOLD
                   = image_tag(item.images.first,class: "container__category-index__content__items__list__item__link__figure__img")
                 .container__category-index__content__items__list__item__link__body
                   %h3.container__category-index__content__items__list__item__link__body__h3

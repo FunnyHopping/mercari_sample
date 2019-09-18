@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   resources :transacts, only: [:create]
   resources :orders, only: [:show]
   resources :ordercomments, only: [:create]
+
   resources :categories, only: :index do
     collection do
       get 'get_child_category'

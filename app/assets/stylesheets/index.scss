@@ -66,7 +66,6 @@ h2 {
   width: 100%;
   margin: 0px auto;
   padding: 0px;
-  width: 1020px;
   &__contents {
     position: relative;
   }
@@ -85,7 +84,7 @@ h2 {
     position: relative;
     background-size: cover;
     height: 390px;
-    background-image: url(top-banner.jpg);
+    background-image: image-url('top-banner');
     background-position: center center;
   }
 }
@@ -131,18 +130,20 @@ h2 {
 //新着アイテム一覧
 .markets {
   padding: 42px 0px 100px;
+  margin:0 auto;
+  width: 75%;
   &__new {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     align-items: flex-end;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
     &__title {
-      flex: 110%;
+      flex: 1 1 0%;
       font-weight: 600;
       line-height: 1.4em;
       margin: 0;
-      padding: 0;
+      padding-left: 15px;
       font-size: 24px;
     }
   }
@@ -169,6 +170,7 @@ h2 {
 }
 .style-card {
   width: 100%;
+  box-shadow: 0 2px 4px rgb(192, 192, 192);
   &__thumbnail {
     height: 0;
     overflow: hidden;
@@ -246,101 +248,47 @@ h2 {
   font-size: 14px;
   font-weight: 600;
   position: relative;
-  padding: 5px 14px 5px 5px;
+  padding: 5px 16px 5px 5px;
   &::before {
+    height: 10px;
+    width: 10px;
     bottom: 0px;
     content: "";
-    height: 8px;
     position: absolute;
     right: 2px;
     top: 0px;
     transform: rotate(-45deg);
-    width: 8px;
     border-bottom: 2px solid rgb(0, 149, 238);
     border-right: 2px solid rgb(0, 149, 238);
     margin: auto;
   }
 }
 
-//出品アイコン
-.sell-icon {
-  position: fixed;
-  text-align: center;
-  z-index: 2;
-  bottom: 32px;
-  font-size: 22px;
-  height: 160px;
-  right: 32px;
-  width: 160px;
-  &__link{
+
+.sold-flag{
+  &__text {
+    top: 14px;
+    font-size: 14px;
+    position: absolute;
+    left: 3;
+    z-index: 3;
+    color: #fff;
+    transform: rotate(-45deg);
+    letter-spacing: 0px;
+    font-weight: 600;
+  }
+  &::after {
+    border-width: 60px 60px 0 0;
+    border-color: #ff0211 transparent transparent transparent;
     display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    z-index: 2;
   }
-  &__in {
-    width: 160px;
-    height: 160px;
-    padding-top: 32px;
-    text-align: center;
-    background-color: rgb(234, 53, 45);
-    border-radius: 50%;
-  }
-  &__name {
-    font-size: 22px;
-    color: rgb(255, 255, 255);
-  }
-}
-
-.aside {
-  color: rgb(255, 255, 255);
-  background: url(download_app_bg.jpg) center center / cover;
-  background-position: center center;
-  margin-top: auto;
-  &__contents {
-    -webkit-box-align: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: rgb(255, 255, 255);
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    text-align: center;
-    &__text {
-      display: inline-flex;
-      flex-direction: column;
-      text-align: left;
-      margin-right: 30px;
-      &__top {
-        color: rgb(255, 255, 255);
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 15px;
-      }
-      &__buttom {
-        color: rgb(255, 255, 255);
-        font-size: 35px;
-        margin-bottom: 20px;
-      }
-    }
-  }
-}
-
-.mercari-icon {
-  height: 68px;
-  margin-right: 20px;
-  width: 68px;
-}
-.app-store {
-  height: 40px;
-  margin-right: 8px;
-  width: 144px;
-}
-.google-play {
-  height: 40px;
-  width: 144px;
-}
-.smaho-image {
-  height: 260px;
-  width: 300px;
-}
-img {
-  vertical-align: middle;
 }
