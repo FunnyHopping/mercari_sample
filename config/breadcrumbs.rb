@@ -22,6 +22,17 @@ crumb :logout do |logout|
   parent :mypage
 end
 
+crumb :order_result do |order_result|
+  link "購入した商品 - 過去の取引", root_path
+  parent :mypage
+end
+
+crumb :order do |order|
+  link "支払い画面", order_path
+  parent :order_result
+end
+
+
 crumb :category do |category|
   link "@#{category.name}", logout_path
   parent :mypage
