@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load',function(){
-      Payjp.setPublicKey("pk_test_f59caea5ae7d04bd88784b9a"); 
+      Payjp.setPublicKey("pk_test_f469c68dd79c1e893366a3f6"); 
       var btn = document.getElementById("token_submit");
       btn.addEventListener("click", e => {
         e.preventDefault();
@@ -19,12 +19,13 @@ document.addEventListener('turbolinks:load',function(){
             $("#exp_year").removeAttr("name"); 
             $("#card_token").append(
               $('<input type="hidden" name="payjp-token">').val(response.id)
-            ); 
-            $("#card_form").submit();
-            alert("登録が完了しました"); 
-          } else {
-            alert("カード情報が正しくありません。"); 
-          }
+              ); 
+              $("#card_form").submit();
+              alert("登録が完了しました"); 
+            } else {
+              alert("カード情報が正しくありません。"); 
+            }
         });
       });
+  }
 })

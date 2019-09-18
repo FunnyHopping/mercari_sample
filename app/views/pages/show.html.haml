@@ -110,19 +110,19 @@
       %h2.mypage-buy-box__title 購入した商品
       %ul.mypage-tabs
         %li.active
-          %h3
+          %h3.current.tab1.tab_a{href:"#tab1"}
             = link_to root_path, {data: {toggle: "tab"}} do
               取引中
         %li
-          %h3
+          %h3.tab2.tab_a{href:"#tab2"}
             = link_to root_path, {data: {toggle: "tab"}} do
               過去の取引
-      .tab-content
+      .tab-content.tab1#tab1.tab_b
         -if @transaction_items != nil
           %ul.tab-content__list
             - @transaction_items.each do |item|
               %li.tab-content__list__li
-                =link_to root_path do
+                =link_to order_path(item.order.id) do
                   %figure
                     = image_tag("mercari_mark.png")
                   .tab-content__list__li__body
@@ -132,6 +132,22 @@
                         ="発送までお待ちください"
                     .tab-content__list__li__body__state
                       ="発送待ち"
+                    %i.icon-arrow-right
+      .tab-content.tab2#tab2.tab_b
+        -if @transacted_items  != nil
+          %ul.tab-content__list
+            - @transacted_items .each do |item|
+              %li.tab-content__list__li
+                =link_to order_path(item.order.id) do
+                  %figure
+                    = image_tag("mercari_mark.png")
+                  .tab-content__list__li__body
+                    .tab-content__list__li__body__title
+                      = "「#{item.name}」を購入しました。"
+                      %span
+                        ="取引が完了しました。"
+                    .tab-content__list__li__body__state
+                      ="取引完了"
                     %i.icon-arrow-right
         -else
           %ul#mypage-tab-buy-now.mypage-item-list.tab-pane.active

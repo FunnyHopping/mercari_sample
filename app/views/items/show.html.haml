@@ -94,14 +94,25 @@
         = @item.introduct
         
 .message-container
-  -#   コメント欄    
-  -# .message-content
-  -#   %ul.messages
-  -#     %li.messages__message
-  -#       %a.messages__message__user{href: "/"}
-  -#       .messages__message__body
-  -#         .message__body__text
-  -#         .message__body__icons
-  -#           = icon 'far', 'clock'
+  .message-content
+    %ul.messages
+      %li.messages__message.clearfix
+        %a.messages__message__user{href: "/"}
+          %figure
+            %div
+              %img
+            %figcaption.bold
+              user
+        .messages__message__body
+          .message__body__text
+            tetetetetetetetetextああああああテキスト
+          .message__body__icons
+            = icon 'far', 'clock'
+            1日前
+  .message-content
+    = form_with url: '/', local: true, class: "message-form" do |form|
+      %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      =form.text_area :text ,class: "message-form__field"
+      =form.button type: "submit", class: "message-form__submit-btn" 
 
 = render 'shared/footer'

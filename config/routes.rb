@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   resources :cards
   resources :profiles, only: [:edit,:update]
   resources :pages, only: [:show,:index]
+  resources :transacts, only: [:create]
+  resources :orders, only: [:show]
+  resources :ordercomments, only: [:create]
+
   resources :categories, only: :index do
     collection do
       get 'get_child_category'

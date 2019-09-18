@@ -16,7 +16,7 @@
       %secction.payment-show-container__main__section__image
         .payment-show-container__main__section__image__item
           %h3.payment-show-container__main__section__image__item__h3
-            = image_tag("mypage-icon.png")
+            = image_tag(@item.images.first)
           %p.payment-show-container__main__section__image__item__p= @item.name
       %secction.payment-show-container__main__section__price
         .payment-show-container__main__section__price__item
