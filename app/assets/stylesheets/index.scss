@@ -85,7 +85,7 @@ h2 {
     position: relative;
     background-size: cover;
     height: 390px;
-    background-image: url(top-banner.jpg);
+    background-image: asset_path('top-banner');
     background-position: center center;
   }
 }
