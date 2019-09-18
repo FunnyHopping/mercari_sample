@@ -94,3 +94,4 @@ gem 'ransack'
 gem 'owlcarousel-rails'
 gem 'enum_help'
 gem 'kaminari', '~> 0.17.0'
+gem 'aws-sdk-s3', require: false

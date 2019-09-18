@@ -265,6 +265,37 @@ h2 {
 }
 
 
+.aside {
+  color: rgb(255, 255, 255);
+  background: image-url('download_app_bg.jpg') center center / cover;
+  background-position: center center;
+  margin-top: auto;
+  &__contents {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgb(255, 255, 255);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    &__text {
+      display: inline-flex;
+      flex-direction: column;
+      text-align: left;
+      margin-right: 30px;
+      &__top {
+        color: rgb(255, 255, 255);
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+      &__buttom {
+        color: rgb(255, 255, 255);
+        font-size: 35px;
+        margin-bottom: 20px;
+      }
+    }
 .sold-flag{
   &__text {
     top: 14px;
@@ -292,3 +323,4 @@ h2 {
     z-index: 2;
   }
 }
+}}
