@@ -1,0 +1,26 @@
+.top-moove-icon{
+  position: fixed;
+  text-align: center;
+  z-index: 2;
+  bottom: 220px;
+  font-size: 22px;
+  height: 160px;
+  right: 32px;
+  width: 160px;
+  &__link{
+    display: block;
+  }
+  &__in {
+    cursor: pointer;
+    width: 160px;
+    height: 160px;
+    padding-top: 32px;
+    text-align: center;
+    background-color: rgb(29, 114, 242);
+    border-radius: 50%;
+  }
+  &__name {
+    font-size: 22px;
+    color: rgb(255, 255, 255);
+  }
+}

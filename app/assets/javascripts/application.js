@@ -14,5 +14,6 @@
 //= require jquery
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+
 //= require owl.carousel
+//= require_tree .
