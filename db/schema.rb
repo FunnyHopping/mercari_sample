@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_061054) do
+ActiveRecord::Schema.define(version: 2019_09_18_052205) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -78,6 +78,15 @@ ActiveRecord::Schema.define(version: 2019_09_16_061054) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "nices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_nices_on_item_id"
+    t.index ["user_id"], name: "index_nices_on_user_id"
+  end
+
   create_table "ordercomments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment"
     t.bigint "user_id"
@@ -139,6 +148,8 @@ ActiveRecord::Schema.define(version: 2019_09_16_061054) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
+  add_foreign_key "nices", "items"
+  add_foreign_key "nices", "users"
   add_foreign_key "ordercomments", "orders"
   add_foreign_key "ordercomments", "users"
   add_foreign_key "orders", "items"
