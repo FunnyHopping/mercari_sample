@@ -78,14 +78,6 @@ ActiveRecord::Schema.define(version: 2019_09_16_061054) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "postages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "ancestry"
-    t.string "index"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-  
   create_table "ordercomments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment"
     t.bigint "user_id"
