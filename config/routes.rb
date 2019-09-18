@@ -48,5 +48,6 @@ Rails.application.routes.draw do
       get 'get_postage_plan'
     end
   end
+  resources :categories, only: [:new,:index,:show]
 end
 

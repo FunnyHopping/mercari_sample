@@ -7,6 +7,11 @@ crumb :mypage do
   parent :root
 end
 
+crumb :categories do
+  link "カテゴリー一覧", categories_path
+  parent :root
+end
+
 crumb :profile do
   link "プロフィール"
   parent :mypage
@@ -32,10 +37,38 @@ crumb :order do |order|
   parent :order_result
 end
 
+crumb :ParentCategory do |category|
+  category = Category.find(params[:id])
+  if category.parent.nil?
+    link "#{category.name}", category_path(category.id)
+  elsif category.parent.parent.nil?
+    link "#{category.parent.name}", category_path(category.parent.id)
+  else
+    link "#{category.parent.parent.name}", category_path(category.parent.parent.id)
+  end
+  parent :categories
+end
 
-crumb :category do |category|
-  link "@#{category.name}", logout_path
-  parent :mypage
+crumb :ChildCategory do |category|
+  category = Category.find(params[:id])
+  if category.parent.nil?
+    link "#{category.name}", category_path(category.id)
+  else
+    link "#{category.parent.name}", category_path(category.parent.id)
+  end
+  parent :ParentCategory 
+end
+
+crumb :Category do |category|
+  category = Category.find(params[:id])
+  link "#{category.name}", category_path(params[:id])
+  if category.parent.nil?
+    parent :categories
+  elsif category.parent.parent.nil?
+    parent :ParentCategory 
+  else 
+    parent :ChildCategory
+  end
 end
 
 

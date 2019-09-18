@@ -1,25 +1,29 @@
-= render 'shared/header_mypage'
+.container
+  -if user_signed_in?
+    = render 'shared/header_mypage'
+  -else
+    = render 'shared/header'
 
-%main.item-index-main
-  .item-index-main__right
-    %section.item-index-main__right__items
-      %h2.item-index-main__right__items__h2
-        = params[:q][:name_cont]
-        %span
-          = "の検索結果"
-      .item-index-main__right__items__search-num
-        = "1-132件表示"
-      .item-index-main__right__items__contents
-        - @items.each do |item|
-          %section.item-index-main__right__items__contents__content
-            = link_to item_path(1) do
-              %figure
-                = image_tag(item.images.first)
-              .body
-                %h3
-                  = item.name
-                .num
-                  .price
-                    = "¥#{item.price}"
-  //パーシャル
-  .item-index-main__left
+  %main.item-index-main
+    .item-index-main__right
+      %section.item-index-main__right__items
+        %h2.item-index-main__right__items__h2
+          = params[:q][:name_cont]
+          %span
+            = "の検索結果"
+        .item-index-main__right__items__search-num
+          = "1-132件表示"
+        .item-index-main__right__items__contents
+          - @items.each do |item|
+            %section.item-index-main__right__items__contents__content
+              = link_to item_path(1) do
+                %figure
+                  = image_tag(item.images.first)
+                .body
+                  %h3
+                    = item.name
+                  .num
+                    .price
+                      = "¥#{item.price}"
+    //パーシャル
+    .item-index-main__left
