@@ -13,6 +13,7 @@
   }
   #slider{
     width: 300px;
+    height:300px;
     margin:0 auto;
   }
   .slide-item{
@@ -27,7 +28,7 @@
     flex-wrap:wrap;
   }
   .thumbnail-item{
-    flex: 0 1 30%;
+    flex: 0 1 20%;
     margin-bottom: 0;
     box-sizing: border-box;
     position:relative;

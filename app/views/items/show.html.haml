@@ -30,7 +30,7 @@
         %ul#thumbnail-list
           - if @item.images.attached?
             - @item.images.each do |image|
-              %li.thumbnail__item
+              %li.thumbnail-item
                 = image_tag image, class: "item-thumbnail", height: '60', width: '60'
 
 
