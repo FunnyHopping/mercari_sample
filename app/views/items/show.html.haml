@@ -21,34 +21,39 @@
           .item__sold-flag__text
             SOLD
 
-      .item-main-content__photo__slick
-        .item-main-content__photo__slick__thumbnail
-          = image_tag @item.images.first, class: "item-first"
+      #wrap
+        %ul#slider
           - if @item.images.attached?
             - @item.images.each do |image|
-              .item-main-content__photo__slick__thumbnail__dot
-                .item-main-content__photo__slick__thumbnail__dot__inner
-                  = image_tag image, class: "item-thumbnail"
+              %li.slide-item
+                = image_tag image, class: "item-thumbnail",height: '300', width: '300'
+        %ul#thumbnail-list
+          - if @item.images.attached?
+            - @item.images.each do |image|
+              %li.thumbnail__item
+                = image_tag image, class: "item-thumbnail", height: '60', width: '60'
+
 
     %table.item-detail-table
       %tbody
         %tr
           %th 出品者
           %td
-            = link_to "" do
+            = link_to user_path(@user.id) do
               = @item.saler.name
-              //評価の表示を入れる
+              //評価の表示を入れるgood normal bad はそれぞれカウントして表示
+
         %tr
           %th カテゴリー
           %td
-            = link_to "" do
+            = link_to category_path(@item.category.parent.parent.id) do
               = @item.category.parent.parent.name
             %br
-            = link_to "" do
+            = link_to category_path(@item.category.parent.id) do
               %i.chevron-right
               = @item.category.parent.name
             %br
-            = link_to "" do
+            = link_to category_path(@item.category.id) do
               %i.chevron-right
               = @item.category.name
         %tr
