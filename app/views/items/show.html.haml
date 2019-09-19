@@ -15,72 +15,79 @@
       = "#{@item.category.name}/#{@item.category.parent.parent.name}の商品で、#{Address.find(@item.saler_id).city}から#{@item.shipping_date}日で発送されます。"
 
   .item-main-content
-    .item-main-content__flex-wrapper
-      .item-main-content__photo
-        - if @item.buyer_id != nil
-          .item__sold-flag
-            .item__sold-flag__text
-              SOLD
+    .item-main-content__photo
+      - if @item.buyer_id != nil
+        .item__sold-flag
+          .item__sold-flag__text
+            SOLD
 
-        = image_tag(@item.images.first)
+      .item-main-content__photo__slick
+        .item-main-content__photo__slick__thumbnail
+          = image_tag @item.images.first, class: "item-first"
+          - if @item.images.attached?
+            - @item.images.each do |image|
+              .item-main-content__photo__slick__thumbnail__dot
+                .item-main-content__photo__slick__thumbnail__dot__inner
+                  = image_tag image, class: "item-thumbnail"
 
-      %table.item-detail-table
-        %tbody
+    %table.item-detail-table
+      %tbody
+        %tr
+          %th 出品者
+          %td
+            = link_to "" do
+              = @item.saler.name
+              //評価の表示を入れる
+        %tr
+          %th カテゴリー
+          %td
+            = link_to "" do
+              = @item.category.parent.parent.name
+            %br
+            = link_to "" do
+              %i.chevron-right
+              = @item.category.parent.name
+            %br
+            = link_to "" do
+              %i.chevron-right
+              = @item.category.name
+        %tr
+          %th ブランド
+          %td 
+        -if @item.size
+          //商品サイズがあるときのみ表示させる
           %tr
-            %th 出品者
+            %th 商品のサイズ
             %td
-              = link_to "" do
-                = @item.saler.name
-          %tr
-            %th カテゴリー
-            %td
-              = link_to "" do
-                = @item.category.parent.parent.name
-              %br
-              = link_to "" do
-                %i.chevron-right
-                = @item.category.parent.name
-              %br
-              = link_to "" do
-                %i.chevron-right
-                = @item.category.name
-          %tr
-            %th ブランド
-            %td 
-          -if @item.size
-            //商品サイズがあるときのみ表示させる
-            %tr
-              %th 商品のサイズ
-              %td
-                = @item.size
-          %tr
-            %th 商品の状態
-            %td
-              = @item.condition
-          %tr
-            %th 配送料の負担
-            %td 
-              = @item.postage.parent.name
-          %tr
-            %th 配送の方法
-            %td
-              = @item.postage.name
-          %tr
-            %th 配送元地域
-            %td
-              = link_to "" do
-                = Address.find(@item.saler_id).city
-          %tr
-            %th 発送日の目安
-            %td
-              = @item.shipping_date
-    .item-main-content__price
-      %span.item-main-content__price__item-price
-        = "￥#{@item.price.to_s(:delimited, delimiter: ',')}"
-      %span.item-main-content__price__tax
-        (税込)
-      %span.item-main-content__price__shipping-fee
-        = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
+              = @item.size
+        %tr
+          %th 商品の状態
+          %td
+            = @item.condition
+        %tr
+          %th 配送料の負担
+          %td 
+            = @item.postage.parent.name
+        %tr
+          %th 配送の方法
+          %td
+            = @item.postage.name
+        %tr
+          %th 配送元地域
+          %td
+            = link_to "" do
+              = Address.find(@item.saler_id).city
+        %tr
+          %th 発送日の目安
+          %td
+            = @item.shipping_date
+  .item-main-content__price
+    %span.item-main-content__price__item-price
+      = "￥#{@item.price.to_s(:delimited, delimiter: ',')}"
+    %span.item-main-content__price__tax
+      (税込)
+    %span.item-main-content__price__shipping-fee
+      = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
   
   - if @item.buyer_id != nil
     .item-sold-btn
