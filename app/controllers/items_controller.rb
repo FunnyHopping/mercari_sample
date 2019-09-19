@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
     @item.save!
     @order = Order.new(item_id: @item.id)
     @order.save!
+    redirect_to controller: 'pages', action: 'index'
   end
 
   def index
