@@ -86,13 +86,14 @@
           %th 発送日の目安
           %td
             = @item.shipping_date
-  .item-main-content__price
-    %span.item-main-content__price__item-price
-      = "￥#{@item.price.to_s(:delimited, delimiter: ',')}"
-    %span.item-main-content__price__tax
-      (税込)
-    %span.item-main-content__price__shipping-fee
-      = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
+  
+    .item-main-content__price
+      %span.item-main-content__price__item-price
+        = "￥#{@item.price.to_s(:delimited, delimiter: ',')}"
+      %span.item-main-content__price__tax
+        (税込)
+      %span.item-main-content__price__shipping-fee
+        = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
   
   - if @item.buyer_id != nil
     .item-sold-btn
@@ -107,9 +108,8 @@
           %span.text= "いいね！"
           %span.nice-num= "1"
   - else
-    .item-buy-btn
-      = link_to new_payment_path(item_id: @item.id) do
-        購入画面に進む
+    = link_to new_payment_path(item_id: @item.id), class:"item-buy-btn" do
+      購入画面に進む
 
 
     .item-main-content__description
