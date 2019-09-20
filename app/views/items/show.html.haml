@@ -41,18 +41,19 @@
           %td
             = link_to user_path(@user.id) do
               = @item.saler.name
-            .user-ratings
-              .user-rating
-                %i.rating-good
-                %span
+            - if @item.saler_id != current_user.id
+              .user-ratings
+                .user-rating
+                  %i.rating-good
+                  %span
                   -# = @user.take_transact
-              .user-rating
-                %i.rating-normal
-                %span
+                .user-rating
+                  %i.rating-normal
+                  %span
                   //@user.take_transact.count
-              .user-rating
-                %i.rating-bad
-                %span
+                .user-rating
+                  %i.rating-bad
+                  %span
                   //@user.take_transact.count
         %tr
           %th カテゴリー
@@ -105,23 +106,15 @@
         (税込)
       %span.item-main-content__price__shipping-fee
         = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
-  
-  - if @item.buyer_id != nil
-    .item-sold-btn
-      売り切れました
-    .nice-clearfix
-      .nice-clearfix__btn-left
-        = link_to nices_path(item_id:@item.id),method: :post, remote: true,class: "nice-clearfix__btn-left__nice" do
-          - if current_user.nices.where(item_id: @item.id).length != 0
-            %i.icon-heart-border-on.nice-btn
-          -else
-            %i.icon-heart-border.nice-btn
-          %span.text= "いいね！"
-          %span.nice-num= "1"
-  - else
-    = link_to new_payment_path(item_id: @item.id), class:"item-buy-btn" do
-      購入画面に進む
-
+    
+    - if @item.saler_id == current_user.id
+    - else
+      - if @item.buyer_id != nil
+        .item-sold-btn
+          売り切れました
+      - else
+        = link_to new_payment_path(item_id: @item.id), class:"item-buy-btn" do
+          購入画面に進む
 
     .item-main-content__description
       %p.item-main-content__description__item-description
@@ -136,9 +129,17 @@
           %span.text= "いいね！"
           %span.nice-num= "1"
 
+- if @item.saler_id == current_user.id
+  .listing-item-change-box
+    = link_to root_path, class:"change-btn" do
+      商品の編集
+    %p 
+      or
+    = form_with  do |f|
+      = f.submit "商品を一旦停止する", class: "stop-btn"
+    %button.delete-btn
+      この商品を削除する
 
-
-        
 .message-container
   .message-content
     %ul.messages

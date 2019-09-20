@@ -115,6 +115,64 @@
   }
 }
 
+.listing-item-change-box {
+  margin: 24px auto 24px;
+  background: #fff;
+  padding: 8px 16px 8px 16px;
+  width: 700px;
+  
+
+  .change-btn {
+    display: block;
+    width: 100%;
+    margin: 16px 0 16px 0;
+    background: #ea352d;
+    border: 1px solid #ea352d;
+    font-size: 14px;
+    color: #fff;
+    line-height: 48px;
+    text-align: center;
+    font-weight: 400;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+  }
+  p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .stop-btn {
+    margin: 16px 0 16px 0;
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .delete-btn {
+    margin: 16px 0 16px 0;
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+  }
+}
 
 .item-buy-btn {
   display: block;
