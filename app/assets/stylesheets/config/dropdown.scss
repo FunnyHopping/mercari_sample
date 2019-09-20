@@ -1,0 +1,32 @@
+.brand-dropdown {
+  display: none;
+  left: -34px;
+  position: absolute;
+  top: 44px;
+  z-index: 1;
+
+  ul {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    width: 224px;
+  }
+  
+  &__list {
+    width: 224px;
+
+    &__list a:hover {
+      background: rgb(234, 53, 45);
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  .list-text {
+    display: block;
+    font-size: 14px;
+    line-height: 44px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0px 16px;
+  }
+}
