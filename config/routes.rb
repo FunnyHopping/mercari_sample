@@ -45,5 +45,10 @@ Rails.application.routes.draw do
       get 'get_postage_plan'
     end
   end
+  resources :brands, only: :index do
+    collection do
+      get 'search_brand'
+    end
+  end
 end
 

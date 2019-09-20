@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_13_044450) do
+ActiveRecord::Schema.define(version: 2019_09_19_034055) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -38,11 +38,27 @@ ActiveRecord::Schema.define(version: 2019_09_13_044450) do
     t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "street_num", null: false
-    t.string "building", null: false
+    t.string "building"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "brand_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_brand_groups_on_ancestry"
+    t.index ["name"], name: "index_brand_groups_on_name"
+  end
+
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_brands_on_name"
   end
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -56,44 +72,42 @@ ActiveRecord::Schema.define(version: 2019_09_13_044450) do
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "ancestry"
-    t.string "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["name"], name: "index_categories_on_name"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
     t.text "introduct", null: false
-    t.string "size"
-    t.integer "condition", default: 0, null: false
-    t.boolean "postage", default: false
+    t.integer "size"
+    t.integer "brand_id"
+    t.integer "condition", null: false
+    t.integer "postage_id", null: false
     t.integer "prefecture_id", null: false
-    t.integer "shipping_date", default: 0, null: false
-    t.integer "saler_id", null: false
+    t.integer "shipping_date", null: false
+    t.integer "saler_id"
     t.integer "buyer_id"
+    t.integer "category_id", null: false
     t.boolean "transact", default: false
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "postages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "ancestry"
-    t.string "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_postages_on_ancestry"
+    t.index ["name"], name: "index_postages_on_name"
   end
 
-  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.bigint "user_id"
-    t.integer "saler_id", null: false
-    t.integer "buyer_id"
-    t.boolean "transact", default: false
+  create_table "relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "brand_id"
+    t.integer "brand_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
