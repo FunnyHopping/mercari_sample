@@ -21,4 +21,6 @@ class User < ApplicationRecord
 
   has_many :take_tranascts, class_name: "Transact", foreign_key: :take_id
   has_many :takers, through: :take_tranascts, source: :take
+
+  has_many :comments
 end

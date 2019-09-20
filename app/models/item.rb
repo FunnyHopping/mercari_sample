@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   has_many_attached :images
   has_one :order
 
+  has_many :comments
   has_many :nices
   has_many :nice_users, through: :nices, source: :user
 

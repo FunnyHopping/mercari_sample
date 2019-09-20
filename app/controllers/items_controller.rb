@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @user = User.find(@item.saler_id)
+    @comments = @item.comments.order('created_at ASC')
   end
 
   def edit                        
