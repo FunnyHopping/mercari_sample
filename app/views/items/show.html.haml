@@ -10,7 +10,7 @@
   -if user_signed_in?
   -else
     %p.item-info-container__seller-info
-      = "『#{@item.name}』は{@user.rating.count}回の取引実績を持つ#{@item.saler.name}さんから出品されました。"
+      = "『#{@item.name}』は{@user.take_transact.count}回の取引実績を持つ#{@item.saler.name}さんから出品されました。"
       %br
       = "#{@item.category.name}/#{@item.category.parent.parent.name}の商品で、#{Address.find(@item.saler_id).city}から#{@item.shipping_date}日で発送されます。"
 
@@ -41,8 +41,19 @@
           %td
             = link_to user_path(@user.id) do
               = @item.saler.name
-              //評価の表示を入れるgood normal bad はそれぞれカウントして表示
-
+            .user-ratings
+              .user-rating
+                %i.rating-good
+                %span
+                  -# = @user.take_transact
+              .user-rating
+                %i.rating-normal
+                %span
+                  //@user.take_transact.count
+              .user-rating
+                %i.rating-bad
+                %span
+                  //@user.take_transact.count
         %tr
           %th カテゴリー
           %td
@@ -81,7 +92,7 @@
           %th 配送元地域
           %td
             = link_to "" do
-              = Address.find(@item.saler_id).city
+              = Prefecture.find(@item.prefecture_id).name
         %tr
           %th 発送日の目安
           %td

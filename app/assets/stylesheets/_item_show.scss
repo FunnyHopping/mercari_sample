@@ -42,6 +42,10 @@
       border: 1px solid #f5f5f5;
       a {
         color: #0099e8;
+        display: block;
+        &:first-child {
+          margin: 0;
+        }
       }
     
       tbody {
@@ -60,9 +64,26 @@
         background-color: #fafafa;
       }
       td {
+        width: 61%;
+        background: #fff;
         border-collapse: collapse;
         border: 1px solid #f5f5f5;
         padding: 8px;
+
+        .user-ratings {
+
+          .user-rating {
+            display: inline-block;
+            margin: 8px 0 0 16px;
+            &:first-child {
+              margin: 0;
+            }
+            span {
+              vertical-align: middle;
+            }
+          }
+        
+        }
       }
     }
   
@@ -93,6 +114,7 @@
     }
   }
 }
+
 
 .item-buy-btn {
   display: block;
