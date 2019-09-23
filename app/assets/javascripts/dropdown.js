@@ -1,9 +1,9 @@
 $(document).on('turbolinks:load', function(){
   $(function(){
-    $('#menu2').hover(function(){
-      $('.dropdwn_menu ul').show();
+    $('.header__contents__bottom__left__brand').hover(function(){
+      $('.dropdwn-menu, .brand-dropdown__list').show();
     }, function() {
-      $('.dropdwn_menu ul').hide();
+      $('.dropdwn-menu, .brand-dropdown__list').hide();
     });
   });
 });

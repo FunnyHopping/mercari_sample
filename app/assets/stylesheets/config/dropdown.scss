@@ -1,20 +1,20 @@
 .brand-dropdown {
-  display: none;
-  left: -34px;
   position: absolute;
   top: 44px;
   z-index: 1;
+  left: 0px;
 
-  ul {
+  .dropdwn-menu {
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     width: 224px;
+    display: none;
   }
   
   &__list {
     width: 224px;
 
-    &__list a:hover {
+    &:hover {
       background: rgb(234, 53, 45);
       color: rgb(255, 255, 255);
     }
@@ -29,4 +29,5 @@
     overflow: hidden;
     padding: 0px 16px;
   }
+  
 }
