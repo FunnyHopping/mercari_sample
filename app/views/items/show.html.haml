@@ -10,9 +10,9 @@
   -if user_signed_in?
   -else
     %p.item-info-container__seller-info
-      = "『#{@item.name}』は{@user.take_transact.count}回の取引実績を持つ#{@item.saler.name}さんから出品されました。"
+      = "『#{@item.name}』は#{@user.take_transacts.count}回の取引実績を持つ#{@item.saler.name}さんから出品されました。"
       %br
-      = "#{@item.category.name}/#{@item.category.parent.parent.name}の商品で、#{Address.find(@item.saler_id).city}から#{@item.shipping_date}日で発送されます。"
+      = "#{@item.category.name}/#{@item.category.parent.parent.name}の商品で、#{Prefecture.find(@item.prefecture_id).name}から#{@item.shipping_date}日で発送されます。"
 
   .item-main-content
     .item-main-content__photo
@@ -41,20 +41,19 @@
           %td
             = link_to user_path(@user.id) do
               = @item.saler.name
-            - if @item.saler_id != current_user.id
-              .user-ratings
-                .user-rating
-                  %i.rating-good
-                  %span
-                  -# = @user.take_transact
-                .user-rating
-                  %i.rating-normal
-                  %span
-                  //@user.take_transact.count
-                .user-rating
-                  %i.rating-bad
-                  %span
-                  //@user.take_transact.count
+            .user-ratings
+              .user-rating
+                %i.rating-good
+                %span
+                = @user.take_transacts.count
+              .user-rating
+                %i.rating-normal
+                %span
+                  0
+              .user-rating
+                %i.rating-bad
+                %span
+                  0
         %tr
           %th カテゴリー
           %td
@@ -72,7 +71,6 @@
           %th ブランド
           %td 
         -if @item.size
-          //商品サイズがあるときのみ表示させる
           %tr
             %th 商品のサイズ
             %td
@@ -106,9 +104,7 @@
         (税込)
       %span.item-main-content__price__shipping-fee
         = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
-    
-    - if @item.saler_id == current_user.id
-    - else
+    -if user_signed_in? && @item.saler_id != current_user.id
       - if @item.buyer_id != nil
         .item-sold-btn
           売り切れました
@@ -122,24 +118,25 @@
     .nice-clearfix
       .nice-clearfix__btn-left
         = link_to nices_path(item_id:@item.id),method: :post, remote: true,class: "nice-clearfix__btn-left__nice" do
-          - if current_user.nices.where(item_id: @item.id).length != 0
+          - if user_signed_in? && current_user.nices.where(item_id: @item.id).length != 0
             %i.icon-heart-border-on.nice-btn
           -else
             %i.icon-heart-border.nice-btn
           %span.text= "いいね！"
           %span.nice-num= "1"
 
-- if @item.saler_id == current_user.id
+-if user_signed_in? && @item.saler_id == current_user.id
   .listing-item-change-box
-    = link_to root_path, class:"change-btn" do
+    = link_to edit_item_path(@item.id), class:"change-btn" do
       商品の編集
     %p 
       or
     = form_with  do |f|
       = f.submit "商品を一旦停止する", class: "stop-btn"
+      //削除ボタンクリックでモーダル表示（記述はコメント要素の後）
     %button.delete-btn
       この商品を削除する
-
+      
 .message-container
   .message-content
     %ul.messages
@@ -160,6 +157,25 @@
     = form_with url: '/', local: true, class: "message-form" do |form|
       %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
       =form.text_area :text ,class: "message-form__field"
-      =form.button type: "submit", class: "message-form__submit-btn" 
+      =form.button type: "submit", class: "message-form__submit-btn"
+    
+  //商品削除モーダルウィンドウ
+%aside.delete-modal
+  .modal-inner.modal-banner
+    .modal-banner-body
+      .modal-head.bold
+        確認
+      削除すると二度と復活できません。
+      %br
+      削除する代わりに停止することもできます。
+      %br
+      %br
+      本当に削除しますか？
+    .clearfix
+      .modal-btn.modal-btn-cancel
+        キャンセル
+      = link_to "" do
+        %button.modal-btn.modal-btn-submit
+          削除する
 
 = render 'shared/footer'
