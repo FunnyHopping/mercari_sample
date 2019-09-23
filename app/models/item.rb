@@ -5,9 +5,8 @@ class Item < ApplicationRecord
   # mount_uploaders :images, ImageUploader
   has_many_attached :images
   belongs_to :postage
-  belongs_to :prefecture
   belongs_to :brand
-  
+
 
   enum size: {
     "---": nil,

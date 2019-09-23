@@ -27,13 +27,38 @@ class ItemsController < ApplicationController
     @user = User.find(@item.saler_id)
   end
 
-  def edit                        
+  def edit
+    @item = Item.find(params[:id])
+    @parents = Category.all.order("id ASC").limit(13)
+    @postages = Postage.all.order("id ASC").limit(2)
+    gon.item = @item
+    img_array = []
+    @item.images.each do |image|
+      img_array.push(image)
+    end
+    gon.img_array = img_array
   end
 
   def update
+    @item = Item.find(params[:id])
+    #validation
+    if params.require(:new_images) != nil
+      if num_params[:num] != nil
+        num_params[:num].each do |n|
+          n = n.to_i
+          @item.images[n].purge
+        end
+      end
+      @item.update(image_params)
+      @item.update(item_params)
+    else
+      @item.update(item_params)
+    end
   end
 
   def destroy
+    item = Item.find(params[:id])
+    item.destroy if item.saler_id == current_user.id
   end
 
   private
@@ -46,5 +71,9 @@ class ItemsController < ApplicationController
 
   def image_params
     params.require(:new_images).permit(images: [])
+  end
+
+  def num_params
+    params.require(:new_images).permit(num: [])
   end
 end
