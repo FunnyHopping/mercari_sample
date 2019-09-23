@@ -41,19 +41,16 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    #validation
-    if params.require(:new_images) != nil
       if num_params[:num] != nil
         num_params[:num].each do |n|
           n = n.to_i
           @item.images[n].purge
         end
       end
-      @item.update(image_params)
+      if image_params[:images] != nil
+        @item.update(image_params)
+      end
       @item.update(item_params)
-    else
-      @item.update(item_params)
-    end
   end
 
   def destroy

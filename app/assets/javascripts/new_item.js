@@ -54,7 +54,7 @@ $(document).on("turbolinks:load",function() {
     files_array = []
     old_array = []
 
-    if(document.URL.match("edit")){
+    if(document.URL.match("items" && "edit")){
       old_array = gon.img_array
     }
 
@@ -182,7 +182,7 @@ $(document).on("turbolinks:load",function() {
     $(document).on('click','#preview_box .upload-sell-delete', function(e){
       e.preventDefault();
       var index = $("#preview_box .upload-sell-delete").index(this);
-      if(document.URL.match("edit")){
+      if(document.URL.match("items" && "edit")){
         var num = $(this).parent().parent().attr('id');
         if(num != undefined){
         num_array.push(num)
@@ -223,14 +223,20 @@ $(document).on("turbolinks:load",function() {
       e.preventDefault();
       var formData = new FormData($(this).get(0));
       let id = gon.item.id
-      
+
       files_array.forEach(function(file){
         formData.append("new_images[images][]", file)
       })
       num_array.forEach(function(file){
         formData.append("new_images[num][]", file)
       })
-      console.log(num_array)
+
+      if (num_array.length == 0 || files_array.length == 0){
+        kara_array = ["1"]
+        kara_array.forEach(function(file){
+          formData.append("new_images[kara][]", file)
+        })
+      }
       if(files_array.length != 0 || old_array.length != 0){
         $.ajax ({
           url: '/items/' + id,
@@ -244,6 +250,7 @@ $(document).on("turbolinks:load",function() {
         })
         .fail(function(val){
           console.log("NG---");
+          alert("画像を変更してください")
         })
       } else {
         alert("画像が一枚もありません")
@@ -480,7 +487,7 @@ $(document).on("turbolinks:load",function() {
     $("#item_price").on('input',function(){
       priceView()
     })
-    if(document.URL.match("edit")){
+    if(document.URL.match("items" && "edit")){
       priceView()
     }
   })
@@ -492,7 +499,7 @@ $(document).on("turbolinks:load",function() {
 
 $(document).on("turbolinks:load",function() {
   $(function() {
-    if(document.URL.match("edit")){
+    if(document.URL.match("items" && "edit")){
       if (gon.item.size != null){
         $("#item_size").val(gon.item.size)
       }
