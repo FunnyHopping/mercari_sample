@@ -1,23 +1,104 @@
+//カテゴリードロップダウン
+.category-dropdown {
+  position: absolute;
+  top: 44px;
+  z-index: 3;
+  left: 0px;
+}
+
+.parent-menu {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  width: 224px;
+  display: none;
+  
+}
+
+.parent_category {
+  display: block;
+  font-size: 14px;
+  line-height: 44px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0px 16px;
+
+  &:hover {
+    background: rgb(234, 53, 45);
+    color: rgb(255, 255, 255);
+  }
+}
+
+.child-menu {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  width: 224px;
+  position: relative;
+  top: -44px;
+  left: 224px;
+  display: none;
+}
+
+.child_category {
+  display: block;
+  font-size: 14px;
+  line-height: 44px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0px 16px;
+
+  &:hover {
+    position: absolute;
+    background: rgb(234, 53, 45);
+    color: rgb(255, 255, 255);
+  }
+}
+
+.grand-child-menu {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  width: 300px;
+  position: relative;
+  top: 0px;
+  left: 224px;
+  display: none;
+}
+
+.grand_child_category {
+  display: block;
+  font-size: 14px;
+  line-height: 44px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0px 16px;
+
+  &:hover {
+    background: rgb(234, 53, 45);
+    color: rgb(255, 255, 255);
+  }
+}
+  
+
+
+//ブランドドロップダウン
 .brand-dropdown {
   position: absolute;
   top: 44px;
-  z-index: 1;
+  z-index: 3;
   left: 0px;
 
-  .dropdwn-menu {
+  .dropdwn-menu2 {
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     width: 224px;
     display: none;
   }
   
-  &__list {
+  &__list2 {
     width: 224px;
 
-    &:hover {
-      background: rgb(234, 53, 45);
-      color: rgb(255, 255, 255);
-    }
   }
 
   .list-text {
@@ -28,6 +109,12 @@
     white-space: nowrap;
     overflow: hidden;
     padding: 0px 16px;
+
+
+    &:hover {
+      background: rgb(234, 53, 45);
+      color: rgb(255, 255, 255);
+    
+    }
   }
-  
 }
