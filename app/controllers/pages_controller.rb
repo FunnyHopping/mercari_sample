@@ -11,7 +11,7 @@ class PagesController < ApplicationController
     gon.child_category
 
     @items = Item.order("created_at DESC").limit(10)
-    @categories = Category.where(ancestry: nil)
+    @parents = Category.where(ancestry: nil)
   end
 
   def show

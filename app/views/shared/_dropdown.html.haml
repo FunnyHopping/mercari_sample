@@ -5,9 +5,8 @@
       カテゴリーから探す
     .category-dropdown
       %ul.parent-menu
-        - @categories.each do |category|
-          %li
-            = link_to "#{category.name}", category_path(category), class: "parent_category",id: "#{category.id}"
+        -# - @parents.each do |parent|
+        -#   = link_to "#{parent.name}", category_path(parent), class: "parent_category",id: "#{parent.id}"
       %ul.child-menu
         %li
       %ul.grand-child-menu
