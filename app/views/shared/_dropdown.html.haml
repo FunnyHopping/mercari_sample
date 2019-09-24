@@ -3,14 +3,12 @@
     = link_to categories_path, class: "search-link" do
       %i.category-icon
       カテゴリーから探す
-    .category-dropdown
-      %ul.parent-menu
-        -# - @parents.each do |parent|
-        -#   = link_to "#{parent.name}", category_path(parent), class: "parent_category",id: "#{parent.id}"
-      %ul.child-menu
-        %li
-      %ul.grand-child-menu
-        %li
+    .category_list
+      .parents_list
+        - @parents.each do |parent|
+          = link_to "#{parent.name}", category_path(parent), class: "parent_category",id: "#{parent.id}"
+      .children_list
+      .grand_children_list
 
   .header__contents__bottom__left__brand
     = link_to "", class: "search-link"  do

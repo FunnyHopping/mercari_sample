@@ -20,4 +20,12 @@ class PagesController < ApplicationController
     @transacted_items  = @user.sold_items.where(transact: true)
   end
 
+  def new
+    @children = Category.find(params[:parent_id]).children
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
 end

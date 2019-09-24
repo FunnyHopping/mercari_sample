@@ -1,17 +1,16 @@
 //カテゴリードロップダウン
-.category-dropdown {
+.category_list {
   position: absolute;
   top: 44px;
-  z-index: 3;
+  z-index: 10;
   left: 0px;
 }
 
-.parent-menu {
+.parents_list {
+  display: none;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   width: 224px;
-  display: none;
-  
 }
 
 .parent_category {
@@ -29,14 +28,14 @@
   }
 }
 
-.child-menu {
+.children_list {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-  width: 224px;
-  position: relative;
-  top: -44px;
   left: 224px;
-  display: none;
+  position: absolute;
+  top: 0px;
+  width: 224px;
+  z-index: 10;
 }
 
 .child_category {
@@ -47,22 +46,22 @@
   white-space: nowrap;
   overflow: hidden;
   padding: 0px 16px;
+  z-index: 10;
 
   &:hover {
-    position: absolute;
     background: rgb(234, 53, 45);
     color: rgb(255, 255, 255);
   }
 }
 
-.grand-child-menu {
+.grand_children_list {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-  width: 300px;
-  position: relative;
+  left: 448px;
+  position: absolute;
   top: 0px;
-  left: 224px;
-  display: none;
+  width: 320px;
+  z-index: 10;
 }
 
 .grand_child_category {
@@ -73,6 +72,7 @@
   white-space: nowrap;
   overflow: hidden;
   padding: 0px 16px;
+  z-index: 10;
 
   &:hover {
     background: rgb(234, 53, 45);
