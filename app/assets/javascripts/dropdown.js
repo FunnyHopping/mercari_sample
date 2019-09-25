@@ -1,10 +1,11 @@
-  //カテゴリーメニュー
+  //親カテゴリーメニュー
   $(function(){
+
     $('.header__contents__bottom__left__category').hover(function(){
       $('.parents_list').show();
     }, function() {
       $('.parents_list').hide();
-    });
+    }); 
   });
 
     //ブランドメニュー
@@ -16,8 +17,8 @@
     });
   });
 
+   // 子カテゴリー
   $(function() {
-    // 子カテゴリーを追加するための処理です。
       function buildChildHTML(child){
         var html =`<a class="child_category" id="${child.id}" 
                     href="/category/${child.id}">${child.name}</a>`;
@@ -25,6 +26,7 @@
       }
     
       $(document).on("mouseover", ".parent_category", function () {
+        
         var id = this.id//どのリンクにマウスが乗ってるのか取得します
 
         $.ajax({
@@ -35,15 +37,14 @@
         }).done(function(children) {
           children.forEach(function (child) {//帰ってきた子カテゴリー（配列）
             var html = buildChildHTML(child);//HTMLにして
-            $(".children_list").append(html);//リストに追加します
+            $(".children_list").append(html);//リストに追加
           })
           $(document).on("mouseover", ".parent_category", function () {
             $(".child_category").remove();
-          console.log(child)
-        });
+        });        
       });
     });
-      // 孫カテゴリを追加する処理です基本的に子要素と同じです！
+      // 孫カテゴリ
       function buildGrandChildHTML(child){
         var html =`<a class="grand_child_category" id="${child.id}"
                    href="/category/${child.id}">${child.name}</a>`;
@@ -63,9 +64,9 @@
             var html = buildGrandChildHTML(child);
             $(".grand_children_list").append(html);
           })
-          $(document).on("mouseover", ".child_category", function () {
+          $(document).on("mouseover", ".child_category, .parent_category", function () {
             $(".grand_child_category").remove();
           });
         });
-      });  
-    });
+      });
+    });  
