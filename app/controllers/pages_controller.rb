@@ -19,5 +19,4 @@ class PagesController < ApplicationController
     @transaction_items = @user.sold_items.where(transact: false)
     @transacted_items  = @user.sold_items.where(transact: true)
   end
-
 end

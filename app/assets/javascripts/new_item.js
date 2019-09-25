@@ -43,6 +43,8 @@ function previewAction(){
   } else if (arrayCount == 10) {
     $previewList2.css({"width":"620px","margin":0});
     $dropBox.removeClass().addClass("drop");
+  } else {
+    $dropBox.hide()
   }
 }
 
@@ -52,16 +54,19 @@ $(document).on("turbolinks:load",function() {
     files_array = []
     
     $($fileField).on('change', $fileField, function(e) {
-      files = e.target.files
-      result = e.target.result
-      for (var i=0; i<files.length; i++) {
+      
+        files = e.target.files
+        result = e.target.result
+        for (var i=0; i<files.length; i++) {          
+          if (files_array.length >= 10){
+            break
+          }
+        files_array.push(files[i])
 
-      files_array.push(files[i])
-
-      reader = new FileReader(),
-      $previewBox = $("#preview_box");
-      $previewList = $("#preview_list");
-      $previewList2 = $("#preview_list2");
+        reader = new FileReader(),
+        $previewBox = $("#preview_box");
+        $previewList = $("#preview_list");
+        $previewList2 = $("#preview_list2");
         if (files_array.length == 1){
           if($previewBox.children().length == 2){
             $previewBox.pop();
@@ -184,42 +189,8 @@ $(document).on("turbolinks:load",function() {
   })
 })
 
-
-    // 現状の動作確認保存用
-// $(document).on("turbolinks:load",function() {
-//   $(function(){
-//     $fileField = $("#item_images")
-    
-//     targetFiles_array = []
-//     targetResult_array = []
-//     $($fileField).on('change', $fileField, function(e) {
-//       $.each(e.target.files, function(i,val){
-//       file = e.target.files[i]
-//       reader = new FileReader(),    
-//         $preview = $("#preview_list");
-        
-//         reader.onload = (function(file){
-//           return function(e){
-//             let img = $('<img>').attr({src: e.target.result})
-//             let previewBox = `<li class="upload-sell-item">
-//                               <figure class="upload-sell-figure">
-//                               <img src="${img[0].src}">
-//                               </figure>
-//                               <div class="upload-sell-btn">
-//                               <a class="upload-sell-edit" href="/">編集</a>
-//                               <a class="upload-sell-delete" href="/">削除</a>
-//                               </div>
-//                               </li>`
-//             $preview.append(previewBox)
-//           }
-//         })(file);
-//         reader.readAsDataURL(file);
-//       })
-//     })
-//   })
-// });
                     
-                    // ネスト構造のセレクトボックスの段階表示
+      // ネスト構造のセレクトボックスの段階表示
 $(document).on("turbolinks:load",function() {
   function appendOption(select){
     let html = `<option value="${select.id}">${select.name}</option>`
@@ -234,7 +205,7 @@ $(document).on("turbolinks:load",function() {
                           ${insertHTML}
                       </select>
                       </div>`
-    $("#category-select-box_list").append(childBoxHTML);
+    $("#parent_box").after(childBoxHTML);
   }
 
   function grandChildBox(insertHTML){
@@ -245,7 +216,7 @@ $(document).on("turbolinks:load",function() {
                                 ${insertHTML}
                               </select>
                             </div>`
-    $("#category-select-box_list").append(grandChildBoxHTML);
+    $("#child_box").after(grandChildBoxHTML);
   }
 
   function postagePlanBox(insertHTML){
@@ -279,8 +250,8 @@ $(document).on("turbolinks:load",function() {
         .done(function(childs){
           $("#child_box").remove();
           $("#grandchild_box").remove();
-          $("#size_box").remove();
-          $("#brand_box").remove();
+          // $("#size_box").remove();
+          // $("#brand_box").remove();
           let insertHTML = "";
           childs.forEach(function(child){
             insertHTML += appendOption(child);
@@ -293,8 +264,8 @@ $(document).on("turbolinks:load",function() {
       } else {
         $("#child_box").remove();
         $("#grandchild_box").remove();
-        $("#size_box").remove();
-        $("#brand_box").remove();
+        // $("#size_box").remove();
+        // $("#brand_box").remove();
       }
     })
 
@@ -312,8 +283,8 @@ $(document).on("turbolinks:load",function() {
           })
           .done(function(grandchilds){
             $("#grandchild_box").remove();
-            $("#size_box").remove();
-            $("#brand_box").remove();
+            // $("#size_box").remove();
+            // $("#brand_box").remove();
             let insertHTML = "";
             grandchilds.forEach(function(grandchild){
               insertHTML += appendOption(grandchild);
@@ -325,8 +296,8 @@ $(document).on("turbolinks:load",function() {
           })
         } else {
           $("#grandchild_box").remove();
-          $("#size_box").remove();
-          $("#brand_box").remove();
+          // $("#size_box").remove();
+          // $("#brand_box").remove();
         }
       })
     })
@@ -360,6 +331,61 @@ $(document).on("turbolinks:load",function() {
       })
     })
   });
+});
+
+    // ブランドのインクリメンタルサーチ
+$(document).on("turbolinks:load",function() {
+  var addResult = $("#search_brand_result");
+
+  function brandHit(brand) {
+    var html = `<li id="${brand.id}" class="brand_box_list">${brand.name}</li>`
+    addResult.append(html);
+  }
+  $(function(){
+    $("#input_brand_box").on("keyup", function() {
+      var input = $("#input_brand_box").val();
+      $.ajax({
+        type: 'GET',
+        url: '/brands/search_brand',
+        data: { keyword: input },
+        dataType: 'json'
+      })
+      .done(function(brands) {
+          $("#search_brand_result").children().remove();
+        if(input == ""){
+          $("#search_brand_result").children().remove();
+          return
+        }
+        if (brands.length !== 0) {
+          brands.forEach(function(brand) {
+            brandHit(brand);
+          });
+        }
+      })
+      .fail(function() {
+        console.log('NG');
+      });
+    });
+  })
+});
+
+    // インクリメンタルサーチ候補の非同期
+$(document).on("turbolinks:load",function() {
+  $(function(){
+    $(document).on('mouseover',"#search_brand_result > li", function(){
+      $(this).css({"color":"#fff","background":"#0099e8"})
+    })
+    $(document).on('mouseout',"#search_brand_result > li", function(){
+      $(this).css({"color":"#333","background":"#fff"})
+    })
+    $(document).on('click',"#search_brand_result li", function(){
+      let brandText = $(this).text();
+      let brandId = $(this).attr("id");
+      $("#input_brand_box").val(brandText);
+      $("#item_brand_id").val(brandId);
+      $("#search_brand_result > li").remove()
+    })
+  })
 });
 
 
