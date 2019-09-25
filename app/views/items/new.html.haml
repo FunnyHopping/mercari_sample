@@ -55,8 +55,8 @@
               .form-group#size_box
                 %label
                   サイズ
-                  %span.form-require
-                    必須
+                  %span.form-arbitrary
+                    任意
                 .select-wrap
                   %i.icon-arrow-bottom
                   = f.select :size, options_for_select(Item.sizes.keys), {}, class: "select-default"
@@ -66,7 +66,10 @@
                   %span.form-arbitrary
                     任意
                 %div
-                  = f.text_field :brand_id, placeholder: "例）シャネル", class: "input-default"
+                  = f.text_field :hoge_id, placeholder: "例）シャネル", class: "input-default", id: "input_brand_box", name: "brand_name"
+                  = f.hidden_field :brand_id
+                  #search_brand_box
+                    %ul#search_brand_result
             .form-group
               %label
                 商品の状態
@@ -144,4 +147,3 @@
           = link_to root_path, class: "btn-default btn-gray" do
             戻る
   = render "shared/logo_footer"
-

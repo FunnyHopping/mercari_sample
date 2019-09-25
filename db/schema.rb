@@ -38,11 +38,27 @@ ActiveRecord::Schema.define(version: 2019_09_19_084632) do
     t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "street_num", null: false
-    t.string "building", null: false
+    t.string "building"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "brand_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_brand_groups_on_ancestry"
+    t.index ["name"], name: "index_brand_groups_on_name"
+  end
+
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_brands_on_name"
   end
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -56,9 +72,10 @@ ActiveRecord::Schema.define(version: 2019_09_19_084632) do
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "ancestry"
-    t.string "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["name"], name: "index_categories_on_name"
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -75,6 +92,8 @@ ActiveRecord::Schema.define(version: 2019_09_19_084632) do
     t.string "name", null: false
     t.integer "price", null: false
     t.text "introduct", null: false
+    t.integer "size"
+    t.integer "brand_id"
     t.string "size"
     t.integer "condition", null: false
     t.integer "postage_id", null: false
@@ -86,7 +105,6 @@ ActiveRecord::Schema.define(version: 2019_09_19_084632) do
     t.boolean "transact", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
 
   create_table "nices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -118,11 +136,17 @@ ActiveRecord::Schema.define(version: 2019_09_19_084632) do
   create_table "postages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "ancestry"
-    t.string "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_postages_on_ancestry"
+    t.index ["name"], name: "index_postages_on_name"
   end
 
+  create_table "relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "brand_id"
+    t.integer "brand_group_id"
+  end
+  
   create_table "transacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "evaluat", null: false
     t.boolean "confirmat", default: false
