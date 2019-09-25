@@ -31,6 +31,7 @@ class CategoriesController < ApplicationController
   def new
   end
 
+
   def get_child_category
     respond_to do |format|
       format.html

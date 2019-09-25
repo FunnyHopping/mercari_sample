@@ -288,8 +288,8 @@ h2 {
     font-size: 14px;
     position: absolute;
     left: 3;
-    z-index: 10;
     color: #fff;
+    z-index: 2;
     transform: rotate(-45deg);
     letter-spacing: 0px;
     font-weight: 600;
@@ -306,6 +306,5 @@ h2 {
     width: 0;
     height: 0;
     border-style: solid;
-    z-index: 2;
   }
 }
