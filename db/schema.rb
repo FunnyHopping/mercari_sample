@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_034055) do
+ActiveRecord::Schema.define(version: 2019_09_19_084632) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -78,12 +78,23 @@ ActiveRecord::Schema.define(version: 2019_09_19_034055) do
     t.index ["name"], name: "index_categories_on_name"
   end
 
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text", null: false
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
     t.text "introduct", null: false
     t.integer "size"
     t.integer "brand_id"
+    t.string "size"
     t.integer "condition", null: false
     t.integer "postage_id", null: false
     t.integer "prefecture_id", null: false
@@ -94,6 +105,32 @@ ActiveRecord::Schema.define(version: 2019_09_19_034055) do
     t.boolean "transact", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+  create_table "nices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_nices_on_item_id"
+    t.index ["user_id"], name: "index_nices_on_user_id"
+  end
+
+  create_table "ordercomments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "user_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_ordercomments_on_order_id"
+    t.index ["user_id"], name: "index_ordercomments_on_user_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "state", default: 0
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_orders_on_item_id"
   end
 
   create_table "postages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -108,8 +145,18 @@ ActiveRecord::Schema.define(version: 2019_09_19_034055) do
   create_table "relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "brand_id"
     t.integer "brand_group_id"
+  end
+  
+  create_table "transacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "evaluat", null: false
+    t.boolean "confirmat", default: false
+    t.text "body"
+    t.integer "give_id"
+    t.integer "take_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_transacts_on_item_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -137,4 +184,12 @@ ActiveRecord::Schema.define(version: 2019_09_19_034055) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "users"
+  add_foreign_key "nices", "items"
+  add_foreign_key "nices", "users"
+  add_foreign_key "ordercomments", "orders"
+  add_foreign_key "ordercomments", "users"
+  add_foreign_key "orders", "items"
+  add_foreign_key "transacts", "items"
 end

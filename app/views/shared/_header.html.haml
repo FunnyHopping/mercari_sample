@@ -12,13 +12,12 @@
     .header__contents__bottom
       .header__contents__bottom__left
         .header__contents__bottom__left__category
-          = link_to "", class: "search-link" do
+          = link_to categories_path, class: "search-link" do
             %i.category-icon
             カテゴリーから探す
-          //カテゴリー一覧のドロップダウンメニュー
-          .category-dropdown
-            %ul
-              %li
+            
+        = render 'shared/category-dropdown'
+
         .header__contents__bottom__left__brand
           = link_to "", class: "search-link"  do
             %i.brand-icon
