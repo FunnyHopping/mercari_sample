@@ -43,6 +43,8 @@
           line-height: 44px;
           text-align: center;
           color: #0099e8;
+          border-left: 1px solid #eee;
+          cursor: pointer;
         }
       }
     }
@@ -263,6 +265,10 @@ h2 {
           &__drop-4 {
             @include dropbox();
             width: 106px;
+          }
+          &__drop {
+            @include dropbox();
+            display: none;
           }
         }
         &__index-box {

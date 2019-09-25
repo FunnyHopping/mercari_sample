@@ -26,13 +26,35 @@ class ItemsController < ApplicationController
     @comments = @item.comments.order('created_at ASC')
   end
 
-  def edit                        
+  def edit
+    @item = Item.find(params[:id])
+    @parents = Category.all.order("id ASC").limit(13)
+    @postages = Postage.all.order("id ASC").limit(2)
+    gon.item = @item
+    img_array = []
+    @item.images.each do |image|
+      img_array.push(image)
+    end
+    gon.img_array = img_array
   end
 
   def update
+    @item = Item.find(params[:id])
+      if num_params[:num] != nil
+        num_params[:num].each do |n|
+          n = n.to_i
+          @item.images[n].purge
+        end
+      end
+      if image_params[:images] != nil
+        @item.update(image_params)
+      end
+      @item.update(item_params)
   end
 
   def destroy
+    item = Item.find(params[:id])
+    item.destroy if item.saler_id == current_user.id
   end
 
   private
@@ -46,5 +68,8 @@ class ItemsController < ApplicationController
   def image_params
     params.require(:new_images).permit(images: [])
   end
-
+  
+  def num_params
+    params.require(:new_images).permit(num: [])
+  end
 end
