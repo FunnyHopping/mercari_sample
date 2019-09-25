@@ -16,8 +16,8 @@ class User < ApplicationRecord
   has_many :nices
   has_many :nice_items, through: :nices, source: :item
 
-  has_many :give_tranascts, class_name: "Transact", foreign_key: :give_id
-  has_many :givers, through: :give_tranascts, source: :give
+  has_many :give_transacts, class_name: "Transact", foreign_key: :give_id
+  has_many :givers, through: :give_transacts, source: :give
 
   has_many :take_tranascts, class_name: "Transact", foreign_key: :take_id
   has_many :takers, through: :take_tranascts, source: :take

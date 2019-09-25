@@ -3,12 +3,18 @@
   padding: 24px 40px 40px;
   margin: 40px auto 0;
   width: 700px;
+  display: block;
+
   &__name {
     font-size: 24px;
     text-align: center;
     word-wrap: break-word;
     line-height: 1.4;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
   }
+
   &__seller-info {
     margin: 8px 0 0;
     font-size: 14px;
@@ -16,21 +22,20 @@
     line-height: 1.5;
     word-wrap: break-word;
   }
+
   .item-main-content {
     margin-top: 16px;
 
     &__photo {
       float: left;
       width: 300px;
-      height: 300px;
+      min-height: 375px;
+      max-height: 420px;
       background-color: #fafafa;
+      margin: 0 auto;
       position: relative;
-    }
-  
-    &__flex-wrapper {
-      display: flex;
-    }
-
+      }
+   
     .item-detail-table {
       max-width: 300px;
       height: 420px;
@@ -38,8 +43,13 @@
       width: 100%;
       border-collapse: collapse;
       border: 1px solid #f5f5f5;
+
       a {
         color: #0099e8;
+        display: block;
+        &:first-child {
+          margin: 0;
+        }
       }
     
       tbody {
@@ -47,6 +57,7 @@
         vertical-align: middle;
         border-color: inherit;
       }
+
       th {
         width: 39%;
         text-align: left;
@@ -57,53 +68,131 @@
         padding: 16px 8px;
         background-color: #fafafa;
       }
+
       td {
+        width: 61%;
+        background: #fff;
         border-collapse: collapse;
         border: 1px solid #f5f5f5;
         padding: 8px;
+
+        .user-ratings {
+
+          .user-rating {
+            display: inline-block;
+            margin: 8px 0 0 16px;
+            &:first-child {
+              margin: 0;
+            }
+
+            span {
+              vertical-align: middle;
+            }
+
+          }
+        
+        }
+
       }
     }
-  
+
     &__price {
       margin: 24px 0 0;
       text-align: center;
-      &__item-price{
+
+      &__item-price {
         margin: 0 16px 0 0;
         font-size: 50px;
         font-weight: 600;
+      
       }
+      
       &__tax {
         font-size: 10px;
       }
+
       &__shipping-fee {
         display: inline-block;
         font-size: 16px;
       }
+
     }
   
-    .item-buy-btn {
-      display: block;
-      margin-top: 16px;
-      background: #ea352d;
-      font-size: 24px;
-      color: #fff;
-      line-height: 56px;
-      text-align: center;
-      font-weight: 600;
-      -webkit-transition: all ease-out .3s;
-      transition: all ease-out .3s;
-    }
-
     &__description {
       padding: 24px 0 0;
       line-height: 1.5;
       font-size: 18px;
+
       &__item-description {
           white-space: pre-wrap;
       }
+
     }
+
   }
+
 }
+
+.listing-item-change-box {
+  margin: 24px auto 24px;
+  background: #fff;
+  padding: 8px 16px 8px 16px;
+  width: 700px;
+  
+  .change-btn {
+    display: block;
+    width: 100%;
+    margin: 16px 0 16px 0;
+    background: #ea352d;
+    border: 1px solid #ea352d;
+    font-size: 14px;
+    color: #fff;
+    line-height: 48px;
+    text-align: center;
+    font-weight: 400;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+  }
+
+  p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .stop-btn {
+    margin: 16px 0 16px 0;
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .delete-btn {
+    margin: 16px 0 16px 0;
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+  }
+
+}
+
 .item-buy-btn {
   display: block;
   margin-top: 16px;
@@ -116,6 +205,7 @@
   -webkit-transition: all ease-out .3s;
   transition: all ease-out .3s;
 }
+
 .item-sold-btn {
   display: block;
   margin-top: 16px;
@@ -128,7 +218,6 @@
   font-weight: 600;
   transition: all ease-out .3s;
 }
-
 
 .message-container {
   margin: 8px auto;
@@ -151,9 +240,11 @@
           top: -20px;
           display: inline-block;
           color: #333;
+
           img {
             width: 100%;
           }
+
         }
 
         &__body {
@@ -171,8 +262,11 @@
             display: block;
             color: #aaa;
           }
+
         }
+
       }
+
     }
     .message-form {
       p {
@@ -194,7 +288,6 @@
         line-height: 1.5;
         text-align: start;
         resize: vertical;
-
         &:focus {
           border: 1px solid #0099E8;
           outline: 0;
@@ -215,11 +308,15 @@
       border: 1px solid #aaa;
       color: #fff;
       }
+
     }
+
   }
+
 }
 
 .item__sold-flag{
+
   &__text {
     top: 24px;
     font-size: 28px;
@@ -231,6 +328,7 @@
     letter-spacing: 1px;
     font-weight: 600;
   }
+
   &::after {
     border-width: 120px 120px 0 0;
     border-color: #ea352d transparent transparent transparent;
@@ -244,11 +342,77 @@
     height: 0;
     border-style: solid;
   }
+
 }
-.item-links {
-  margin: 24px auto 0;
-  width: 700px;
-  display: flex;
-  justify-content: space-between;
-  color: #0099E8;
+
+//商品削除のモーダルウィンドウ
+.delete-modal {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: all ease-out .3s;
+  opacity: 1s;
+  transform: translate(0, 0);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.modal-banner {
+  text-align: center;
+}
+
+.modal-inner {
+  position: relative;
+  overflow: hidden;
+  width: 600px;
+  margin: 20px auto;
+  display: none; 
+  background: #fff;
+  z-index: 7;  
+}
+
+.modal-banner-body {
+  padding: 64px;
+  line-height: 1.5;
+
+}
+
+.modal-head {
+  font-size: 16px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.modal-btn-cancel {
+  float: left;
+}
+
+.modal-btn {
+  border-top: 1px solid #ccc;
+  width: 50%;
+  text-align: center;
+  line-height: 63px;
+  cursor: pointer;
+  margin-top:10px;
+}
+
+.modal-btn-submit {
+  float: right;
+  border-left: 1px solid #ccc;
+  color: #0099e8;
 }
