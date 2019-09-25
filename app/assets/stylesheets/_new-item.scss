@@ -43,6 +43,8 @@
           line-height: 44px;
           text-align: center;
           color: #0099e8;
+          border-left: 1px solid #eee;
+          cursor: pointer;
         }
       }
     }
@@ -264,6 +266,10 @@ h2 {
             @include dropbox();
             width: 106px;
           }
+          &__drop {
+            @include dropbox();
+            display: none;
+          }
         }
         &__index-box {
           padding: 40px;
@@ -301,6 +307,25 @@ h2 {
                 font-weight: 600;
                 display: inline-block;
               }
+              div{
+                position: relative;
+                #search_brand_result {
+                  overflow: auto;
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  z-index: 10;
+                  max-height: 280px;
+                  background: #fff;
+                  box-shadow: 0 0 4px 0 rgba(0,0,0,0.64);
+                  scrollbar-face-color: #333;
+                  li {
+                    padding: 16px 8px;
+                    font-size: 14px;
+                    cursor: pointer;
+                  }
+              }
+                }
                 .select-wrap {
                   margin: 8px 0 0;
                   position: relative;
