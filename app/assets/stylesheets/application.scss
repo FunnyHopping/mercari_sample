@@ -16,6 +16,13 @@
 @import "session_new";
 @import "item_index";
 @import "error-text";
+@import "order_show";
+@import "category_index";
+@import "category_show";
+@import "top-moove-icon";
+@import "nice";
+@import "nice_index";
+
 @import "item_show";
 @import "card_new";
 @import "card_edit";
@@ -37,3 +44,8 @@
 @import "owl.theme.default";
 @import "sell-icon";
 @import "page_show_tranzact";
+
+@import "config/slick";
+@import "config/slick-theme";
+@import "config/item-slick";
+@import "config/dropdown"

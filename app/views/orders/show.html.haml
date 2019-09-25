@@ -1,0 +1,15 @@
+.container
+  = render 'shared/header_mypage'
+  - breadcrumb :order
+  = render "shared/breadcrumbs"
+  - if @item.transact?
+    = render "shared/order_show5"
+  - else
+    = render "shared/order_show4"
+= render 'shared/footer'
+
+                
+
+
+      
+      

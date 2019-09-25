@@ -10,64 +10,94 @@
   -if user_signed_in?
   -else
     %p.item-info-container__seller-info
-      = "『#{@item.name}』は{@user.rating.count}回の取引実績を持つ#{@item.saler.name}さんから出品されました。"
+      = "『#{@item.name}』は#{@user.take_transacts.count}回の取引実績を持つ#{@item.saler.name}さんから出品されました。"
       %br
-      = "#{@item.category.name}/#{@item.category.parent.parent.name}の商品で、#{Address.find(@item.saler_id).city}から#{@item.shipping_date}日で発送されます。"
+      = "#{@item.category.name}/#{@item.category.parent.parent.name}の商品で、#{Prefecture.find(@item.prefecture_id).name}から#{@item.shipping_date}日で発送されます。"
 
   .item-main-content
-    .item-main-content__flex-wrapper
-      .item-main-content__photo
-        = image_tag "#{@item.images.first}"
-      %table.item-detail-table
-        %tbody
+    .item-main-content__photo
+      - if @item.buyer_id != nil
+        .item__sold-flag
+          .item__sold-flag__text
+            SOLD
+
+      #wrap
+        %ul#slider
+          - if @item.images.attached?
+            - @item.images.each do |image|
+              %li.slide-item
+                = image_tag image, class: "item-thumbnail",height: '300', width: '300'
+        %ul#thumbnail-list
+          - if @item.images.attached?
+            - @item.images.each do |image|
+              %li.thumbnail-item
+                = image_tag image, class: "item-thumbnail", height: '60', width: '60'
+
+
+    %table.item-detail-table
+      %tbody
+        %tr
+          %th 出品者
+          %td
+            = link_to user_path(@user.id) do
+              = @item.saler.name
+            .user-ratings
+              .user-rating
+                %i.rating-good
+                %span
+                = @user.take_transacts.count
+              .user-rating
+                %i.rating-normal
+                %span
+                  0
+              .user-rating
+                %i.rating-bad
+                %span
+                  0
+        %tr
+          %th カテゴリー
+          %td
+            = link_to category_path(@item.category.parent.parent.id) do
+              = @item.category.parent.parent.name
+            %br
+            = link_to category_path(@item.category.parent.id) do
+              %i.chevron-right
+              = @item.category.parent.name
+            %br
+            = link_to category_path(@item.category.id) do
+              %i.chevron-right
+              = @item.category.name
+        %tr
+          %th ブランド
+          %td 
+            -#   = @item.brand.name
+        -if @item.size
           %tr
-            %th 出品者
+            %th 商品のサイズ
             %td
-              = link_to "" do
-                = @item.saler.name
-          %tr
-            %th カテゴリー
-            %td
-              = link_to "" do
-                = @item.category.parent.parent.name
-              %br
-              = link_to "" do
-                %i.chevron-right
-                = @item.category.parent.name
-              %br
-              = link_to "" do
-                %i.chevron-right
-                = @item.category.name
-          %tr
-            %th ブランド
-            %td 
-          -if @item.size
-            //商品サイズがあるときのみ表示させる
-            %tr
-              %th 商品のサイズ
-              %td
-                = @item.size
-          %tr
-            %th 商品の状態
-            %td
-              = @item.condition
-          %tr
-            %th 配送料の負担
-            %td 
-              = @item.postage.parent.name
-          %tr
-            %th 配送の方法
-            %td
-              = @item.postage.name
-          %tr
-            %th 配送元地域
-            %td
-              = link_to "" do
-                = Address.find(@item.saler_id).city
-          %tr
-            %th 発送日の目安
-            %td
-              = @item.shipping_date
+              = @item.size
+        %tr
+          %th 商品の状態
+          %td
+            = @item.condition
+        %tr
+          %th 配送料の負担
+          %td 
+            = @item.postage.parent.name
+        %tr
+          %th 配送の方法
+          %td
+            = @item.postage.name
+        %tr
+          %th 配送元地域
+          %td
+            = link_to "" do
+              = Prefecture.find(@item.prefecture_id).name
+        %tr
+          %th 発送日の目安
+          %td
+            = @item.shipping_date
+  
     .item-main-content__price
       %span.item-main-content__price__item-price
         = "￥#{@item.price.to_s(:delimited, delimiter: ',')}"
@@ -75,34 +105,66 @@
         (税込)
       %span.item-main-content__price__shipping-fee
         = @item.postage.parent.name.delete("(購入者負担)").delete("出品")
-    .item-buy-btn
-      = link_to new_payment_path(@item.id) do
-        購入画面に進む
+    -if user_signed_in? && @item.saler_id != current_user.id
+      - if @item.buyer_id != nil
+        .item-sold-btn
+          売り切れました
+      - else
+        = link_to new_payment_path(item_id: @item.id), class:"item-buy-btn" do
+          購入画面に進む
+
     .item-main-content__description
       %p.item-main-content__description__item-description
-        = @item.introduct
-.message-container
+        = simple_format(@item.introduct)
+    .nice-clearfix
+      .nice-clearfix__btn-left
+        = link_to nices_path(item_id:@item.id),method: :post, remote: true,class: "nice-clearfix__btn-left__nice" do
+          - if user_signed_in? && current_user.nices.where(item_id: @item.id).length != 0
+            %i.icon-heart-border-on.nice-btn
+          -else
+            %i.icon-heart-border.nice-btn
+          %span.text= "いいね！"
+          %span.nice-num= "1"
 
--# 以下コメント欄
+-if user_signed_in? && @item.saler_id == current_user.id
+  .listing-item-change-box
+    = link_to edit_item_path(@item.id), class:"change-btn" do
+      商品の編集
+    %p 
+      or
+    = form_with  do |f|
+      = f.submit "商品を一旦停止する", class: "stop-btn"
+      //削除ボタンクリックでモーダル表示（記述はコメント要素の後）
+    %button.delete-btn
+      この商品を削除する
+      
+.message-container
+  - @comments.each do |comment|
+    = render partial: 'shared/comments', locals: {comment: comment}
+
   .message-content
-    %ul.messages
-      %li.messages__message.clearfix
-        %a.messages__message__user{href: "/"}
-          %figure
-            %div
-              %img
-            %figcaption.bold
-              user
-        .messages__message__body
-          .message__body__text
-            tetetetetetetetetextああああああテキスト
-          .message__body__icons
-            = icon 'far', 'clock'
-            1日前
-  .message-content
-    = form_with url: '/', local: true, class: "message-form" do |form|
+    = form_with model: Comment.new, local: true ,class: "message-form", url: comments_path(item_id: params[:id]) do |form|
       %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
       =form.text_area :text ,class: "message-form__field"
-      =form.button type: "submit", class: "message-form__submit-btn" 
+      =form.button type: "submit", class: "message-form__submit-btn"
+    
+  //商品削除モーダルウィンドウ
+%aside.delete-modal
+  .modal-inner.modal-banner
+    .modal-banner-body
+      .modal-head.bold
+        確認
+      削除すると二度と復活できません。
+      %br
+      削除する代わりに停止することもできます。
+      %br
+      %br
+      本当に削除しますか？
+    .clearfix
+      .modal-btn.modal-btn-cancel
+        キャンセル
+      = link_to "" do
+        %button.modal-btn.modal-btn-submit
+          削除する
 
 = render 'shared/footer'

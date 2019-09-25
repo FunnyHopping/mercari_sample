@@ -1,9 +1,4 @@
 class ItemsController < ApplicationController
-  
-  def index
-    @parents = Category.all.order("id ASC").limit(13)
-    
-  end
 
   def new
     @item = Item.new
@@ -15,16 +10,20 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.update(image_params)
     @item.save!
+    @order = Order.new(item_id: @item.id)
+    @order.save!
+    redirect_to controller: 'pages', action: 'index'
   end
 
   def index
     @search_items = Item.order("created_at DESC").ransack(params[:q])
-    @items = @search_items.result(distinct: true)
+    @items = @search_items.result(distinct: true).page(params[:page]).per(1)
   end
 
   def show
     @item = Item.find(params[:id])
     @user = User.find(@item.saler_id)
+    @comments = @item.comments.order('created_at ASC')
   end
 
   def edit
@@ -69,7 +68,7 @@ class ItemsController < ApplicationController
   def image_params
     params.require(:new_images).permit(images: [])
   end
-
+  
   def num_params
     params.require(:new_images).permit(num: [])
   end

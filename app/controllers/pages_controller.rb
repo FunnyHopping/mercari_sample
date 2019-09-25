@@ -9,12 +9,14 @@ class PagesController < ApplicationController
     end
     gon.parent_category = parent_category
     gon.child_category
-    
+
     @items = Item.order("created_at DESC").limit(10)
+    @parents = Category.where(ancestry: nil)
   end
 
   def show
-    @transaction_items = current_user.sold_items.where(transact: false)
+    @user = User.find(params[:id])
+    @transaction_items = @user.sold_items.where(transact: false)
+    @transacted_items  = @user.sold_items.where(transact: true)
   end
 end
-

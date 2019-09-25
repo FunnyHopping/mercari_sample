@@ -49,9 +49,15 @@ $blue: rgb(0, 149, 238);
         margin-left: -3px;
         &__category {
           @include searchIndex;
+          position: relative;
+          display: block;
+          cursor: pointer;
         }
         &__brand {
           @include searchIndex;
+          position: relative;
+          display: block;
+          cursor: pointer;
         }
       }
       &__right {

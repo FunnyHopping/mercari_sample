@@ -11,26 +11,10 @@
           = f.submit class: "submit"
           %i.search-icon
 
+      //「カテゴリーから探す」「ブランドから探す」を部分テンプレート化
     .header__contents__bottom
-      .header__contents__bottom__left
-        .header__contents__bottom__left__category
-          = link_to "", class: "search-link" do
-            %i.category-icon
-            カテゴリーから探す
-          //カテゴリー一覧のドロップダウンメニュー
-          -# .category-dropdown
-          -#   %ul
-          -#     %li
-        .header__contents__bottom__left__brand
-          = link_to "", class: "search-link"  do
-            %i.brand-icon
-            ブランドから探す
-          //ブランドー一覧のドロップダウンメニュー
-          -# .brand-dropdown
-          -#   %ul
-          -#     %li
+      = render 'shared/dropdown'
 
-        //ユーザーログイン
       %ul.header__contents__bottom__right
         %li.header__contents__bottom__right__list
           = link_to "", class: "user-info" do

@@ -7,6 +7,11 @@ crumb :mypage do
   parent :root
 end
 
+crumb :categories do
+  link "カテゴリー一覧", categories_path
+  parent :root
+end
+
 crumb :profile do
   link "プロフィール"
   parent :mypage
@@ -22,9 +27,53 @@ crumb :logout do |logout|
   parent :mypage
 end
 
-crumb :category do |category|
-  link "@#{category.name}", logout_path
+crumb :order_result do |order_result|
+  link "購入した商品 - 過去の取引", root_path
   parent :mypage
+end
+
+crumb :order do |order|
+  link "支払い画面", order_path
+  parent :order_result
+end
+
+crumb :nice do |nice|
+  link "いいね一覧", nices_path
+  parent :mypage
+end
+
+crumb :ParentCategory do |category|
+  category = Category.find(params[:id])
+  if category.parent.nil?
+    link "#{category.name}", category_path(category.id)
+  elsif category.parent.parent.nil?
+    link "#{category.parent.name}", category_path(category.parent.id)
+  else
+    link "#{category.parent.parent.name}", category_path(category.parent.parent.id)
+  end
+  parent :categories
+end
+
+crumb :ChildCategory do |category|
+  category = Category.find(params[:id])
+  if category.parent.nil?
+    link "#{category.name}", category_path(category.id)
+  else
+    link "#{category.parent.name}", category_path(category.parent.id)
+  end
+  parent :ParentCategory 
+end
+
+crumb :Category do |category|
+  category = Category.find(params[:id])
+  link "#{category.name}", category_path(params[:id])
+  if category.parent.nil?
+    parent :categories
+  elsif category.parent.parent.nil?
+    parent :ParentCategory 
+  else 
+    parent :ChildCategory
+  end
 end
 
 

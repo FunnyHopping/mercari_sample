@@ -28,7 +28,7 @@
 
 /shared/config/master.key
 # config/database.yml
-
+/assets/javascripts/payjp.js
 .env
 
 .DS_Store
