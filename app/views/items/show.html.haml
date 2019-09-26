@@ -70,7 +70,8 @@
         %tr
           %th ブランド
           %td 
-            -# = @item.brand.name
+            -if @item.brand_id
+              = @item.brand.name
         -if @item.size
           %tr
             %th 商品のサイズ
@@ -147,6 +148,7 @@
       %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
       =form.text_area :text ,class: "message-form__field"
       =form.submit class: "message-form__submit-btn", value: "コメントを送る"
+
   //商品削除モーダルウィンドウ
 %aside.delete-modal
   .modal-inner.modal-banner
