@@ -5,12 +5,12 @@ class Item < ApplicationRecord
   belongs_to :brand
 
   belongs_to :buyer, class_name: "User", optional: true
-  has_many_attached :images
-  has_one :order
+  has_many_attached :images, dependent: :deastroy
+  has_one :order, dependent: :destroy
 
-  has_many :comments
-  has_many :nices
-  has_many :nice_users, through: :nices, source: :user
+  has_many :comments, dependent: :destroy
+  has_many :nices, dependent: :destroy
+  has_many :nice_users, through: :nices, source: :user, dependent: :destroy
 
   enum size: {
     "---": nil,
