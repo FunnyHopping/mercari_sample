@@ -44,6 +44,12 @@ $blue: rgb(0, 149, 238);
       &__left {
         display: flex;
         margin-left: -3px;
+        a {
+          color: black;
+        }
+        .search-link:hover {
+          color: rgb(0, 149, 238);
+        }
         &__category {
           @include searchIndex;
           position: relative;

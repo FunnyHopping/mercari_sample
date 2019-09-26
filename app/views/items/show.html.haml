@@ -129,7 +129,7 @@
 
 -if user_signed_in? && @item.saler_id == current_user.id
   .listing-item-change-box
-    = link_to edit_item_path(@item.id), class:"change-btn" do
+    = link_to edit_item_path(@item.id), class:"change-btn", data: {"turbolinks"=>false} do
       商品の編集
     %p 
       or
@@ -148,7 +148,7 @@
       %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
       =form.text_area :text ,class: "message-form__field"
       =form.submit class: "message-form__submit-btn", value: "コメントを送る"
-  
+
   //商品削除モーダルウィンドウ
 %aside.delete-modal
   .modal-inner.modal-banner
@@ -164,7 +164,7 @@
     .clearfix
       .modal-btn.modal-btn-cancel
         キャンセル
-      = link_to "" do
+      = link_to item_path, method: "delete" do
         %button.modal-btn.modal-btn-submit
           削除する
       

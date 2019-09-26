@@ -1,5 +1,5 @@
 //親カテゴリーメニュー
-$(function(){
+$(document).on('turbolinks:load',function() {
   $('.header__contents__bottom__left__category').hover(function(){
     $('.parents_list').show();
   }, function() {

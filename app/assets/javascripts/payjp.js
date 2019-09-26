@@ -1,6 +1,6 @@
 document.addEventListener('turbolinks:load',function(){
   if ($("#token_submit").length){
-    Payjp.setPublicKey("pk_test_f59caea5ae7d04bd88784b9a"); 
+    Payjp.setPublicKey("pk_test_b19c55cbe5e866a49ecdb4ce"); 
     var btn = document.getElementById("token_submit");
     btn.addEventListener("click", e => { 
       console.log(1)
