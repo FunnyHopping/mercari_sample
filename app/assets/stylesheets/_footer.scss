@@ -37,19 +37,23 @@
   margin-right: 20px;
   width: 68px;
 }
+
 .app-store {
   height: 40px;
   margin-right: 8px;
   width: 144px;
 }
+
 .google-play {
   height: 40px;
   width: 144px;
 }
+
 .smaho-image {
   height: 260px;
   width: 300px;
 }
+
 img {
   vertical-align: middle;
 }
@@ -83,7 +87,7 @@ img {
         margin: 16px 0px 0px;
       }
     }
-    &__cluster{
+    &__cluster {
       display: inline-block;
       vertical-align: top;
       margin-top: 18px;
@@ -109,7 +113,7 @@ img {
           margin: 16px 0px 0px;
         }
       }
-      &__list2{
+      &__list2 {
         float: right;
         display: inline-block;
         padding-left: 10px;
@@ -156,18 +160,22 @@ img {
     }
   }
 }
+
 .footer-link {
   color: rgb(255, 255, 255);
   opacity: 0.7;
 }
+
 .footer__nav__btn {
   display: inline-block;
   margin-top: 30px;
 }
+
 .country-link {
   display: block;
   margin: 16px 0px 0px;
 }
+
 .logo-white{
   height: 33px;
   width: 124px;

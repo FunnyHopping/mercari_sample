@@ -3,6 +3,7 @@
   -webkit-box-pack: justify;
   justify-content: space-between;
 }
+
 @mixin searchIndex {
   cursor: pointer;
   height: 44px;
@@ -18,13 +19,11 @@ $blue: rgb(0, 149, 238);
 .header {
   background-color: $white;
   position: relative;
-  // zantei
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
   &__contents {
     width: 1020px;
     margin: 0 auto;
     padding-top: 8px;
-
     &__top {
       @include headerConfig;
       &__logo {
@@ -34,13 +33,11 @@ $blue: rgb(0, 149, 238);
         height: 40px;
         margin-right: 45px;
       }
-    &__search {
-      position: relative;
-      width: 100%;
+      &__search {
+        position: relative;
+        width: 100%;
+      }
     }
-  }
-
-
     &__bottom {
       @include headerConfig;
       margin-top: 8px;
@@ -89,7 +86,6 @@ $blue: rgb(0, 149, 238);
 }
 
 //サーチフォーム
-
 .search-form {
   background-color: rgb(245, 245, 245);
   font-size: 16px;
@@ -119,8 +115,6 @@ $blue: rgb(0, 149, 238);
   display: none;
 }
 
-
-//以下 image_tag と link_to のクラス名
 .mercari-logo {
   height: 36px;
   width: 134px;

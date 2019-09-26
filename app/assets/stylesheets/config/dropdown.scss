@@ -21,7 +21,6 @@
   white-space: nowrap;
   overflow: hidden;
   padding: 0px 16px;
-
   &:hover {
     background: rgb(234, 53, 45);
     color: rgb(255, 255, 255);
@@ -42,7 +41,6 @@
   display: block;
   padding: 8px 16px;
   z-index: 10;
-
   &:hover {
     background: rgb(223, 223, 223);
   }
@@ -51,12 +49,11 @@
 .grand_children_list {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-  left: 448px;
+  left: 224px;
   position: absolute;
   top: 0px;
   width: 320px;
-  z-index: 10;
-  
+  z-index: 10; 
 }
 
 .grand_child_category {
@@ -68,27 +65,21 @@
   }
 }
   
-
-
 //ブランドドロップダウン
 .brand-dropdown {
   position: absolute;
   top: 44px;
   z-index: 3;
   left: 0px;
-
   .dropdwn-menu2 {
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     width: 224px;
     display: none;
   }
-  
   &__list2 {
     width: 224px;
-
   }
-
   .list-text {
     display: block;
     font-size: 14px;
@@ -97,12 +88,9 @@
     white-space: nowrap;
     overflow: hidden;
     padding: 0px 16px;
-
-
     &:hover {
       background: rgb(234, 53, 45);
       color: rgb(255, 255, 255);
-    
     }
   }
 }
