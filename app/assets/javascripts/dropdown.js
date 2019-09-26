@@ -1,3 +1,4 @@
+$(document).on('turbolinks:load',function() {
   //親カテゴリーメニュー
   $(function(){
 
@@ -70,3 +71,4 @@
         });
       });
     });  
+  });

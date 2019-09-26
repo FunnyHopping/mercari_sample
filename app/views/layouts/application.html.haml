@@ -2,7 +2,11 @@
 %html
   %head
     %meta{content: "text/html; charset=UTF-8", 'http-equiv': "Content-Type"}/
-    %title メルカリ
+    %title 
+      -if Rails.env.development?
+        開発ニセカリ
+      -else
+        本番ニセカリ
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
     = csrf_meta_tags
     = csp_meta_tag
