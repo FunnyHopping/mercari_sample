@@ -477,6 +477,8 @@ $(document).on("turbolinks:load",function() {
       if (gon.item.size != null){
         $("#item_size").val(gon.item.size)
       }
+      $("#input_brand_box").val(gon.brand.name);
+      $("#item_brand_id").val(gon.brand.id);
       $("#item_condition").val(gon.item.condition);
       $("#item_shipping_date").val(gon.item.shipping_date)
     }

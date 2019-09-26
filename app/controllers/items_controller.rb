@@ -28,9 +28,12 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @brand = Brand.find(@item.brand_id)
     @parents = Category.all.order("id ASC").limit(13)
     @postages = Postage.all.order("id ASC").limit(2)
     gon.item = @item
+    gon.brand = @brand
+    gon.category = @category
     img_array = []
     @item.images.each do |image|
       img_array.push(image)
