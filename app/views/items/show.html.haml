@@ -70,7 +70,8 @@
         %tr
           %th ブランド
           %td 
-            = @item.brand.name
+            -if @item.brand_id
+              = @item.brand.name
         -if @item.size
           %tr
             %th 商品のサイズ
