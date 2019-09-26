@@ -1,6 +1,6 @@
 function previewAction(){
   let ul1Count = $("#preview_list").children().length
-  let arrayCount = files_array.length
+  let arrayCount = old_array.length + files_array.length
   $dropBox = $("#drop_box")
   $previewList = $("#preview_list")
   $previewList2 = $("#preview_list2")
@@ -43,6 +43,8 @@ function previewAction(){
   } else if (arrayCount == 10) {
     $previewList2.css({"width":"620px","margin":0});
     $dropBox.removeClass().addClass("drop");
+  } else {
+    $dropBox.hide()
   }
 }
 
@@ -50,26 +52,47 @@ $(document).on("turbolinks:load",function() {
   $(function(){
     $fileField = $("#item_images")
     files_array = []
-    
+    old_array = []
+
+    if(document.URL.match("items" && "edit")){
+      old_array = gon.img_array
+    }
+
     $($fileField).on('change', $fileField, function(e) {
-      files = e.target.files
-      result = e.target.result
-      for (var i=0; i<files.length; i++) {
-
-      files_array.push(files[i])
-
-      reader = new FileReader(),
-      $previewBox = $("#preview_box");
-      $previewList = $("#preview_list");
-      $previewList2 = $("#preview_list2");
-        if (files_array.length == 1){
-          if($previewBox.children().length == 2){
-            $previewBox.pop();
+        files = e.target.files
+        for (var i=0; i<files.length; i++) {
+          if(old_array != null) {
+            if (files_array.length >= 10 - old_array.length){
+              break
+            }
           }
+        files_array.push(files[i])
+        console.log(files_array)
+
+        reader = new FileReader(),
+        $previewBox = $("#preview_box");
+        $previewList = $("#preview_list");
+        $previewList2 = $("#preview_list2");
+        if (old_array.length + files_array.length == 1){
+
             reader.onload = (function(e){
               let imgURI = e.target.result
-              let preview =  `<ul id="preview_list">
-                                <li class="upload-sell-item">
+              if($previewList.length == 0) {
+                let preview =  `<ul id="preview_list">
+                                  <li class="upload-sell-item">
+                                    <figure class="upload-sell-figure">
+                                      <img src="${imgURI}">
+                                    </figure>
+                                    <div class="upload-sell-btn">
+                                      <a class="upload-sell-edit" href="/">編集</a>
+                                      <a class="upload-sell-delete" href="/">削除</a>
+                                    </div>
+                                  </li>
+                                </ul>`
+    
+                $previewBox.append(preview)
+              } else {
+                let preview =  `<li class="upload-sell-item">
                                   <figure class="upload-sell-figure">
                                     <img src="${imgURI}">
                                   </figure>
@@ -77,13 +100,14 @@ $(document).on("turbolinks:load",function() {
                                     <a class="upload-sell-edit" href="/">編集</a>
                                     <a class="upload-sell-delete" href="/">削除</a>
                                   </div>
-                                </li>
-                              </ul>`
-              $previewBox.append(preview)
+                                </li>`
+  
+                $previewList.append(preview)
+              }
             });
             
           reader.readAsDataURL(files[i]);
-        } else if (files_array.length < 6){
+        } else if (old_array.length + files_array.length < 6){
           if($previewBox.children().length == 2){
             $previewList2.remove();
           }
@@ -101,11 +125,25 @@ $(document).on("turbolinks:load",function() {
             $previewBox.children().append(preview2)
           });
         reader.readAsDataURL(files[i]);
-        } else if(files_array.length == 6){
+        } else if(old_array.length + files_array.length == 6){
           reader.onload = (function(e){
             let imgURI = e.target.result
-            let preview =  `<ul id="preview_list2">
-                              <li class="upload-sell-item">
+            if($previewList2.length == 0) {
+              let preview =  `<ul id="preview_list2">
+                                <li class="upload-sell-item">
+                                  <figure class="upload-sell-figure">
+                                    <img src="${imgURI}">
+                                  </figure>
+                                  <div class="upload-sell-btn">
+                                    <a class="upload-sell-edit" href="/">編集</a>
+                                    <a class="upload-sell-delete" href="/">削除</a>
+                                  </div>
+                                </li>
+                              </ul>`
+  
+              $previewBox.append(preview)
+            } else {
+              let preview =  `<li class="upload-sell-item">
                                 <figure class="upload-sell-figure">
                                   <img src="${imgURI}">
                                 </figure>
@@ -113,13 +151,13 @@ $(document).on("turbolinks:load",function() {
                                   <a class="upload-sell-edit" href="/">編集</a>
                                   <a class="upload-sell-delete" href="/">削除</a>
                                 </div>
-                              </li>
-                            </ul>`
+                              </li>`
 
-            $previewBox.append(preview)
+              $previewList2.append(preview)
+            }
           });
         reader.readAsDataURL(files[i]);
-        } else if(files_array.length <= 10){
+        } else if(old_array.length + files_array.length <= 10){
           reader.onload = (function(e){
             let imgURI = e.target.result
             let preview =  `<li class="upload-sell-item">
@@ -140,10 +178,23 @@ $(document).on("turbolinks:load",function() {
       previewAction()
     })      
 
+    num_array = []
     $(document).on('click','#preview_box .upload-sell-delete', function(e){
       e.preventDefault();
       var index = $("#preview_box .upload-sell-delete").index(this);
-      files_array.splice(index, 1);
+      if(document.URL.match("items" && "edit")){
+        var num = $(this).parent().parent().attr('id');
+        if(num != undefined){
+        num_array.push(num)
+        }
+      }
+      if(index <= old_array.length -1){
+      old_array.splice(index, 1);
+      console.log(old_array)
+      } else {
+      files_array.splice(index - old_array.length, 1);
+      console.log(files_array)
+      }
       $(this).parent().parent().remove();
       previewAction()
     });
@@ -163,11 +214,48 @@ $(document).on("turbolinks:load",function() {
       })
       .done(function(val){
         console.log("OK");
-
       })
       .fail(function(val){
         console.log("NG");
       })
+    })
+    $("#form_with_edit").on('submit', function(e){
+      e.preventDefault();
+      var formData = new FormData($(this).get(0));
+      let id = gon.item.id
+
+      files_array.forEach(function(file){
+        formData.append("new_images[images][]", file)
+      })
+      num_array.forEach(function(file){
+        formData.append("new_images[num][]", file)
+      })
+
+      if (num_array.length == 0 || files_array.length == 0){
+        kara_array = ["1"]
+        kara_array.forEach(function(file){
+          formData.append("new_images[kara][]", file)
+        })
+      }
+      if(files_array.length != 0 || old_array.length != 0){
+        $.ajax ({
+          url: '/items/' + id,
+          type: 'PUT',
+          data: formData,
+          contentType: false,
+          processData: false,
+        })
+        .done(function(val){
+          console.log("OK");
+        })
+        .fail(function(val){
+          console.log("NG---");
+          alert("画像を変更してください")
+        })
+      } else {
+        alert("画像が一枚もありません")
+        window.location.reload();
+      }
     })
   })
 });
@@ -184,42 +272,8 @@ $(document).on("turbolinks:load",function() {
   })
 })
 
-
-    // 現状の動作確認保存用
-// $(document).on("turbolinks:load",function() {
-//   $(function(){
-//     $fileField = $("#item_images")
-    
-//     targetFiles_array = []
-//     targetResult_array = []
-//     $($fileField).on('change', $fileField, function(e) {
-//       $.each(e.target.files, function(i,val){
-//       file = e.target.files[i]
-//       reader = new FileReader(),    
-//         $preview = $("#preview_list");
-        
-//         reader.onload = (function(file){
-//           return function(e){
-//             let img = $('<img>').attr({src: e.target.result})
-//             let previewBox = `<li class="upload-sell-item">
-//                               <figure class="upload-sell-figure">
-//                               <img src="${img[0].src}">
-//                               </figure>
-//                               <div class="upload-sell-btn">
-//                               <a class="upload-sell-edit" href="/">編集</a>
-//                               <a class="upload-sell-delete" href="/">削除</a>
-//                               </div>
-//                               </li>`
-//             $preview.append(previewBox)
-//           }
-//         })(file);
-//         reader.readAsDataURL(file);
-//       })
-//     })
-//   })
-// });
                     
-                    // ネスト構造のセレクトボックスの段階表示
+      // ネスト構造のセレクトボックスの段階表示
 $(document).on("turbolinks:load",function() {
   function appendOption(select){
     let html = `<option value="${select.id}">${select.name}</option>`
@@ -234,7 +288,7 @@ $(document).on("turbolinks:load",function() {
                           ${insertHTML}
                       </select>
                       </div>`
-    $("#category-select-box_list").append(childBoxHTML);
+    $("#parent_box").after(childBoxHTML);
   }
 
   function grandChildBox(insertHTML){
@@ -245,7 +299,7 @@ $(document).on("turbolinks:load",function() {
                                 ${insertHTML}
                               </select>
                             </div>`
-    $("#category-select-box_list").append(grandChildBoxHTML);
+    $("#child_box").after(grandChildBoxHTML);
   }
 
   function postagePlanBox(insertHTML){
@@ -279,8 +333,6 @@ $(document).on("turbolinks:load",function() {
         .done(function(childs){
           $("#child_box").remove();
           $("#grandchild_box").remove();
-          $("#size_box").remove();
-          $("#brand_box").remove();
           let insertHTML = "";
           childs.forEach(function(child){
             insertHTML += appendOption(child);
@@ -293,8 +345,6 @@ $(document).on("turbolinks:load",function() {
       } else {
         $("#child_box").remove();
         $("#grandchild_box").remove();
-        $("#size_box").remove();
-        $("#brand_box").remove();
       }
     })
 
@@ -312,8 +362,6 @@ $(document).on("turbolinks:load",function() {
           })
           .done(function(grandchilds){
             $("#grandchild_box").remove();
-            $("#size_box").remove();
-            $("#brand_box").remove();
             let insertHTML = "";
             grandchilds.forEach(function(grandchild){
               insertHTML += appendOption(grandchild);
@@ -325,8 +373,6 @@ $(document).on("turbolinks:load",function() {
           })
         } else {
           $("#grandchild_box").remove();
-          $("#size_box").remove();
-          $("#brand_box").remove();
         }
       })
     })
@@ -362,27 +408,105 @@ $(document).on("turbolinks:load",function() {
   });
 });
 
+    // ブランドのインクリメンタルサーチ
+$(document).on("turbolinks:load",function() {
+  var addResult = $("#search_brand_result");
+
+  function brandHit(brand) {
+    var html = `<li id="${brand.id}" class="brand_box_list">${brand.name}</li>`
+    addResult.append(html);
+  }
+  $(function(){
+    $("#input_brand_box").on("keyup", function() {
+      var input = $("#input_brand_box").val();
+      $.ajax({
+        type: 'GET',
+        url: '/brands/search_brand',
+        data: { keyword: input },
+        dataType: 'json'
+      })
+      .done(function(brands) {
+          $("#search_brand_result").children().remove();
+        if(input == ""){
+          $("#search_brand_result").children().remove();
+          return
+        }
+        if (brands.length !== 0) {
+          brands.forEach(function(brand) {
+            brandHit(brand);
+          });
+        }
+      })
+      .fail(function() {
+        console.log('NG');
+      });
+    });
+  })
+});
+
+    // インクリメンタルサーチ候補の非同期
+$(document).on("turbolinks:load",function() {
+  $(function(){
+    $(document).on('mouseover',"#search_brand_result > li", function(){
+      $(this).css({"color":"#fff","background":"#0099e8"})
+    })
+    $(document).on('mouseout',"#search_brand_result > li", function(){
+      $(this).css({"color":"#333","background":"#fff"})
+    })
+    $(document).on('click',"#search_brand_result li", function(){
+      let brandText = $(this).text();
+      let brandId = $(this).attr("id");
+      $("#input_brand_box").val(brandText);
+      $("#item_brand_id").val(brandId);
+      $("#search_brand_result > li").remove()
+    })
+  })
+});
+
 
 // 価格の手数料と利益の非同期
+function priceView(){
+  let price = $("#item_price").val();
+  let minPrice = 300
+  let maxPrice = 9999999
+  let fee = 10
+  let tax = Math.floor(price / fee)
+  let profit = price - tax
+  let kanmaProfit = profit.toLocaleString()
+  if(price >= minPrice && price <= maxPrice){
+    $("#tax-text").text("¥" + tax.toLocaleString());
+    $("#profit-text").text("¥" + kanmaProfit);
+  } else {
+    $("#tax-text").text("ー");
+    $("#profit-text").text("ー");
+  }
+}
+
 $(document).on("turbolinks:load",function() {
   $(function(){
     $("#item_price").on('input',function(){
-      let price = $(this).val();
-      let minPrice = 300
-      let maxPrice = 9999999
-      let fee = 10
-      let tax = Math.floor(price / fee)
-      let profit = price - tax
-      let kanmaProfit = profit.toLocaleString()
-      if(price >= minPrice && price <= maxPrice){
-        $("#tax-text").text("¥" + tax);
-        $("#profit-text").text(kanmaProfit);
-      } else {
-        $("#tax-text").text("ー");
-        $("#profit-text").text("ー");
-      }
+      priceView()
     })
+    if(document.URL.match("items" && "edit")){
+      priceView()
+    }
   })
+});
+
+
+
+
+
+$(document).on("turbolinks:load",function() {
+  $(function() {
+    if(document.URL.match("items" && "edit")){
+      if (gon.item.size != null){
+        $("#item_size").val(gon.item.size)
+      }
+      $("#item_condition").val(gon.item.condition)
+      $("#item_shipping_date").val(gon.item.shipping_date)
+    }
+  });
 });
 
 

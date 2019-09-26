@@ -27,5 +27,5 @@ class PagesController < ApplicationController
       format.json
     end
   end
-
+  
 end
