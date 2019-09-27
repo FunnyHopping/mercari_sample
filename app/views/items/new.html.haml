@@ -51,15 +51,113 @@
               .select-wrap#parent_box
                 %i.icon-arrow-bottom
                 = f.collection_select :parent_id, @parents, :id, :name,{prompt: "---"}, class: "select-default", id: "parent_form"
-              .form-group#size_box
+            .form-group#size-select-box
+              #clothes-size
                 %label
                   サイズ
                   %span.form-arbitrary
                     任意
                 .select-wrap
                   %i.icon-arrow-bottom
-                  = f.select :size, options_for_select(Item.sizes.keys), {}, class: "select-default"
-              .form-group#brand_box
+                  = f.select :hoge, options_for_select(Item.sizes.keys[0..9]), {prompt: "---"}, class: "select-default size-box", id: "clothes-size"
+              #ladies-shoes-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[10..25]), {prompt: "---"}, class: "select-default size-box", id: "ladies-shoes-size"
+              #mens-shoes-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[26..41]), {prompt: "---"}, class: "select-default size-box", id: "mens-shoes-size"
+              #babies-clothes-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[42..46]), {prompt: "---"}, class: "select-default size-box", id: "babies-clothes-size"
+              #kids-clothes-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[47..53]), {prompt: "---"}, class: "select-default size-box", id: "kids-clothes-size"
+              #kids-shoes-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[54..61]), {prompt: "---"}, class: "select-default size-box", id: "kids-shoes-size"
+              #lens-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[62..73]), {prompt: "---"}, class: "select-default size-box", id: "lens-size"
+              #tvs-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[74..83]), {prompt: "---"}, class: "select-default size-box", id: "tvs-size"
+              #snowboards-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[84..90]), {prompt: "---"}, class: "select-default size-box", id: "snowboards-size"
+              #skiingboards-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[91..97]), {prompt: "---"}, class: "select-default size-box", id: "skiingborads-size"
+              #tires-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[98..110]), {prompt: "---"}, class: "select-default size-box", id: "tires-size"
+              #motorcycles-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[111..116]), {prompt: "---"}, class: "select-default size-box", id: "motorcycles-size"
+              #helmets-size
+                %label
+                  サイズ
+                  %span.form-arbitrary
+                    任意
+                .select-wrap
+                  %i.icon-arrow-bottom
+                  = f.select :hoge, options_for_select(Item.sizes.keys[117..124]), {prompt: "---"}, class: "select-default size-box", id: "helmets-size"
+            .form-group#brandbox_list
+              #brand_box
                 %label
                   ブランド名
                   %span.form-arbitrary
