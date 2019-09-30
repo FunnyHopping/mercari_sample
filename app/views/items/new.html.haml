@@ -158,7 +158,7 @@
                   = f.select :hoge, options_for_select(Item.sizes.keys[117..124]), {prompt: "---"}, class: "select-default size-box", id: "helmets-size"
             .form-group#brandbox_list
               #brand_box
-                %label
+                %label#brand_box__label
                   ブランド名
                   %span.form-arbitrary
                     任意
@@ -212,6 +212,8 @@
             販売価格(300〜9,999,999)
           = link_to root_path, target: "_blank", class: "form-question" do
             ?
+          %span.attention#price-attention
+            価格は300〜9,999,999の範囲で設定してください
           .item-form-box
             %ul.sell-price
               %li.form-group
@@ -243,6 +245,8 @@
             %p
               また、出品をもちまして加盟店規約に同意したことになります。
           = f.submit "出品する", class: "btn-default btn-red", id: "item-submit"
+          #item-no-submit
+            出品する
           = link_to root_path, class: "btn-default btn-gray" do
             戻る
   = render "shared/logo_footer"

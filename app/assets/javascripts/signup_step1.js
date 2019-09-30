@@ -70,7 +70,6 @@ document.addEventListener('turbolinks:load',function(){
   }
 
   function nil_judge_birth(target1,target2,target3){
-    console.log(target3.val())
     if( target1.val() == undefined || target2.val() == undefined || !target3.val() || target3.val() == undefined ){
       $(".error-birth").show();
       sendflag = false

@@ -167,6 +167,22 @@ h2 {
   color: #ea352d;
 }
 
+#price-attention {
+  display: none;
+  float: right;
+}
+
+#item-no-submit {
+  display: none; 
+  margin: 40px 0 0;
+  background: #888;
+  color: #fff;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  text-align: center;
+}
+
 .input-default {
   height: 48px;
   padding: 10px 16px 8px;

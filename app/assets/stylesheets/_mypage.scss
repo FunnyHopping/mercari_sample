@@ -313,12 +313,12 @@ main {
   }
 }
 
-.modal {
+.mypage-modal {
   height: 100vh;
   width: 100%;
   z-index: 100;
   display: none;
-  .modal-box {
+  .mypage-modal-box {
     height: 100%;
     position: fixed;
     top: 0;
@@ -327,7 +327,7 @@ main {
     opacity: 0.8;
   }
 
-  .modal-inner.modal-banner {
+  .mypage-modal-inner.modal-banner {
     text-align: center;
     max-width: none;
     width: 600px;
@@ -339,10 +339,10 @@ main {
     overflow: hidden;
     background: #fff;
     z-index: 1000;
-    .modal-banner-eye-catch {
+    .mypage-modal-banner-eye-catch {
       height: 310px;
       overflow: hidden;
-      // position: relative;
+      position: relative;
       background: asset-url("modal_banner.jpg");
       background-repeat: no-repeat;
       background-size: cover;
@@ -359,7 +359,7 @@ main {
         position: absolute;
       }
     }
-    .modal-banner-body {
+    .mypage-modal-banner-body {
       padding: 16px 2.5%;
       h2 {
         font-size: 34px;
@@ -371,7 +371,7 @@ main {
         font-size: 18px;
         margin: 16px 0 0;
       }
-      .modal-banner-app {
+      .mypage-modal-banner-app {
         margin: 16px 0 0;
         a:first-child {
           margin: 0;
