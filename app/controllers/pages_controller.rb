@@ -16,8 +16,8 @@ class PagesController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @transaction_items = @user.sold_items.where(transact: false)
-    @transacted_items  = @user.sold_items.where(transact: true)
+    @transaction_items = @user.buyed_items.where(transact: false)
+    @transacted_items  = @user.buyed_items.where(transact: true)
   end
 
   def new

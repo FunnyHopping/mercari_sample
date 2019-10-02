@@ -172,3 +172,72 @@ create_relation(574,  car_parts_brands)
 create_relation(599,  foods_brands)
 create_relation(614,  japan_cars_brands)
 create_relation(622, other_cars_brands)
+
+User.create(
+  name: "test", 
+  first_name: "てすと", 
+  family_name: "てすと", 
+  first_name_kana: "テスト", 
+  family_name_kana: "テスト",
+  birth_day: "20190101",
+  phone_num: "09000000000",
+  email: "test@test",
+  password: "1234test"
+)
+User.create(
+  name: "buyer", 
+  first_name: "てすと", 
+  family_name: "てすと", 
+  first_name_kana: "テスト", 
+  family_name_kana: "テスト",
+  birth_day: "20190101",
+  phone_num: "09000000000",
+  email: "test@buyer",
+  password: "1234buyer"
+)
+require 'payjp'
+Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+card_token = Payjp::Token.create({
+                :card => {
+                  :number => '4242424242424242',
+                  :cvc => '123',
+                  :exp_month => '2',
+                  :exp_year => '2020'
+                }},
+                {
+                  'X-Payjp-Direct-Token-Generate': 'true'
+                } 
+              )
+customer = Payjp::Customer.create(
+  card: card_token[:id],
+  metadata: {user_id: 2})
+  @card = Card.create(user_id: 2, customer_id: customer.id, card_id: customer.default_card)
+
+@item1 = Item.create(
+  name: "test_item",
+  price: 10000000,
+  introduct: "test_intro",
+  size: 1,
+  brand_id: 8328,
+  condition: 0,
+  postage_id: 5,
+  prefecture_id: 1,
+  shipping_date: 1,
+  saler_id: 1,
+  category_id: 160
+)
+@item2 = Item.create(
+          name: "edit_test",
+          price: 10000000,
+          introduct: "test_intro",
+          size: 1,
+          brand_id: 8328,
+          condition: 0,
+          postage_id: 5,
+          prefecture_id: 1,
+          shipping_date: 1,
+          saler_id: 2,
+          category_id: 160
+        )
+@item1.images.attach(io: File.open('public/mercari_icon.png'), filename: 'mercari_icon.png')
+@item2.images.attach(io: File.open('public/mercari_icon.png'), filename: 'mercari_icon.png')
