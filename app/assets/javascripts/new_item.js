@@ -67,7 +67,6 @@ $(document).on("turbolinks:load",function() {
               }
             }
           files_array.push(files[i])
-          console.log(files_array)
   
           reader = new FileReader(),
           $previewBox = $("#preview_box");
@@ -84,7 +83,7 @@ $(document).on("turbolinks:load",function() {
                                         <img src="${imgURI}">
                                       </figure>
                                       <div class="upload-sell-btn">
-                                        <a class="upload-sell-edit" href="/">編集</a>
+                                        <a class="upload-sell-edit">編集</a>
                                         <a class="upload-sell-delete" href="/">削除</a>
                                       </div>
                                     </li>
@@ -97,7 +96,7 @@ $(document).on("turbolinks:load",function() {
                                       <img src="${imgURI}">
                                     </figure>
                                     <div class="upload-sell-btn">
-                                      <a class="upload-sell-edit" href="/">編集</a>
+                                      <a class="upload-sell-edit">編集</a>
                                       <a class="upload-sell-delete" href="/">削除</a>
                                     </div>
                                   </li>`
@@ -118,7 +117,7 @@ $(document).on("turbolinks:load",function() {
                                   <img src="${imgURI}">
                                 </figure>
                                 <div class="upload-sell-btn">
-                                  <a class="upload-sell-edit" href="/">編集</a>
+                                  <a class="upload-sell-edit">編集</a>
                                   <a class="upload-sell-delete" href="/">削除</a>
                                 </div>
                               </li>`
@@ -135,7 +134,7 @@ $(document).on("turbolinks:load",function() {
                                       <img src="${imgURI}">
                                     </figure>
                                     <div class="upload-sell-btn">
-                                      <a class="upload-sell-edit" href="/">編集</a>
+                                      <a class="upload-sell-edit">編集</a>
                                       <a class="upload-sell-delete" href="/">削除</a>
                                     </div>
                                   </li>
@@ -148,7 +147,7 @@ $(document).on("turbolinks:load",function() {
                                     <img src="${imgURI}">
                                   </figure>
                                   <div class="upload-sell-btn">
-                                    <a class="upload-sell-edit" href="/">編集</a>
+                                    <a class="upload-sell-edit">編集</a>
                                     <a class="upload-sell-delete" href="/">削除</a>
                                   </div>
                                 </li>`
@@ -165,7 +164,7 @@ $(document).on("turbolinks:load",function() {
                                   <img src="${imgURI}">
                                 </figure>
                                 <div class="upload-sell-btn">
-                                  <a class="upload-sell-edit" href="/">編集</a>
+                                  <a class="upload-sell-edit">編集</a>
                                   <a class="upload-sell-delete" href="/">削除</a>
                                 </div>
                               </li>`
@@ -190,10 +189,8 @@ $(document).on("turbolinks:load",function() {
         }
         if(index <= old_array.length -1){
         old_array.splice(index, 1);
-        console.log(old_array)
         } else {
         files_array.splice(index - old_array.length, 1);
-        console.log(files_array)
         }
         $(this).parent().parent().remove();
         previewAction()
@@ -213,10 +210,10 @@ $(document).on("turbolinks:load",function() {
           processData: false,
         })
         .done(function(val){
-          console.log("OK");
         })
         .fail(function(val){
-          console.log("NG");
+          alert('登録できませんでした')
+          location.reload();
         })
       })
       $("#form_with_edit").on('submit', function(e){
@@ -246,10 +243,8 @@ $(document).on("turbolinks:load",function() {
             processData: false,
           })
           .done(function(val){
-            console.log("OK");
           })
           .fail(function(val){
-            console.log("NG---");
             alert("画像を変更してください")
           })
         } else {
@@ -405,67 +400,54 @@ $(document).on("turbolinks:load",function() {
       let grandChildValue = $("#grandchild_form").val();
       if(grandChildValue != ""){
         if(clothesArray.indexOf(grandChildValue) >= 0) {
-          console.log("clothes")
           $("#size-select-box").show();
           $("#clothes-size").siblings().hide();
           $("#clothes-size").show()
         }else if(ladiesShoesArray.indexOf(grandChildValue) >= 0) {
-          console.log("ladies")
           $("#size-select-box").show();
           $("#ladies-shoes-size").siblings().hide();
           $("#ladies-shoes-size").show();
         }else if(mensShoesArray.indexOf(grandChildValue) >= 0) {
-          console.log("mens")
           $("#size-select-box").show();
           $("#mens-shoes-size").siblings().hide();
           $("#mens-shoes-size").show();
         }else if(babiesClothesArray.indexOf(grandChildValue) >= 0) {
-          console.log("babies")
           $("#size-select-box").show();
           $("#babies-clothes-size").siblings().hide();
           $("#babies-clothes-size").show();
         }else if(kidsClothesArray.indexOf(grandChildValue) >= 0) {
-          console.log("kids")
           $("#size-select-box").show();
           $("#kids-clothes-size").siblings().hide();
           $("#kids-clothes-size").show();
         }else if(kidsShoesArray.indexOf(grandChildValue) >= 0) {
-          console.log("kidsShoes")
           $("#size-select-box").show();
           $("#kids-shoes-size").siblings().hide();
           $("#kids-shoes-size").show();
         }else if(lensArray.indexOf(grandChildValue) >= 0) {
-          console.log("lens")
           $("#size-select-box").show();
           $("#lens-size").siblings().hide();
           $("#lens-size").show();
         }else if(tvsArray.indexOf(grandChildValue) >= 0) {
-          console.log("tvs")
           $("#size-select-box").show();
           $("#tvs-size").siblings().hide();
           $("#tvs-size").show();
         }else if(snowboardsArray.indexOf(grandChildValue) >= 0) {
-          console.log("snowboards")
           $("#size-select-box").show();
           $("#snowboards-size").siblings().hide();
           $("#snowboards-size").show();
         }else if(skiingboardsArray.indexOf(grandChildValue) >= 0) {
-          console.log("skiingboards")
           $("#size-select-box").show();
           $("#skiingboards-size").siblings().hide();
           $("#skiingboards-size").show();
         }else if(tiresArray.indexOf(grandChildValue) >= 0) {
-          console.log("skiingboards")
           $("#size-select-box").show();
           $("#tires-size").siblings().hide();
           $("#tires-size").show();
         }else if(motorcyclesArray.indexOf(grandChildValue) >= 0) {
-          console.log("skiingboards")
           $("#size-select-box").show();
           $("#motorcycles-size").siblings().hide();
           $("#motorcycles-size").show();
         }else if(helmetsArray.indexOf(grandChildValue) >= 0) {
-          console.log("skiingboards")
           $("#size-select-box").show();
           $("#helmets-size").siblings().hide();
           $("#helmets-size").show();
@@ -520,72 +502,78 @@ $(document).on("turbolinks:load",function() {
   var addResult = $("#search_brand_result");
   
   function brandHit(brand) {
-  var html = `<li id="${brand.id}" class="brand_box_list">${brand.name}</li>`
-  addResult.append(html);
+    var html = `<li id="${brand.id}" class="brand_box_list">${brand.name}</li>`
+    addResult.append(html);
   }
   $(function(){
-  $("#input_brand_box").on("keyup", function() {
-    var input = $("#input_brand_box").val();
-    $.ajax({
-      type: 'GET',
-      url: '/brands/search_brand',
-      data: { keyword: input },
-      dataType: 'json'
-    })
-    .done(function(brands) {
-        $("#search_brand_result").children().remove();
-      if(input == ""){
-        $("#search_brand_result").children().remove();
-        return
-      }
-      if (brands.length !== 0) {
-        brands.forEach(function(brand) {
-          brandHit(brand);
-        });
-      }
-    })
-    .fail(function() {
-      console.log('NG');
+    $("#input_brand_box").on("keyup", function() {
+      var input = $("#input_brand_box").val();
+      $.ajax({
+        type: 'GET',
+        url: '/brands/search_brand',
+        data: { keyword: input },
+        dataType: 'json'
+      })
+      .done(function(brands) {
+          $("#search_brand_result").children().remove();
+        if(input == ""){
+          $("#search_brand_result").children().remove();
+          return
+        }
+        if (brands.length !== 0) {
+          brands.forEach(function(brand) {
+            brandHit(brand);
+          });
+        }
+      })
+      .fail(function() {
+        alert('正常に検索できませんでした');
+      });
     });
-  });
   })
   
   
   // インクリメンタルサーチ候補の非同期
   $(function(){
-  $(document).on('mouseover',"#search_brand_result > li", function(){
-    $(this).css({"color":"#fff","background":"#0099e8"})
-  })
-  $(document).on('mouseout',"#search_brand_result > li", function(){
-    $(this).css({"color":"#333","background":"#fff"})
-  })
-  $(document).on('click',"#search_brand_result li", function(){
-    let brandText = $(this).text();
-    let brandId = $(this).attr("id");
-    $("#input_brand_box").val(brandText);
-    $("#item_brand_id").val(brandId);
-    $("#search_brand_result > li").remove()
-  })
+    $(document).on('mouseover',"#search_brand_result > li", function(){
+      $(this).css({"color":"#fff","background":"#0099e8"})
+    })
+    $(document).on('mouseout',"#search_brand_result > li", function(){
+      $(this).css({"color":"#333","background":"#fff"})
+    })
+    $(document).on('click',"#search_brand_result li", function(){
+      let brandText = $(this).text();
+      let brandId = $(this).attr("id");
+      $("#input_brand_box").val(brandText);
+      $("#item_brand_id").val(brandId);
+      $("#search_brand_result > li").remove()
+    })
   })
   
   
   // 価格の手数料と利益の非同期
   function priceView(){
-  let price = $("#item_price").val();
-  let minPrice = 300
-  let maxPrice = 9999999
-  let fee = 10
-  let tax = Math.floor(price / fee)
-  let profit = price - tax
-  let kanmaProfit = profit.toLocaleString()
-  if(price >= minPrice && price <= maxPrice){
-      $("#tax-text").text("¥" + tax.toLocaleString());
-      $("#profit-text").text("¥" + kanmaProfit);
-    } else {
-      $("#tax-text").text("ー");
-      $("#profit-text").text("ー");
+    let price = $("#item_price").val();
+    let minPrice = 300
+    let maxPrice = 9999999
+    let fee = 10
+    let tax = Math.floor(price / fee)
+    let profit = price - tax
+    let kanmaProfit = profit.toLocaleString()
+    if(price >= minPrice && price <= maxPrice){
+        $("#tax-text").text("¥" + tax.toLocaleString());
+        $("#profit-text").text("¥" + kanmaProfit);
+        $("#item-submit").show();
+        $("#item-no-submit").hide();
+        $("#price-attention").hide();
+      } else {
+        $("#tax-text").text("ー");
+        $("#profit-text").text("ー");
+        $("#item-submit").hide();
+        $("#item-no-submit").show();
+        $("#price-attention").show();
+      }
     }
-  }
   
   $(function(){
     $("#item_price").on('input',function(){

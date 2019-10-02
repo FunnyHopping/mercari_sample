@@ -19,7 +19,6 @@
             出品数 
             %span.bold
               0
-        -# 部分テンプレート化
     %section.mypage-tab-notice-todo
       %ul.mypage-tabs
         %li.active
@@ -58,10 +57,10 @@
                 =image_tag "mercari_mark.png"
               .mypage-item
                 .mypage-item__text
-                  【実は高く売れる！】遊び終わったゲームもバーコードで10秒出品♪
+                  【P200が必ずもらえる】はじめての出品キャンペーン開催中！
                 %time
                   %i.icon-time
-                  %span 3 時間前
+                  %span 1 日前
               %i.icon-arrow-right
           %li
             = link_to root_path, class: "mypage-item-link" do
@@ -69,10 +68,10 @@
                 =image_tag "mercari_mark.png"
               .mypage-item
                 .mypage-item__text
-                  【実は高く売れる！】遊び終わったゲームもバーコードで10秒出品♪
+                  【最大500円分ポイントプレゼント♪】詳しくはこちら！
                 %time
                   %i.icon-time
-                  %span 3 時間前
+                  %span 2 日前
               %i.icon-arrow-right
           %li
             = link_to root_path, class: "mypage-item-link" do
@@ -80,10 +79,10 @@
                 =image_tag "mercari_mark.png"
               .mypage-item
                 .mypage-item__text
-                  【実は高く売れる！】遊び終わったゲームもバーコードで10秒出品♪
+                  【最大1000円分ポイントプレゼント！】詳しくはこちら♪
                 %time
                   %i.icon-time
-                  %span 3 時間前
+                  %span 3 日前
               %i.icon-arrow-right
           %li.mypage-item-list__go
             = link_to root_path do
@@ -103,9 +102,8 @@
           %li.mypage-item-list__go
             = link_to root_path do
               一覧を見る
-          -# ここまで部分テンプレート
 
-          -# ここから部分テンプレート
+
     %section.mypage-buy-box
       %h2.mypage-buy-box__title 購入した商品
       %ul.mypage-tabs
@@ -157,18 +155,18 @@
         -# ここまで部分テンプレート
   = render "shared/mypage_side"
 
-.modal
-  %aside.modal-box{data: {close: "modal", modal: "banner"}}
-  .modal-inner.modal-banner
-    .modal-banner-eye-catch
+.mypage-modal
+  %aside.mypage-modal-box
+  .mypage-modal-inner.modal-banner
+    .mypage-modal-banner-eye-catch
       = image_tag "smart_phone.png"
       = image_tag "logo.svg"
-    .modal-banner-body
+    .mypage-modal-banner-body
       %h2 今すぐ無料ダウンロード！
       %p.bold 全ての機能を使えるスマホアプリはこちら！
-      .modal-banner-app.clearfix
+      .mypage-modal-banner-app.clearfix
         = link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&amp;mt=8", target: "_blank", class: "pull-left" do
           = image_tag "app-store.svg"
         = link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&amp;hl=ja", target: "_blank", class: "pull-left" do
           = image_tag "google-play.svg"
-    %i.icon-close{data: {close: "modal"}}
+    %i.icon-close
