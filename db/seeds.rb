@@ -184,6 +184,14 @@ User.create(
   email: "test@test",
   password: "1234test"
 )
+Address.create(
+  post_num: "085-0467",
+  prefecture_id: 23,
+  city: "札幌市",
+  street_num: "札幌ヶ丘",
+  building: "123",
+  user_id: 1
+)
 User.create(
   name: "buyer", 
   first_name: "てすと", 
@@ -194,6 +202,14 @@ User.create(
   phone_num: "09000000000",
   email: "test@buyer",
   password: "1234buyer"
+)
+Address.create(
+  post_num: "085-0467",
+  prefecture_id: 23,
+  city: "札幌市",
+  street_num: "札幌ヶ丘",
+  building: "123",
+  user_id: 2
 )
 require 'payjp'
 Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
