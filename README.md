@@ -1,6 +1,6 @@
 # DB設計
 
-[![Image from Gyazo](https://i.gyazo.com/dc9fa6bfe26c282e45ffe8f597e75c3a.png)](https://gyazo.com/dc9fa6bfe26c282e45ffe8f597e75c3a)
+[![Image from Gyazo](https://i.gyazo.com/e63311c62f1247fff82df3c85498bc6e.png)](https://gyazo.com/dc9fa6bfe26c282e45ffe8f597e75c3a)
 
 ## usersテーブル
 
