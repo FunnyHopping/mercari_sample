@@ -134,7 +134,7 @@
       .tab-content.tab2#tab2.tab_b
         -if @transacted_items  != nil
           %ul.tab-content__list
-            - @transacted_items .each do |item|
+            - @transacted_items.each do |item|
               %li.tab-content__list__li
                 =link_to order_path(item.order.id) do
                   %figure
