@@ -22,5 +22,30 @@ $(document).on("turbolinks:load",function() {
     $("body").css("overflow", "auto");
   })
 
+  $("#news-tabs .news-tab").on('click', function(e){
+    e.preventDefault();
+    $("#news-tabs").children().removeClass();
+    $("#news-tabs").siblings().children().removeClass('active');
+    $(this).parent().parent().addClass('active');
+    $("#mypage-tab-news").addClass('active');
+  })
+  $("#news-tabs .todo-tab").on('click', function(e){
+    e.preventDefault();
+    $("#news-tabs").children().removeClass();
+    $("#news-tabs").siblings().children().removeClass('active');
+    $(this).parent().parent().addClass('active');
+    $("#mypage-tab-todo").addClass('active');
+  })
+  $("#order-tabs .now-order-tab").on('click', function(e){
+    e.preventDefault();
+    $("#order-tabs").children().removeClass();
+    $(this).parent().parent().addClass('active');
+  })
+  $("#order-tabs .ordered-tab").on('click', function(e){
+    e.preventDefault();
+    $("#order-tabs").children().removeClass();
+    $(this).parent().parent().addClass('active');
+  })
+
 });
 
