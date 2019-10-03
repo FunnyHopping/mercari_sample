@@ -231,7 +231,7 @@ customer = Payjp::Customer.create(
 
 @item1 = Item.create(
   name: "test_item",
-  price: 10000000,
+  price: 1000000,
   introduct: "test_intro",
   size: 1,
   brand_id: 8328,
@@ -242,9 +242,10 @@ customer = Payjp::Customer.create(
   saler_id: 1,
   category_id: 160
 )
+Order.create(item_id: 1)
 @item2 = Item.create(
           name: "edit_test",
-          price: 10000000,
+          price: 1000000,
           introduct: "test_intro",
           size: 1,
           brand_id: 8328,
@@ -255,5 +256,6 @@ customer = Payjp::Customer.create(
           saler_id: 2,
           category_id: 160
         )
+Order.create(item_id: 2)
 @item1.images.attach(io: File.open('public/mercari_icon.png'), filename: 'mercari_icon.png')
 @item2.images.attach(io: File.open('public/mercari_icon.png'), filename: 'mercari_icon.png')

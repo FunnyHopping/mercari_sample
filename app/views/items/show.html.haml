@@ -45,15 +45,15 @@
               .user-rating
                 %i.rating-good
                 %span
-                = @user.take_transacts.count
+                = @user.give_transacts.where(evaluat: '{:value=>"good"}').count
               .user-rating
                 %i.rating-normal
                 %span
-                  0
+                = @user.give_transacts.where(evaluat: '{:value=>"normal"}').count
               .user-rating
                 %i.rating-bad
                 %span
-                  0
+                = @user.give_transacts.where(evaluat: '{:value=>"bad"}').count
         %tr
           %th カテゴリー
           %td
