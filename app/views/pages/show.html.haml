@@ -20,15 +20,15 @@
             %span.bold
               0
     %section.mypage-tab-notice-todo
-      %ul.mypage-tabs
+      %ul.mypage-tabs#news-tabs
         %li.active
           %h3
-            = link_to "お知らせ", root_path
+            = link_to "お知らせ", root_path, class: "news-tab"
         %li
           %h3
-            = link_to "やることリスト", root_path
+            = link_to "やることリスト", root_path, class: "todo-tab"
       .tab-content
-        %ul.mypage-item-list.tab-pane.active
+        %ul#mypage-tab-news.mypage-item-list.tab-pane.active
           %li
             = link_to root_path, class: "mypage-item-link" do
               %figure
@@ -106,17 +106,17 @@
 
     %section.mypage-buy-box
       %h2.mypage-buy-box__title 購入した商品
-      %ul.mypage-tabs
+      %ul.mypage-tabs#order-tabs
         %li.active
           %h3.current.tab1.tab_a{href:"#tab1"}
-            = link_to root_path, {data: {toggle: "tab"}} do
+            = link_to root_path, {data: {toggle: "tab"}, class: "now-order-tab"} do
               取引中
         %li
           %h3.tab2.tab_a{href:"#tab2"}
-            = link_to root_path, {data: {toggle: "tab"}} do
+            = link_to root_path, {data: {toggle: "tab"}, class: "ordered-tab"} do
               過去の取引
       .tab-content.tab1#tab1.tab_b
-        -if @transaction_items != nil
+        -if @transaction_items.length != 0
           %ul.tab-content__list
             - @transaction_items.each do |item|
               %li.tab-content__list__li
@@ -131,8 +131,11 @@
                     .tab-content__list__li__body__state
                       ="発送待ち"
                     %i.icon-arrow-right
+        - else
+          %ul#mypage-tab-buy-now.mypage-item-list.tab-pane.active
+            %li.mypage-item-not-found.bold 取引中の商品がありません
       .tab-content.tab2#tab2.tab_b
-        -if @transacted_items  != nil
+        -if @transacted_items.length != 0
           %ul.tab-content__list
             - @transacted_items .each do |item|
               %li.tab-content__list__li
@@ -148,11 +151,8 @@
                       ="取引完了"
                     %i.icon-arrow-right
         -else
-          %ul#mypage-tab-buy-now.mypage-item-list.tab-pane.active
-            %li.mypage-item-not-found.bold 取引中の商品がありません
           %ul#mypage-tab-buy-old.mypage-item-list.tab-pane
             %li.mypage-item-not-found.bold 過去に取引した商品がありません
-        -# ここまで部分テンプレート
   = render "shared/mypage_side"
 
 .mypage-modal
