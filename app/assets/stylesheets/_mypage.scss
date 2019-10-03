@@ -276,6 +276,13 @@ main {
   }
 }
 
+#mypage-tab-buy-now {
+  @include not-found();
+}
+#mypage-tab-buy-old {
+  @include not-found();
+}
+
 .side-index {
   float: left;
   width: 280px;
